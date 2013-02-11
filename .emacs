@@ -27,15 +27,15 @@
 ;; Load CEDET.
 ;; This is required by ECB which will be loaded later.
 ;; See cedet/common/cedet.info for configuration details.
-(load-file "~/.emacs.d/cedet-1.0/common/cedet.el")
+;;(load-file "~/.emacs.d/cedet-1.0/common/cedet.el")
 
 ;; * This enables some tools useful for coding, such as summary mode
 ;;   imenu support, and the semantic navigator
 ;;(semantic-load-enable-code-helpers)
 
 ;; Load ECB
-(add-to-list 'load-path "~/.emacs.d/ecb-2.40")
-(require 'ecb)
+;;(add-to-list 'load-path "~/.emacs.d/ecb-2.40")
+;;(require 'ecb)
 
 ;; auto-indent after 'enter' in ruby mode
 (add-hook 'ruby-mode-hook
@@ -55,18 +55,20 @@
         )) 
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(column-number-mode t)
- '(ecb-layout-name "left14")
- '(ecb-layout-window-sizes (quote (("left14" (0.2564102564102564 . 0.6949152542372882) (0.2564102564102564 . 0.23728813559322035)))))
- '(ecb-options-version "2.40")
- '(ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1))
- '(ecb-source-path (quote ("~/")))
- '(ecb-tip-of-the-day nil)
- '(ecb-tree-buffer-style (quote ascii-guides))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ 
+ ;;'(column-number-mode t)
+ ;;'(ecb-layout-name "left14")
+ ;;'(ecb-layout-window-sizes (quote (("left14" (0.2564102564102564 . 0.6949152542372882) (0.2564102564102564 . 0.23728813559322035)))))
+ ;;'(ecb-options-version "2.40")
+ ;;'(ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1))
+ ;;'(ecb-source-path (quote ("~/")))
+ ;;'(ecb-tip-of-the-day nil)
+ ;;'(ecb-tree-buffer-style (quote ascii-guides))
+
  '(show-paren-mode t)
  '(size-indication-mode t)
  '(tool-bar-mode nil))
@@ -82,6 +84,6 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- (if window-system
-     '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
- )
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
+ '(erb-face ((t (:background "#121212"))))
+ '(erb-out-delim-face ((((background dark)) (:background "#171717" :foreground "#aaffff")))))
