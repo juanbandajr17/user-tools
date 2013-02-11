@@ -55,20 +55,10 @@
         )) 
 
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- 
- ;;'(column-number-mode t)
- ;;'(ecb-layout-name "left14")
- ;;'(ecb-layout-window-sizes (quote (("left14" (0.2564102564102564 . 0.6949152542372882) (0.2564102564102564 . 0.23728813559322035)))))
- ;;'(ecb-options-version "2.40")
- ;;'(ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1))
- ;;'(ecb-source-path (quote ("~/")))
- ;;'(ecb-tip-of-the-day nil)
- ;;'(ecb-tree-buffer-style (quote ascii-guides))
-
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  '(show-paren-mode t)
  '(size-indication-mode t)
  '(tool-bar-mode nil))
@@ -85,5 +75,6 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
- '(erb-face ((t (:background "#121212"))))
- '(erb-out-delim-face ((((background dark)) (:background "#171717" :foreground "#aaffff")))))
+ '(erb-delim-face ((t (:inherit font-lock-preprocessor-face :background "#171717" :slant italic :weight bold))))
+ '(erb-face ((t nil)))
+ '(erb-out-delim-face ((((background dark)) (:inherit erb-delim-face)))))
