@@ -38,21 +38,21 @@
 ;;(require 'ecb)
 
 ;; auto-indent after 'enter' in ruby mode
-(add-hook 'ruby-mode-hook
-      (lambda()
-        (add-hook 'local-write-file-hooks
-                  '(lambda()
-                     (save-excursion
-                       (untabify (point-min) (point-max))
-                       (delete-trailing-whitespace)
-                       )))
-        (set (make-local-variable 'indent-tabs-mode) 'nil)
-        (set (make-local-variable 'tab-width) 2)
-        (imenu-add-to-menubar "IMENU")
-        (define-key ruby-mode-map "\C-m" 'newline-and-indent) ;Not sure if this line is 100% right!
+;;(add-hook 'ruby-mode-hook
+;;      (lambda()
+;;        (add-hook 'local-write-file-hooks
+;;                  '(lambda()
+;;                     (save-excursion
+;;                       (untabify (point-min) (point-max))
+;;                       (delete-trailing-whitespace)
+;;                       )))
+;;        (set (make-local-variable 'indent-tabs-mode) 'nil)
+;;        (set (make-local-variable 'tab-width) 2)
+;;        (imenu-add-to-menubar "IMENU")
+     ;   (define-key ruby-mode-map "\C-m" 'newline-and-indent) ;Not sure if this line is 100% right!
      ;   (require 'ruby-electric)
      ;   (ruby-electric-mode t)
-        )) 
+;;        )) 
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -77,4 +77,5 @@
  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
  '(erb-delim-face ((t (:inherit font-lock-preprocessor-face :background "#171717" :slant italic :weight bold))))
  '(erb-face ((t nil)))
- '(erb-out-delim-face ((((background dark)) (:inherit erb-delim-face)))))
+ '(erb-out-delim-face ((((background dark)) (:inherit erb-delim-face))))
+ '(font-lock-comment-face ((((class color) (min-colors 88) (background dark)) (:foreground "red")))))
