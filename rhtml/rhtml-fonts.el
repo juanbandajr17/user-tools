@@ -30,7 +30,11 @@
      (1 font-lock-keyword-face prepend))
     ("\\(@[0-9a-zA-Z_]*\\|true\\|false\\|nil\\)" . (1 font-lock-variable-name-face prepend))
     ("[^:]\\(:[0-9a-zA-Z_]+\\)" . (1 font-lock-constant-face prepend))
-    ("\\(\"[^\"]*[\"]?\\|\'[^\']*[\']?\\)" . (1 font-lock-string-face prepend))))
+    ("\\(\"[^\"]*[\"]?\\|\'[^\']*[\']?\\)" . (1 font-lock-string-face prepend))
+    ;; Attempt to stringify <<EOQ ... EOQ
+    ;;("<<[-]?\\([^\\n]\\n\\)[^\\(\\1\\)]\\1" . (1 font-lock-string-face prepend))
+    ;;("\\(<<[^_]*>\\)" . (1 font-lock-string-face prepend))
+    ))
 
 (defvar rhtml-font-lock-syntactic-keywords
   '(("\\(<\\)!--" (1 "< b"))

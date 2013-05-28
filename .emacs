@@ -6,21 +6,18 @@
 ;;     (color-theme-initialize)
 ;;     (color-theme-clarity)))
 
-;;; nxhtml - for rails - not working well with Emacs version 23.3
-;;(load "~/.emacs.d/nxhtml/autostart.el")
-
 ;;; rhtml mode
 (add-to-list 'load-path "~/.emacs.d/rhtml")
 (require 'rhtml-mode)
 
-;;(add-to-list 'load-path "~/.emacs.d/themes")
-;;(if window-system
-    ;; zenburn color theme
-    ;;(require 'zenburn-theme)
-
-    ;; tango color theme - must have color-theme
-    ;;(require 'color-theme-tango)
-;;    ())
+;;color-theme
+(add-to-list 'load-path "~/.emacs.d/themes")
+(if window-system
+    (require 'zenburn-theme)
+  (begin
+   (require 'color-theme-tango)
+   (color-theme-tango))
+  ())
 
 ;; Original HOWTO-link to setup rails with emacs: http://appsintheopen.com/articles/1-setting-up-emacs-for-rails-development
 
@@ -63,19 +60,21 @@
  '(size-indication-mode t)
  '(tool-bar-mode nil))
 
+;; auto reload files that have changed on disk
+(global-auto-revert-mode t)
 ;; inhibit starting screen on emacs
 (setq inhibit-splash-screen t)
 ;; Prompts before exiting emacs
 (setq confirm-kill-emacs 'yes-or-no-p)
 
 
-(custom-set-faces
+;;(custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
- '(erb-delim-face ((t (:inherit font-lock-preprocessor-face :background "#171717" :slant italic :weight bold))))
- '(erb-face ((t nil)))
- '(erb-out-delim-face ((((background dark)) (:inherit erb-delim-face))))
- '(font-lock-comment-face ((((class color) (min-colors 88) (background dark)) (:foreground "red")))))
+;; '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
+;; '(erb-delim-face ((t (:inherit font-lock-preprocessor-face :background "#171717" :slant italic :weight bold))))
+;; '(erb-face ((t nil)))
+;; '(erb-out-delim-face ((((background dark)) (:inherit erb-delim-face))))
+;; '(font-lock-comment-face ((((class color) (min-colors 88) (background dark)) (:foreground "red")))))
