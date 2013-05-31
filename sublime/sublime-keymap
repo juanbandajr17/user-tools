@@ -110,7 +110,7 @@
 	{ "keys": ["ctrl+x", "b"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true} },
 
 	{ "keys": ["ctrl+s"], "command": "show_panel", "args": {"panel": "find"} },
-	{ "keys": ["ctrl+alt+s"], "command": "show_panel", "args": {"panel": "find_in_files"} },
+	{ "keys": ["alt+shift+f"], "command": "show_panel", "args": {"panel": "find_in_files"} },
 	
 	{ "keys": ["ctrl+w"], "command": "delete_word", "args": { "forward": false } },
 	{ "keys": ["alt+d"], "command": "delete_word", "args": { "forward": true } },
