@@ -1,4 +1,12 @@
 {
 	"color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
-	"font_size": 10
+	"font_size": 12,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"draw_indent_guides": false,
+	"margin": 0,
+	"scroll_past_end": false,
+	"translate_tabs_to_spaces": false,
+	"ensure_newline_at_eof_on_save": true,
+	"auto_complete": false
 }
