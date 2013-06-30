@@ -1,8 +1,14 @@
 {
     // 1. Install Package manager
     // 2. Install sublime emacs pro
+    // 3. Install Shell Turtle-stein
+    //
     // Reference:
     // https://raw.github.com/grundprinzip/sublemacspro/master/Default.sublime-keymap
+    //
+    // Reference:
+    // https://raw.github.com/grundprinzip/sublemacspro/master/Default.sublime-keymap
+
 
     // Edit these lines in tmTheme for better line highlighting
     //<key>lineHighlight</key>
