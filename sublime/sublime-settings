@@ -17,7 +17,7 @@
 
     // Valid values are "smooth", "phase", "blink", "wide" and "solid".
 	"caret_style": "smooth",
-    "wide_caret": true,
+	"wide_caret": true,
 
 	"color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
 	"draw_indent_guides": true,
@@ -33,7 +33,10 @@
 	"scroll_past_end": false,
 	"show_minimap": false,
 	"show_side_bar": false,
-	"translate_tabs_to_spaces": true
+	"translate_tabs_to_spaces": true,
+
+    // Disables horizontal scrolling if enabled.
+    // May be set to true, false, or "auto", where it will be disabled for
+    // source code, and otherwise enabled.
+    "word_wrap": "true"
 }
-
-
