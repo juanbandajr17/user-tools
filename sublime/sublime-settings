@@ -4,6 +4,14 @@
     // 3. Install Shell Turtle-stein
     // 4. Install Alignment
     //
+    // {
+    //    "alignment_chars" : ["=", ":", "=>"],
+    //    "alignment_space_chars" : ["=", "=>"]
+    // }
+    //
+    // Reference:
+    // http://wbond.net/sublime_packages/alignment
+    //
     // Reference:
     // https://raw.github.com/grundprinzip/sublemacspro/master/Default.sublime-keymap
     //
