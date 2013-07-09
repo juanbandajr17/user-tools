@@ -43,7 +43,7 @@
 	"show_minimap": false,
 	"show_side_bar": false,
 	"translate_tabs_to_spaces": true,
-
+    "tab_size": 2,
     // Disables horizontal scrolling if enabled.
     // May be set to true, false, or "auto", where it will be disabled for
     // source code, and otherwise enabled.
