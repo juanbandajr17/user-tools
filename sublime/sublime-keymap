@@ -6,5 +6,9 @@
     { "keys": ["alt+g"], "command": "show_overlay", "args": {"overlay": "goto", "text": ":"} },
     { "keys": ["home"], "command": "move_to", "args": {"to": "bol", "extend": false} },
     { "keys": ["end"], "command": "move_to", "args": {"to": "eol", "extend": false} }
+    
+    # Mac
+    #{ "keys": ["shift+tab"], "command": "reindent"}
+
 ]                                                                                                                     
                 

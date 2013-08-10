@@ -23,7 +23,6 @@
     //<key>lineHighlight</key>
     //<string>#FFFFFF12</string>
 
-
     // Valid values are "smooth", "phase", "blink", "wide" and "solid".
 	"caret_style": "smooth",
 	"wide_caret": true,
