@@ -3,11 +3,23 @@
     // 2. Install sublime emacs pro
     // 3. Install Shell Turtle-stein
     // 4. Install Alignment
+    // 5. Distraction Free Settings
+
+        // {
+  	// "line_numbers": true,
+  	// "gutter": true,
+  	// "draw_centered": true,
+  	// "wrap_width": 95,
+  	// "word_wrap": true,
+  	// "scroll_past_end": true
+	// }	
+
     //
     // {
     //    "alignment_chars" : ["=", ":", "=>"],
     //    "alignment_space_chars" : ["=", "=>"]
     // }
+    // 
     //
     // Reference:
     // http://wbond.net/sublime_packages/alignment
