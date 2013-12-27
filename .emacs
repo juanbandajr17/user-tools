@@ -15,6 +15,16 @@
  '(size-indication-mode t)
  '(tool-bar-mode nil))
 
+;;backup-files
+(setq
+   backup-by-copying t      ; don't clobber symlinks
+   backup-directory-alist
+    '(("." . "~/.saves"))    ; don't litter my fs tree
+   delete-old-versions t
+   kept-new-versions 6
+   kept-old-versions 2
+   version-control t)       ; use versioned backups
+
 ;; auto reload files that have changed on disk
 (global-auto-revert-mode t)
 ;; inhibit starting screen on emacs
