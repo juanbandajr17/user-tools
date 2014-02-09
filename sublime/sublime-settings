@@ -1,38 +1,12 @@
-//v1.0
-
 {
     // 1. Install Package manager
     // 2. Install sublime emacs pro
-    // 3. Install Shell Turtle-stein
     // 4. Install Alignment
-    // 5. Distraction Free Settings
-
-        // {
-  	// "line_numbers": true,
-  	// "gutter": true,
-  	// "draw_centered": true,
-  	// "wrap_width": 95,
-  	// "word_wrap": true,
-  	// "scroll_past_end": true
-	// }	
-
-    //
     // {
     //    "alignment_chars" : ["=", "=>", "+="],
     //    "alignment_space_chars" : ["=", "=>"]
     // }
     // 
-    //
-    // Reference:
-    // http://wbond.net/sublime_packages/alignment
-    //
-    // Reference:
-    // https://raw.github.com/grundprinzip/sublemacspro/master/Default.sublime-keymap
-    //
-    // Reference:
-    // https://raw.github.com/grundprinzip/sublemacspro/master/Default.sublime-keymap
-
-
     // Edit these lines in tmTheme for better line highlighting
     //<key>lineHighlight</key>
     //<string>#FFFFFF12</string>
