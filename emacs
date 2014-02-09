@@ -1,4 +1,4 @@
-# Emacs 24.3.1
+;; Emacs 24.3.1
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
