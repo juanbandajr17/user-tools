@@ -1,16 +1,18 @@
-{
-    // 1. Install Package manager
-    // 2. Install sublime emacs pro
-    // 4. Install Alignment
-    // {
-    //    "alignment_chars" : ["=", "=>", "+="],
-    //    "alignment_space_chars" : ["=", "=>"]
-    // }
-    // 
-    // Edit these lines in tmTheme for better line highlighting
-    //<key>lineHighlight</key>
-    //<string>#FFFFFF12</string>
+// 1. Install Package manager
+// 2. Install sublime emacs pro (Skip for Mac)
+// 4. Install Alignment
+// {
+//    "alignment_chars" : ["=", "=>", "+="],
+//    "alignment_space_chars" : ["=", "=>"]
+// }
+// 
+// Edit these lines in tmTheme for better line highlighting
+// ---Preferences > Browse Packages > Color Scheme - Default > ... edit the Color Scheme file you are using
+//<key>lineHighlight</key>
+//<string>#FFFFFF12</string>
 
+
+{
     // Valid values are "smooth", "phase", "blink", "wide" and "solid".
 	"caret_style": "smooth",
 	"wide_caret": true,
@@ -30,9 +32,9 @@
 	"show_minimap": false,
 	"show_side_bar": false,
 	"translate_tabs_to_spaces": true,
-    "tab_size": 2,
-    // Disables horizontal scrolling if enabled.
-    // May be set to true, false, or "auto", where it will be disabled for
-    // source code, and otherwise enabled.
-    "word_wrap": "true"
+  "tab_size": 2,
+  // Disables horizontal scrolling if enabled.
+  // May be set to true, false, or "auto", where it will be disabled for
+  // source code, and otherwise enabled.
+  "word_wrap": "true"
 }

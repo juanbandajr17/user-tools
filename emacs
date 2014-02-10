@@ -1,4 +1,4 @@
-;; Emacs 24.3.1
+;;Emacs 24.3.1
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -28,3 +28,7 @@
 
 ;; Prompts before exiting emacs
 (setq confirm-kill-emacs 'yes-or-no-p)
+
+;; Smooth Scrolling
+(setq mouse-wheel-scroll-amount '(0.01))
+(setq mouse-wheel-progressive-speed nil)
