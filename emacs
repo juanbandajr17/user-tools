@@ -5,7 +5,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (wombat)))
+ '(ansi-color-names-vector ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
+ '(custom-enabled-themes nil)
  '(show-paren-mode t)
  '(size-indication-mode t)
  '(tool-bar-mode nil))
@@ -27,8 +28,14 @@
 (setq inhibit-splash-screen t)
 
 ;; Prompts before exiting emacs
-(setq confirm-kill-emacs 'yes-or-no-p)
+;;(setq confirm-kill-emacs 'yes-or-no-p)
 
 ;; Smooth Scrolling
-(setq mouse-wheel-scroll-amount '(0.01))
+(setq mouse-wheel-scroll-amount '(0.02))
 (setq mouse-wheel-progressive-speed nil)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
