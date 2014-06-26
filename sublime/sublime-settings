@@ -29,7 +29,7 @@
 		"Vintage"
 	],
 	"margin": 0,
-	"scroll_past_end": false,
+	"scroll_past_end": true,
 	"show_minimap": false,
 	"show_side_bar": false,
 	"translate_tabs_to_spaces": true,
