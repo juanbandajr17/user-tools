@@ -24,6 +24,9 @@
 ;; auto reload files that have changed on disk
 (global-auto-revert-mode t)
 
+;; line numbers
+(global-linum-mode t)
+
 ;; inhibit starting screen on emacs
 (setq inhibit-splash-screen t)
 
