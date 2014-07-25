@@ -26,6 +26,10 @@
 
 ;; line numbers
 (global-linum-mode t)
+(defun linum-format-func (line)
+  (let ((w (length (number-to-string (count-lines (point-min) (point-max))))))
+     (propertize (format (format "%%%dd " w) line) 'face 'linum)))
+(setq linum-format 'linum-format-func)
 
 ;; inhibit starting screen on emacs
 (setq inhibit-splash-screen t)
