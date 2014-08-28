@@ -1,5 +1,9 @@
 ;;Emacs 24.3.1
 
+;; Package Manager
+(require 'package)
+(package-initialize)
+
 ;;Screen-Saver
 (require 'zone)
 (zone-when-idle 300)
