@@ -1,56 +1,122 @@
-;;Emacs 24.3.1
+(show-paren-mode 1)
+(setq inhibit-splash-screen t)
+(global-auto-revert-mode 1) ;; Auto refresh buffers
+(setq global-auto-revert-non-file-buffers t) ;; Also auto refresh dired, but be quiet about itp
+(setq auto-revert-verbose nil)
+(menu-bar-mode -1)
+(delete-selection-mode t)
+(pending-delete-mode t)
+(transient-mark-mode t)
+(setq x-select-enable-clipboard t)
+(setq-default indent-tabs-mode nil)
+(setq initial-scratch-message nil)
 
-;; Package Manager
-(require 'package)
-(package-initialize)
-
-;;Screen-Saver
-(require 'zone)
-(zone-when-idle 300)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
- '(custom-enabled-themes nil)
- '(show-paren-mode t)
- '(size-indication-mode t)
- '(tool-bar-mode nil))
-
-;;backup-files
 (setq
    backup-by-copying t      ; don't clobber symlinks
    backup-directory-alist
-    '(("." . "~/.emacs.d/.saves"))    ; don't litter my fs tree
+    '(("." . "~/.saves"))    ; don't litter my fs tree
    delete-old-versions t
    kept-new-versions 6
    kept-old-versions 2
    version-control t)       ; use versioned backups
+;; Make backups of files, even when they're in version control
+(setq vc-make-backup-files t)
 
-;; auto reload files that have changed on disk
-(global-auto-revert-mode t)
+(defun goto-line-with-feedback ()
+  "Show line numbers temporarily, while prompting for the line number input"
+  (interactive)
+  (unwind-protect
+      (progn
+        (linum-mode 1)
+        (goto-line (read-number "Goto line: ")))
+    (linum-mode -1)))
+(global-set-key [remap goto-line] 'goto-line-with-feedback)
 
-;; line numbers
-(global-linum-mode t)
-(defun linum-format-func (line)
-  (let ((w (length (number-to-string (count-lines (point-min) (point-max))))))
-     (propertize (format (format "%%%dd " w) line) 'face 'linum)))
-(setq linum-format 'linum-format-func)
+(defun rename-current-buffer-file ()
+  "Renames current buffer and file it is visiting."
+  (interactive)
+  (let ((name (buffer-name))
+        (filename (buffer-file-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (error "Buffer '%s' is not visiting a file!" name)
+      (let ((new-name (read-file-name "New name: " filename)))
+        (if (get-buffer new-name)
+            (error "A buffer named '%s' already exists!" new-name)
+          (rename-file filename new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil)
+          (message "File '%s' successfully renamed to '%s'"
+                   name (file-name-nondirectory new-name)))))))
+(global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
 
-;; inhibit starting screen on emacs
-(setq inhibit-splash-screen t)
+(defun delete-current-buffer-file ()
+  "Removes file connected to current buffer and kills buffer."
+  (interactive)
+  (let ((filename (buffer-file-name))
+        (buffer (current-buffer))
+        (name (buffer-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (ido-kill-buffer)
+      (when (yes-or-no-p "Are you sure you want to remove this file? ")
+        (delete-file filename)
+        (kill-buffer buffer)
+        (message "File '%s' successfully removed" filename)))))
+(global-set-key (kbd "C-x C-k") 'delete-current-buffer-file)
 
-;; Prompts before exiting emacs
-;;(setq confirm-kill-emacs 'yes-or-no-p)
+(defun cleanup-buffer-safe ()
+  "Perform a bunch of safe operations on the whitespace content of a buffer.
+Does not indent buffer, because it is used for a before-save-hook, and that
+might be bad."
+  (interactive)
+  (untabify (point-min) (point-max))
+  (delete-trailing-whitespace)
+  (set-buffer-file-coding-system 'utf-8))
+(add-hook 'before-save-hook 'cleanup-buffer-safe)  ;; Various superfluous white-space. Just say no.
 
-;; Smooth Scrolling
-(setq mouse-wheel-scroll-amount '(0.02))
-(setq mouse-wheel-progressive-speed nil)
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;; Packages
+;; auto-complete
+;; projectile && projectile-helm
+;; smex
+;; multiple-cursors
+;; flx-ido
+;; expand-region
+;; ace-jump mode
+
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (package-initialize)
+  (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                           ("marmalade" . "https://marmalade-repo.org/packages/")
+                           ("melpa" . "http://melpa.milkbox.net/packages/"))))
+
+;; Multiple cursor key bindings
+(global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
+(global-set-key (kbd "M-n") 'mc/mark-next-like-this)
+;;(global-set-key (kbd "") 'mc/mark-all-like-this)
+
+;; Smex key-bindings
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
+;; flx-ido
+(ido-mode 1)
+(flx-ido-mode 1)
+(setq ido-enable-flex-matching t)
+;;(setq ido-use-faces nil)
+
+;; auto-complete
+(ac-config-default)
+
+;; expand-region
+(global-set-key (kbd "C-c l") 'er/expand-region)
+
+;; ace-jump-mode
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+
+;; projectile
+(projectile-global-mode)
+(setq projectile-enable-caching t)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
