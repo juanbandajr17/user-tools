@@ -7,9 +7,11 @@
 (delete-selection-mode t)
 (pending-delete-mode t)
 (transient-mark-mode t)
+(column-number-mode t)
 (setq x-select-enable-clipboard t)
 (setq-default indent-tabs-mode nil)
 (setq initial-scratch-message nil)
+(setq auto-window-vscroll nil)
 
 (setq
    backup-by-copying t      ; don't clobber symlinks
@@ -21,6 +23,10 @@
    version-control t)       ; use versioned backups
 ;; Make backups of files, even when they're in version control
 (setq vc-make-backup-files t)
+
+;; Prevent warning messages (ansi-term issue)
+(setq warning-suppress-types nil)
+(add-to-list 'warning-suppress-types '(undo discard-info))
 
 (defun goto-line-with-feedback ()
   "Show line numbers temporarily, while prompting for the line number input"
@@ -82,7 +88,7 @@ might be bad."
 ;; flx-ido
 ;; expand-region
 ;; ace-jump mode
-
+;; fly-check
 (when (>= emacs-major-version 24)
   (require 'package)
   (package-initialize)
@@ -120,3 +126,8 @@ might be bad."
 (setq projectile-enable-caching t)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
+
+;; flycheck
+(global-flycheck-mode t)
+(setq flycheck-check-syntax-automatically '(save mode-enabled))
+(setq flycheck-flake8-maximum-line-length 100)
