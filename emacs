@@ -103,7 +103,7 @@ might be bad."
 ;; Multiple cursor key bindings
 (global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
 (global-set-key (kbd "M-n") 'mc/mark-next-like-this)
-;;(global-set-key (kbd "") 'mc/mark-all-like-this)
+(global-set-key (kbd "") 'mc/mark-all-like-this)
 
 ;; Smex key-bindings
 (global-set-key (kbd "M-x") 'smex)
@@ -127,6 +127,7 @@ might be bad."
 
 ;; projectile
 (projectile-global-mode)
+(setq projectile-require-project-root nil)
 (setq projectile-enable-caching t)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
