@@ -13,6 +13,9 @@
 (setq initial-scratch-message nil)
 (setq auto-window-vscroll nil)
 
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
+
 (setq
    backup-by-copying t      ; don't clobber symlinks
    backup-directory-alist
@@ -89,6 +92,7 @@ might be bad."
 ;; expand-region
 ;; ace-jump mode
 ;; fly-check
+;; magit
 (when (>= emacs-major-version 24)
   (require 'package)
   (package-initialize)
@@ -104,7 +108,7 @@ might be bad."
 ;; Smex key-bindings
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-;; (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 ;; flx-ido
 (ido-mode 1)
@@ -116,10 +120,10 @@ might be bad."
 (ac-config-default)
 
 ;; expand-region
-(global-set-key (kbd "C-c l") 'er/expand-region)
+(global-set-key (kbd "C-o") 'er/expand-region)
 
 ;; ace-jump-mode
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+(define-key global-map (kbd "C-j") 'ace-jump-mode)
 
 ;; projectile
 (projectile-global-mode)
@@ -128,6 +132,6 @@ might be bad."
 (helm-projectile-on)
 
 ;; flycheck
-(global-flycheck-mode t)
+;;(global-flycheck-mode t)
 (setq flycheck-check-syntax-automatically '(save mode-enabled))
 (setq flycheck-flake8-maximum-line-length 100)
