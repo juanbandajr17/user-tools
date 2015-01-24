@@ -4,6 +4,7 @@
 (setq global-auto-revert-non-file-buffers t) ;; Also auto refresh dired, but be quiet about itp
 (setq auto-revert-verbose nil)
 (menu-bar-mode -1)
+(tool-bar-mode -1)
 (delete-selection-mode t)
 (pending-delete-mode t)
 (transient-mark-mode t)
