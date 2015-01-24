@@ -13,7 +13,7 @@
 (setq-default indent-tabs-mode nil)
 (setq initial-scratch-message nil)
 (setq auto-window-vscroll nil)
-(global-hl-line-mode 1)
+(global-hl-line-mode -1)
 
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
@@ -129,8 +129,8 @@ might be bad."
 
 ;; projectile
 (projectile-global-mode)
-(setq projectile-require-project-root nil)
 (setq projectile-enable-caching t)
+(setq projectile-require-project-root nil)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 
