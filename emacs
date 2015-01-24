@@ -12,6 +12,7 @@
 (setq-default indent-tabs-mode nil)
 (setq initial-scratch-message nil)
 (setq auto-window-vscroll nil)
+(global-hl-line-mode 1)
 
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
