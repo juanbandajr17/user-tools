@@ -85,22 +85,34 @@ might be bad."
   (set-buffer-file-coding-system 'utf-8))
 (add-hook 'before-save-hook 'cleanup-buffer-safe)  ;; Various superfluous white-space. Just say no.
 
-;; Packages
-;; auto-complete
-;; projectile && projectile-helm
-;; smex
-;; multiple-cursors
-;; flx-ido
-;; expand-region
-;; ace-jump mode
-;; fly-check
-;; magit
+
+
+;;;;; PACKAGES
+
+(setq jpk-packages '(
+                     auto-complete
+                     projectile
+                     projectile-helm
+                     smex
+                     multiple-cursors
+                     flx-ido
+                     expand-region
+                     ace-jump-mode
+                     fly-check
+                     magit))
+
 (when (>= emacs-major-version 24)
   (require 'package)
   (package-initialize)
   (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                            ("marmalade" . "https://marmalade-repo.org/packages/")
                            ("melpa" . "http://melpa.milkbox.net/packages/"))))
+
+;; Install missing packages
+(dolist (pkg jpk-packages)
+  (when (and (not (package-installed-p pkg))
+           (assoc pkg package-archive-contents))
+    (package-install pkg)))
 
 ;; Multiple cursor key bindings
 (global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
