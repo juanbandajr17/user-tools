@@ -99,7 +99,8 @@ might be bad."
                      expand-region
                      ace-jump-mode
                      fly-check
-                     magit))
+                     magit
+                     smart-mode-line))
 
 (when (>= emacs-major-version 24)
   (require 'package)
@@ -113,6 +114,9 @@ might be bad."
   (when (and (not (package-installed-p pkg))
            (assoc pkg package-archive-contents))
     (package-install pkg)))
+
+;; smart-mode-line
+(sml/setup)
 
 ;; Multiple cursor key bindings
 (global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
