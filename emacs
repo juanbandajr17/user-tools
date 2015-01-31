@@ -33,6 +33,7 @@
 
 ;; smart-mode-line
 (sml/setup)
+(sml/apply-theme 'dark)
 
 ;; Multiple cursor key bindings
 (global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
