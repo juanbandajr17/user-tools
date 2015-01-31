@@ -63,6 +63,7 @@
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 ;;(setq projectile-enable-caching t)
+(setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name))))
 
 ;; flycheck
 ;;(global-flycheck-mode t)
