@@ -15,24 +15,24 @@
 
 {
     // Valid values are "smooth", "phase", "blink", "wide" and "solid".
-	"caret_style": "smooth",
-	"wide_caret": true,
-
-	"color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
-	"draw_indent_guides": true,
-	"ensure_newline_at_eof_on_save": true,
-	"font_size": 10,
-	"highlight_line": true,
-	"highlight_modified_tabs": true,
-	"ignored_packages":
-	[
-		"Vintage"
-	],
-	"margin": 0,
-	"scroll_past_end": true,
-	"show_minimap": false,
-	"show_side_bar": false,
-	"translate_tabs_to_spaces": true,
+        "caret_style": "smooth",
+        "wide_caret": true,
+        "rulers": [100],
+        "color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
+        "draw_indent_guides": true,
+        "ensure_newline_at_eof_on_save": true,
+        "font_size": 10,
+        "highlight_line": true,
+        "highlight_modified_tabs": true,
+        "ignored_packages":
+        [
+                "Vintage"
+        ],
+        "margin": 0,
+        "scroll_past_end": true,
+        "show_minimap": false,
+        "show_side_bar": false,
+        "translate_tabs_to_spaces": true,
   "tab_size": 2,
   "word_wrap": true,
   "trim_trailing_white_space_on_save": true

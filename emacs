@@ -65,6 +65,9 @@
 ;;(setq projectile-enable-caching t)
 (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name))))
 
+;; magit
+(global-set-key (kbd "C-x g") 'magit-status)
+
 ;; flycheck
 ;;(global-flycheck-mode t)
 (setq flycheck-check-syntax-automatically '(save mode-enabled))
