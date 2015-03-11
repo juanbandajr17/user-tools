@@ -35,6 +35,10 @@
 (sml/setup)
 (sml/apply-theme 'dark)
 
+;; fill column indicator
+(add-hook 'after-change-major-mode-hook 'fci-mode)
+(setq fci-rule-column 100)
+
 ;; Multiple cursor key bindings
 (global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
 (global-set-key (kbd "M-n") 'mc/mark-next-like-this)
