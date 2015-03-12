@@ -165,3 +165,21 @@ might be bad."
   (delete-trailing-whitespace)
   (set-buffer-file-coding-system 'utf-8))
 (add-hook 'before-save-hook 'cleanup-buffer-safe)  ;; Various superfluous white-space. Just say no.
+
+;; Emacs copy and paste
+(defun pt-pbpaste ()
+  "Paste data from pasteboard."
+  (interactive)
+  (shell-command-on-region
+   (point)
+   (if mark-active (mark) (point))
+   "pbpaste" nil t))
+
+(defun pt-pbcopy ()
+  "Copy region to pasteboard."
+  (interactive)
+  (print (mark))
+  (when mark-active
+    (shell-command-on-region
+     (point) (mark) "pbcopy")
+    (kill-buffer "*Shell Command Output*")))
