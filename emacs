@@ -96,6 +96,14 @@
 (setq auto-window=-vscroll nil)
 (global-hl-line-mode -1)
 
+(if (display-graphic-p)
+    (progn
+      (tool-bar-mode -1)
+      (scroll-bar-mode -1)
+      (global-linum-mode t)
+      (load-theme 'wombat))
+  (menu-bar-mode -1))
+
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
