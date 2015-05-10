@@ -66,6 +66,7 @@
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
+(setq projectile-require-project-root nil)
 ;;(setq projectile-enable-caching t)
 (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name))))
 
