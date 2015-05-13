@@ -96,6 +96,7 @@
 (setq initial-scratch-message nil)
 (setq auto-window=-vscroll nil)
 (global-hl-line-mode -1)
+(global-auto-revert-mode t)
 
 (if (display-graphic-p)
     (progn
