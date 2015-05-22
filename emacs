@@ -193,3 +193,5 @@ might be bad."
     (shell-command-on-region
      (point) (mark) "pbcopy")
     (kill-buffer "*Shell Command Output*")))
+
+;; Base16 color theme
