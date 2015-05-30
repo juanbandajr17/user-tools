@@ -18,6 +18,7 @@
 ;; expand-region
 ;; autopair
 ;; flx-ido
+;; ido-ubiquitous
 ;; smex
 ;; smart-mode-line
 ;; powerline
@@ -50,6 +51,9 @@
 
 ;; flx-ido
 (flx-ido-mode 1)
+
+;; ido-ubiquitous
+(ido-everywhere 1)
 
 ;; smex
 (global-set-key (kbd "M-x") 'smex)
