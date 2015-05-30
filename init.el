@@ -1,11 +1,33 @@
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
 ;;;;; PACKAGES
 ;; auto-complete
-;; projectile
-;; smex
 ;; multiple-cursors
-;; flx-ido
 ;; expand-region
+;; autopair
+;; flx-ido
+;; smex
 ;; smart-mode-line
+;; powerline
+;; ido-vertical-mode
+;; helm
+;; yaml-mode
+;; haml-mode
+;; jedi
+;; flycheck
+;; projectile
 
 (when (>= emacs-major-version 24)
   (require 'package)
@@ -13,26 +35,39 @@
   (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                            ("melpa" . "http://melpa.milkbox.net/packages/"))))
 
+;; auto-complete
+(ac-config-default)
+
+;; multiple-cursors
+(global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
+(global-set-key (kbd "M-n") 'mc/mark-next-like-this)
+
+;; expand-region
+(global-set-key (kbd "C-o") 'er/expand-region)
+
+;; autopair
+(autopair-global-mode t)
+
+;; flx-ido
+(flx-ido-mode 1)
+
+;; smex
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command) ;; This is your old M-x.
+
 ;; smart-mode-line
 (sml/setup)
 (sml/apply-theme 'dark)
 
-;; Multiple cursor key bindings
-(global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
-(global-set-key (kbd "M-n") 'mc/mark-next-like-this)
+;; ido-vertical-mode
+(ido-vertical-mode 1)
 
-;; Smex key-bindings
-(global-set-key (kbd "M-x") 'smex)
+;; helm
+;; Activate once flx-ido is integrated to work with helm
 
-;; flx-ido
-(flx-ido-mode 1)
-(setq ido-enable-flex-matching t)
-
-;; auto-complete
-(ac-config-default)
-
-;; expand-region
-(global-set-key (kbd "C-o") 'er/expand-region)
+;; yaml-mode
+(add-to-list 'auto-mode-alist '("\\.ya?ml$" . yaml-mode))
 
 ;; projectile
 (projectile-global-mode)
@@ -43,11 +78,13 @@
 (ido-mode 1)
 (setq ido-everywhere t)
 (setq ido-enable-flex-matching t)
+(setq ido-use-virtual-buffers t)
+(setq ido-max-directory-size 300000)
 (show-paren-mode 1)
 (setq inhibit-splash-screen t)
 (global-auto-revert-mode 1) ;; Auto refresh buffers
-(setq global-auto-revert-non-file-buffers t) ;; Also auto refresh dired, but be quiet about itp
 (setq auto-revert-verbose nil)
+(setq global-auto-revert-non-file-buffers t) ;; Also auto refresh dired, but be quiet about itp
 (delete-selection-mode t)
 (pending-delete-mode t)
 (transient-mark-mode t)
@@ -56,7 +93,13 @@
 (setq-default indent-tabs-mode nil)
 (setq initial-scratch-message nil)
 (setq auto-window=-vscroll nil)
-(global-hl-line-mode -1)
+(global-hl-line-mode 1)
+(set-face-background 'hl-line "#333333")
+(set-face-foreground 'highlight nil)
+(set-face-attribute 'mode-line-inactive nil :slant 'italic)
+(setq dired-listing-switches "-hal")
+
+(global-set-key (kbd "M-o") 'other-window)
 
 (if (display-graphic-p)
     (progn
@@ -79,6 +122,8 @@
    version-control t)       ; use versioned backups
 ;; Make backups of files, even when they're in version control
 (setq vc-make-backup-files t)
+;; Or turn off backup-system
+;;(setq make-backup-files nil)
 
 (defun cleanup-buffer-safe ()
   "Perform a bunch of safe operations on the whitespace content of a buffer.
@@ -90,4 +135,10 @@ might be bad."
   (set-buffer-file-coding-system 'utf-8))
 (add-hook 'before-save-hook 'cleanup-buffer-safe)  ;; Various superfluous white-space. Just say no.
 
-(global-set-key (kbd "M-o") 'other-window)
+(defun sudo ()
+  "Use TRAMP to `sudo' the current buffer"
+  (interactive)
+  (when buffer-file-name
+    (find-alternate-file
+     (concat "/sudo:root@localhost:"
+             buffer-file-name))))
