@@ -26,6 +26,7 @@
 ;; helm
 ;; yaml-mode
 ;; haml-mode
+;; jinja2-mode
 ;; jedi
 ;; flycheck
 ;; projectile
@@ -72,6 +73,9 @@
 
 ;; yaml-mode
 (add-to-list 'auto-mode-alist '("\\.ya?ml$" . yaml-mode))
+
+;; jinja2-mode
+(add-to-list 'auto-mode-alist '("\\.jinja$" . jinja2-mode))
 
 ;; projectile
 (projectile-global-mode)
