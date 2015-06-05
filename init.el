@@ -13,6 +13,8 @@
  )
 
 ;;;;; PACKAGES
+;; hlinum
+;; ace-jump-mode
 ;; auto-complete
 ;; multiple-cursors
 ;; expand-region
@@ -36,6 +38,12 @@
   (package-initialize)
   (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                            ("melpa" . "http://melpa.milkbox.net/packages/"))))
+
+;; hlinum
+;; (hlinum-activate)
+
+;; ace-jump-mode
+(define-key global-map (kbd "M-o") 'ace-jump-mode)
 
 ;; auto-complete
 (ac-config-default)
@@ -101,13 +109,12 @@
 (setq-default indent-tabs-mode nil)
 (setq initial-scratch-message nil)
 (setq auto-window=-vscroll nil)
+(global-linum-mode 1)
+(setq linum-format "%d ")
 (global-hl-line-mode 1)
 (set-face-background 'hl-line "#333333")
 (set-face-foreground 'highlight nil)
-(set-face-attribute 'mode-line-inactive nil :slant 'italic)
 (setq dired-listing-switches "-hal")
-
-(global-set-key (kbd "M-o") 'other-window)
 
 (if (display-graphic-p)
     (progn
