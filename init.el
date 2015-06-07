@@ -29,6 +29,7 @@
 ;; yaml-mode
 ;; haml-mode
 ;; jinja2-mode
+;; web-mode
 ;; jedi
 ;; flycheck
 ;; projectile
@@ -71,7 +72,7 @@
 
 ;; smart-mode-line
 (sml/setup)
-(sml/apply-theme 'dark)
+(sml/apply-theme 'light)
 
 ;; ido-vertical-mode
 (ido-vertical-mode 1)
@@ -83,7 +84,16 @@
 (add-to-list 'auto-mode-alist '("\\.ya?ml$" . yaml-mode))
 
 ;; jinja2-mode
-(add-to-list 'auto-mode-alist '("\\.jinja$" . jinja2-mode))
+;; (add-to-list 'auto-mode-alist '("\\.jinja$" . jinja2-mode))
+
+;; web-mode
+(add-to-list 'auto-mode-alist '("\\.jinja$" . web-mode))
+(setq web-mode-markup-indent-offset 2)
+(setq web-mode-css-indent-offset 2)
+(setq web-mode-code-indent-offset 2)
+(setq web-mode-attr-indent-offset 2)
+(setq web-mode-enable-auto-closing t)
+(setq web-mode-enable-auto-pairing t)
 
 ;; projectile
 (projectile-global-mode)
@@ -98,8 +108,8 @@
 (setq ido-max-directory-size 300000)
 (show-paren-mode 1)
 (setq inhibit-splash-screen t)
-(global-auto-revert-mode 1) ;; Auto refresh buffers
-(setq auto-revert-verbose nil)
+;; (global-auto-revert-mode 1) ;; Auto refresh buffers
+;; (setq auto-revert-verbose nil)
 (setq global-auto-revert-non-file-buffers t) ;; Also auto refresh dired, but be quiet about itp
 (delete-selection-mode t)
 (pending-delete-mode t)
@@ -109,10 +119,10 @@
 (setq-default indent-tabs-mode nil)
 (setq initial-scratch-message nil)
 (setq auto-window=-vscroll nil)
-(global-linum-mode 1)
+;; (global-linum-mode 1)
 (setq linum-format "%d ")
 (global-hl-line-mode 1)
-(set-face-background 'hl-line "#333333")
+;; (set-face-background 'hl-line "#333333")
 (set-face-foreground 'highlight nil)
 (setq dired-listing-switches "-hal")
 
@@ -122,7 +132,8 @@
       (scroll-bar-mode -1)
       (global-linum-mode t)
       (load-theme 'wombat))
-  (menu-bar-mode -1))
+  (progn (menu-bar-mode -1)
+         (load-theme 'wombat)))
 
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
