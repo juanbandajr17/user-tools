@@ -44,7 +44,7 @@
 ;; (hlinum-activate)
 
 ;; ace-jump-mode
-(define-key global-map (kbd "M-o") 'ace-jump-mode)
+(define-key global-map (kbd "M-j") 'ace-jump-mode)
 
 ;; auto-complete
 (ac-config-default)
