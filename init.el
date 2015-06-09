@@ -1,3 +1,5 @@
+;; TERM=xterm-mono emacs -nw
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -72,7 +74,7 @@
 
 ;; smart-mode-line
 (sml/setup)
-(sml/apply-theme 'light)
+(sml/apply-theme 'respectful)
 
 ;; ido-vertical-mode
 (ido-vertical-mode 1)
@@ -133,8 +135,7 @@
       (scroll-bar-mode -1)
       (global-linum-mode t)
       (load-theme 'wombat))
-  (progn (menu-bar-mode -1)
-         (load-theme 'wombat)))
+  (progn (menu-bar-mode -1)))
 
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
