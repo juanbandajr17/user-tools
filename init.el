@@ -26,6 +26,7 @@
 ;; smex
 ;; smart-mode-line
 ;; powerline
+;; monochrome
 ;; ido-vertical-mode
 ;; helm
 ;; yaml-mode
@@ -74,7 +75,7 @@
 
 ;; smart-mode-line
 (sml/setup)
-(sml/apply-theme 'respectful)
+(sml/apply-theme 'dark)
 
 ;; ido-vertical-mode
 (ido-vertical-mode 1)
@@ -170,3 +171,5 @@ might be bad."
     (find-alternate-file
      (concat "/sudo:root@localhost:"
              buffer-file-name))))
+
+(global-set-key (kbd "M-o") 'other-window)
