@@ -91,6 +91,7 @@
 
 ;; web-mode
 (add-to-list 'auto-mode-alist '("\\.jinja$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb$". web-mode))
 (setq web-mode-markup-indent-offset 2)
 (setq web-mode-css-indent-offset 2)
 (setq web-mode-code-indent-offset 2)
@@ -136,7 +137,8 @@
       (scroll-bar-mode -1)
       (global-linum-mode t)
       (load-theme 'wombat))
-  (progn (menu-bar-mode -1)))
+  (progn (menu-bar-mode -1)
+         (load-theme 'monochrome)))
 
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
