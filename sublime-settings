@@ -1,0 +1,24 @@
+{
+"caret_style": "smooth",
+"wide_caret": true,
+"draw_indent_guides": true,
+"ensure_newline_at_eof_on_save": true,
+"font_size": 12,
+"highlight_line": true,
+"highlight_modified_tabs": true,
+"margin": 0,
+"scroll_past_end": true,
+"show_minimap": false,
+"show_side_bar": false,
+"translate_tabs_to_spaces": true,
+"tab_size": 2,
+"word_wrap": false,
+"trim_trailing_white_space_on_save": true,
+"ignored_packages":
+[
+"Vintage"
+],
+}
+
+]
+}
