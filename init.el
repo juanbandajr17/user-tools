@@ -146,8 +146,8 @@
       (scroll-bar-mode -1)
       (global-linum-mode t)
       (load-theme 'wombat))
-  (progn (menu-bar-mode -1)
-         (load-theme 'monochrome)))
+  (progn (menu-bar-mode -1)))
+
 
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
