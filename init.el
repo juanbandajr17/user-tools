@@ -15,6 +15,7 @@
  )
 
 ;;;;; PACKAGES
+;; pyenv-mode
 ;; hlinum
 ;; ace-jump-mode
 ;; auto-complete
@@ -42,6 +43,10 @@
   (package-initialize)
   (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                            ("melpa" . "http://melpa.milkbox.net/packages/"))))
+
+;; pyenv-mode
+;; (pyenv-mode)
+;; (pyenv-mode-set 'demonbrandt)
 
 ;; hlinum
 ;; (hlinum-activate)
@@ -99,6 +104,10 @@
 (setq web-mode-enable-auto-closing t)
 (setq web-mode-enable-auto-indentation t)
 ;; (setq web-mode-enable-auto-pairing t)
+
+;; flycheck
+(setq flycheck-check-syntax-automatically '(mode-enabled save))
+(add-hook 'python-mode-hook (lambda () (flycheck-mode 1)))
 
 ;; projectile
 (projectile-global-mode)
