@@ -115,6 +115,7 @@
 (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name))))
 
 ;;;;; Other Settings
+(fringe-mode -1)
 (ido-mode 1)
 (setq ido-everywhere t)
 (setq ido-enable-flex-matching t)
