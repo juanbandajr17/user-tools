@@ -15,6 +15,7 @@
  )
 
 ;;;;; PACKAGES
+;; sr-speedbar
 ;; pyenv-mode
 ;; hlinum
 ;; ace-jump-mode
@@ -43,6 +44,9 @@
   (package-initialize)
   (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                            ("melpa" . "http://melpa.milkbox.net/packages/"))))
+
+;; sr-speedbar
+(sr-speedbar-open)
 
 ;; pyenv-mode
 ;; (pyenv-mode)
@@ -108,6 +112,7 @@
 ;; flycheck
 (setq flycheck-check-syntax-automatically '(mode-enabled save))
 (add-hook 'python-mode-hook (lambda () (flycheck-mode 1)))
+(setq flycheck-flake8-maximum-line-length 100)
 
 ;; projectile
 (projectile-global-mode)
