@@ -51,7 +51,6 @@
 
 ;; neotree
 (global-set-key [f8] 'neotree-toggle)
-(neotree)
 (setq projectile-switch-project-action 'neotree-projectile-action)
 
 ;; pyenv-mode
