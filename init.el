@@ -15,6 +15,7 @@
  )
 
 ;;;;; PACKAGES
+;; indent-guide
 ;; neotree
 ;; pyenv-mode
 ;; hlinum
@@ -44,6 +45,9 @@
   (package-initialize)
   (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                            ("melpa" . "http://melpa.milkbox.net/packages/"))))
+
+;; indent-guide
+(indent-guide-global-mode)
 
 ;; neotree
 (global-set-key [f8] 'neotree-toggle)
