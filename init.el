@@ -15,7 +15,7 @@
  )
 
 ;;;;; PACKAGES
-;; sr-speedbar
+;; neotree
 ;; pyenv-mode
 ;; hlinum
 ;; ace-jump-mode
@@ -45,8 +45,10 @@
   (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                            ("melpa" . "http://melpa.milkbox.net/packages/"))))
 
-;; sr-speedbar
-(sr-speedbar-open)
+;; neotree
+(global-set-key [f8] 'neotree-toggle)
+(neotree)
+(setq projectile-switch-project-action 'neotree-projectile-action)
 
 ;; pyenv-mode
 ;; (pyenv-mode)
