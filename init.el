@@ -1,5 +1,3 @@
-;; TERM=xterm-mono emacs -nw
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -14,51 +12,19 @@
  ;; If there is more than one, they won't work right.
  )
 
-;;;;; PACKAGES
-;; indent-guide
-;; neotree
-;; pyenv-mode
-;; hlinum
-;; ace-jump-mode
-;; auto-complete
-;; multiple-cursors
-;; expand-region
-;; autopair
-;; flx-ido
-;; ido-ubiquitous
-;; smex
-;; smart-mode-line
-;; powerline
-;; monochrome
-;; ido-vertical-mode
-;; helm
-;; yaml-mode
-;; haml-mode
-;; jinja2-mode
-;; web-mode
-;; jedi
-;; flycheck
-;; projectile
-
 (when (>= emacs-major-version 24)
   (require 'package)
   (package-initialize)
   (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                            ("melpa" . "http://melpa.milkbox.net/packages/"))))
 
-;; indent-guide
-(indent-guide-global-mode)
-
 ;; neotree
 (global-set-key [f8] 'neotree-toggle)
 (setq projectile-switch-project-action 'neotree-projectile-action)
 
 ;; pyenv-mode
-;; (pyenv-mode)
-;; (pyenv-mode-set 'demonbrandt)
-
-;; hlinum
-;; (hlinum-activate)
+(unless (display-graphic-p)
+  (pyenv-mode))
 
 ;; ace-jump-mode
 (define-key global-map (kbd "M-j") 'ace-jump-mode)
@@ -85,23 +51,16 @@
 ;; smex
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command) ;; This is your old M-x.
 
 ;; smart-mode-line
 (sml/setup)
-(sml/apply-theme 'dark)
+(sml/apply-theme 'respectful)
 
 ;; ido-vertical-mode
 (ido-vertical-mode 1)
 
-;; helm
-;; Activate once flx-ido is integrated to work with helm
-
 ;; yaml-mode
 (add-to-list 'auto-mode-alist '("\\.ya?ml$" . yaml-mode))
-
-;; jinja2-mode
-;; (add-to-list 'auto-mode-alist '("\\.jinja$" . jinja2-mode))
 
 ;; web-mode
 (add-to-list 'auto-mode-alist '("\\.jinja$" . web-mode))
@@ -112,11 +71,10 @@
 (setq web-mode-attr-indent-offset 2)
 (setq web-mode-enable-auto-closing t)
 (setq web-mode-enable-auto-indentation t)
-;; (setq web-mode-enable-auto-pairing t)
 
 ;; flycheck
 (setq flycheck-check-syntax-automatically '(mode-enabled save))
-(add-hook 'python-mode-hook (lambda () (flycheck-mode 1)))
+;; (add-hook 'python-mode-hook (lambda () (flycheck-mode 1)))
 (setq flycheck-flake8-maximum-line-length 100)
 
 ;; projectile
@@ -125,7 +83,6 @@
 (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name))))
 
 ;;;;; Other Settings
-(fringe-mode -1)
 (ido-mode 1)
 (setq ido-everywhere t)
 (setq ido-enable-flex-matching t)
@@ -133,32 +90,21 @@
 (setq ido-max-directory-size 300000)
 (show-paren-mode 1)
 (setq inhibit-splash-screen t)
-;; (global-auto-revert-mode 1) ;; Auto refresh buffers
-;; (setq auto-revert-verbose nil)
+(setq initial-scratch-message nil)
+(global-auto-revert-mode 1) ;; Auto refresh buffers
+(setq auto-revert-verbose nil)
 (setq global-auto-revert-non-file-buffers t) ;; Also auto refresh dired, but be quiet about itp
 (delete-selection-mode t)
-(pending-delete-mode t)
 (transient-mark-mode t)
 (column-number-mode t)
-(setq x-select-enable-clipboard t)
 (setq-default indent-tabs-mode nil)
-(setq initial-scratch-message nil)
-(setq auto-window=-vscroll nil)
-;; (global-linum-mode 1)
-(setq linum-format "%d ")
-(global-hl-line-mode 1)
-;; (set-face-background 'hl-line "#333333")
-(set-face-foreground 'highlight nil)
 (setq dired-listing-switches "-hal")
 
 (if (display-graphic-p)
     (progn
-      (tool-bar-mode -1)
-      (scroll-bar-mode -1)
-      (global-linum-mode t)
-      (load-theme 'wombat))
+      (fringe-mode -1)
+      (tool-bar-mode -1))
   (progn (menu-bar-mode -1)))
-
 
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
@@ -184,14 +130,20 @@ might be bad."
   (untabify (point-min) (point-max))
   (delete-trailing-whitespace)
   (set-buffer-file-coding-system 'utf-8))
-(add-hook 'before-save-hook 'cleanup-buffer-safe)  ;; Various superfluous white-space. Just say no.
+(add-hook 'before-save-hook 'cleanup-buffer-safe)
 
-(defun sudo ()
-  "Use TRAMP to `sudo' the current buffer"
-  (interactive)
-  (when buffer-file-name
-    (find-alternate-file
-     (concat "/sudo:root@localhost:"
-             buffer-file-name))))
-
-(global-set-key (kbd "M-o") 'other-window)
+;; Requirement: Install xsel program
+;; https://hugoheden.wordpress.com/2009/03/08/copypaste-with-emacs-in-terminal/
+(setq x-select-enable-clipboard t)
+(unless (display-graphic-p)
+  (when (getenv "DISPLAY")
+    (defun xsel-cut-function (text &optional push)
+      (with-temp-buffer
+        (insert text)
+        (call-process-region (point-min) (point-max) "xsel" nil 0 nil "--clipboard" "--input")))
+    (defun xsel-paste-function()
+      (let ((xsel-output (shell-command-to-string "xsel --clipboard --output")))
+        (unless (string= (car kill-ring) xsel-output)
+          xsel-output )))
+    (setq interprogram-cut-function 'xsel-cut-function)
+    (setq interprogram-paste-function 'xsel-paste-function)))
