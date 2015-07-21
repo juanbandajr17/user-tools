@@ -161,3 +161,22 @@ might be bad."
           xsel-output )))
     (setq interprogram-cut-function 'xsel-cut-function)
     (setq interprogram-paste-function 'xsel-paste-function)))
+
+;; Mac copy and paste
+;; (defun pt-pbpaste ()
+;;   "Paste data from pasteboard."
+;;   (interactive)
+;;   (shell-command-on-region
+;;    (point)
+;;    (if mark-active (mark) (point))
+;;    "pbpaste" nil t))
+;; (global-set-key [?\C-x ?\C-y] 'pt-pbpaste)
+;; (defun pt-pbcopy ()
+;;   "Copy region to pasteboard."
+;;   (interactive)
+;;   (print (mark))
+;;   (when mark-active
+;;     (shell-command-on-region
+;;      (point) (mark) "pbcopy")
+;;     (kill-buffer "*Shell Command Output*")))
+;; (global-set-key [?\C-x ?\M-w] 'pt-pbcopy)
