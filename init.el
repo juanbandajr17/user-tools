@@ -83,6 +83,12 @@
 (setq projectile-require-project-root nil)
 (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name))))
 
+;; helm-projectile
+(helm-projectile-on)
+(setq projectile-completion-system 'helm)
+(add-to-list 'grep-find-ignored-files "*.log")
+(add-to-list 'grep-find-ignored-directories "logs")
+
 ;;;;; Other Settings
 (ido-mode 1)
 (setq ido-enable-flex-matching t)
