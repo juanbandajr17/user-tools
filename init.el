@@ -58,6 +58,7 @@
 
 ;; ido-vertical-mode
 (ido-vertical-mode 1)
+(setq ido-vertical-define-keys 'C-n-and-C-p-only)
 
 ;; yaml-mode
 (add-to-list 'auto-mode-alist '("\\.ya?ml$" . yaml-mode))
@@ -84,7 +85,6 @@
 
 ;;;;; Other Settings
 (ido-mode 1)
-(setq ido-everywhere t)
 (setq ido-enable-flex-matching t)
 (setq ido-use-virtual-buffers t)
 (setq ido-max-directory-size 300000)
