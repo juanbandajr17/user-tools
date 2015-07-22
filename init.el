@@ -106,6 +106,11 @@
 (setq-default indent-tabs-mode nil)
 (setq dired-listing-switches "-hal")
 
+;; Redefine keys
+(global-set-key (kbd "C-/") 'undo)
+(global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "M-i") 'imenu)
+
 (if (display-graphic-p)
     (progn
       (fringe-mode -1)
