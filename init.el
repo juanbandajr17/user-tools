@@ -89,6 +89,9 @@
 (add-to-list 'grep-find-ignored-files "*.log")
 (add-to-list 'grep-find-ignored-directories "logs")
 
+;; whole-line-or-region
+(whole-line-or-region 1)
+
 ;;;;; Other Settings
 (ido-mode 1)
 (setq ido-enable-flex-matching t)
