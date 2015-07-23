@@ -53,7 +53,7 @@
 (setq ido-vertical-define-keys 'C-n-and-C-p-only)
 
 ;; imenu-anywhere
-(global-set-key (kbd "C-i") 'imenu-anywhere)
+(global-set-key (kbd "M-i") 'imenu-anywhere)
 
 ;; multiple-cursors
 (global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
@@ -116,6 +116,7 @@
 ;; Redefine keys
 (global-set-key (kbd "C-/") 'undo)
 (global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "<RET>") 'newline-and-indent)
 
 (if (display-graphic-p)
     (progn
