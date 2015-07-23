@@ -18,13 +18,6 @@
   (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                            ("melpa" . "http://melpa.milkbox.net/packages/"))))
 
-;; neotree
-(global-set-key [f8] 'neotree-toggle)
-(setq projectile-switch-project-action 'neotree-projectile-action)
-
-;; pyenv-mode
-(unless (display-graphic-p)
-  (pyenv-mode))
 
 ;; ace-jump-mode
 (define-key global-map (kbd "M-j") 'ace-jump-mode)
@@ -32,36 +25,60 @@
 ;; auto-complete
 (ac-config-default)
 
-;; multiple-cursors
-(global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
-(global-set-key (kbd "M-n") 'mc/mark-next-like-this)
+;; autopair
+(autopair-global-mode t)
 
 ;; expand-region
 (global-set-key (kbd "C-o") 'er/expand-region)
 
-;; autopair
-(autopair-global-mode t)
-
 ;; flx-ido
 (flx-ido-mode 1)
 
+;; flycheck
+(setq flycheck-check-syntax-automatically '(mode-enabled save))
+;; (add-hook 'python-mode-hook (lambda () (flycheck-mode 1)))
+(setq flycheck-flake8-maximum-line-length 100)
+
+;; helm-projectile
+(helm-projectile-on)
+(setq projectile-completion-system 'helm)
+(add-to-list 'grep-find-ignored-files "*.log")
+(add-to-list 'grep-find-ignored-directories "logs")
+
 ;; ido-ubiquitous
 (ido-everywhere 1)
-
-;; smex
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-
-;; smart-mode-line
-(sml/setup)
-(sml/apply-theme 'respectful)
 
 ;; ido-vertical-mode
 (ido-vertical-mode 1)
 (setq ido-vertical-define-keys 'C-n-and-C-p-only)
 
-;; yaml-mode
-(add-to-list 'auto-mode-alist '("\\.ya?ml$" . yaml-mode))
+;; imenu-anywhere
+(global-set-key (kbd "C-i") 'imenu-anywhere)
+
+;; multiple-cursors
+(global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
+(global-set-key (kbd "M-n") 'mc/mark-next-like-this)
+
+;; neotree
+(global-set-key [f8] 'neotree-toggle)
+(setq projectile-switch-project-action 'neotree-projectile-action)
+
+;; projectile
+(projectile-global-mode)
+(setq projectile-require-project-root nil)
+(setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name))))
+
+;; pyenv-mode
+(unless (display-graphic-p)
+  (pyenv-mode))
+
+;; smart-mode-line
+(sml/setup)
+(sml/apply-theme 'respectful)
+
+;; smex
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
 
 ;; web-mode
 (add-to-list 'auto-mode-alist '("\\.jinja$" . web-mode))
@@ -73,24 +90,11 @@
 (setq web-mode-enable-auto-closing t)
 (setq web-mode-enable-auto-indentation t)
 
-;; flycheck
-(setq flycheck-check-syntax-automatically '(mode-enabled save))
-;; (add-hook 'python-mode-hook (lambda () (flycheck-mode 1)))
-(setq flycheck-flake8-maximum-line-length 100)
-
-;; projectile
-(projectile-global-mode)
-(setq projectile-require-project-root nil)
-(setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name))))
-
-;; helm-projectile
-(helm-projectile-on)
-(setq projectile-completion-system 'helm)
-(add-to-list 'grep-find-ignored-files "*.log")
-(add-to-list 'grep-find-ignored-directories "logs")
-
 ;; whole-line-or-region
 (whole-line-or-region 1)
+
+;; yaml-mode
+(add-to-list 'auto-mode-alist '("\\.ya?ml$" . yaml-mode))
 
 ;;;;; Other Settings
 (ido-mode 1)
@@ -112,7 +116,6 @@
 ;; Redefine keys
 (global-set-key (kbd "C-/") 'undo)
 (global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "M-i") 'imenu)
 
 (if (display-graphic-p)
     (progn
