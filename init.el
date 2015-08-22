@@ -61,7 +61,10 @@
 
 ;; neotree
 (global-set-key [f8] 'neotree-toggle)
-(setq projectile-switch-project-action 'neotree-projectile-action)
+;; (setq projectile-switch-project-action 'neotree-projectile-action)
+
+;; perspective
+;; (persp-mode)
 
 ;; projectile
 (projectile-global-mode)
@@ -91,7 +94,7 @@
 (setq web-mode-enable-auto-indentation t)
 
 ;; whole-line-or-region
-(whole-line-or-region 1)
+(whole-line-or-region-mode 1)
 
 ;; yaml-mode
 (add-to-list 'auto-mode-alist '("\\.ya?ml$" . yaml-mode))
@@ -148,6 +151,14 @@ might be bad."
   (delete-trailing-whitespace)
   (set-buffer-file-coding-system 'utf-8))
 (add-hook 'before-save-hook 'cleanup-buffer-safe)
+
+(defun my-find-file-check-make-large-file-read-only-hook ()
+  "If a file is over a given size, make the buffer read only."
+  (when (> (buffer-size) (* 1024 1024))
+    (setq buffer-read-only t)
+    (buffer-disable-undo)
+    (fundamental-mode)))
+(add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
 
 ;; Requirement: Install xsel program
 ;; https://hugoheden.wordpress.com/2009/03/08/copypaste-with-emacs-in-terminal/
