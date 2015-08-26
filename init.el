@@ -40,10 +40,10 @@
 (setq flycheck-flake8-maximum-line-length 100)
 
 ;; helm-projectile
-(helm-projectile-on)
-(setq projectile-completion-system 'helm)
-(add-to-list 'grep-find-ignored-files "*.log")
-(add-to-list 'grep-find-ignored-directories "logs")
+;; (helm-projectile-on)
+;; (setq projectile-completion-system 'helm)
+;; (add-to-list 'grep-find-ignored-files "*.log")
+;; (add-to-list 'grep-find-ignored-directories "logs")
 
 ;; ido-ubiquitous
 (ido-everywhere 1)
@@ -68,7 +68,7 @@
 
 ;; projectile
 (projectile-global-mode)
-(setq projectile-require-project-root nil)
+;; (setq projectile-require-project-root nil)
 (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name))))
 
 ;; pyenv-mode
@@ -109,7 +109,7 @@
 (setq initial-scratch-message nil)
 (global-auto-revert-mode 1) ;; Auto refresh buffers
 (setq auto-revert-verbose nil)
-(setq global-auto-revert-non-file-buffers t) ;; Also auto refresh dired, but be quiet about itp
+(setq global-auto-revert-non-file-buffers t) ;; Also auto refresh dired, but be quiet about it
 (delete-selection-mode t)
 (transient-mark-mode t)
 (column-number-mode t)
