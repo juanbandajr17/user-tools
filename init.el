@@ -194,3 +194,9 @@ might be bad."
 ;;      (point) (mark) "pbcopy")
 ;;     (kill-buffer "*Shell Command Output*")))
 ;; (global-set-key [?\C-x ?\M-w] 'pt-pbcopy)
+
+
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(global-set-key (kbd "C-M-j") 'org-insert-todo-heading)
+(setq org-log-done t)
