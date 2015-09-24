@@ -20,6 +20,7 @@
 
 (setq package-list
       '(ace-jump-mode
+        ag
         auto-complete
         autopair
         expand-region
@@ -50,6 +51,9 @@
 
 ;; ace-jump-mode
 (define-key global-map (kbd "M-j") 'ace-jump-mode)
+
+;; ag
+(setq ag-reuse-buffers 't)
 
 ;; auto-complete
 (ac-config-default)
