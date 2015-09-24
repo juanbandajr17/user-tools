@@ -18,6 +18,35 @@
   (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                            ("melpa" . "http://melpa.milkbox.net/packages/"))))
 
+(setq package-list
+      '(ace-jump-mode
+        auto-complete
+        autopair
+        expand-region
+        flx-ido
+        flycheck
+        ido-ubiquitous
+        ido-vertical-mode
+        imenu-anywhere
+        multiple-cursors
+        neotree
+        perspective
+        projectile
+        pyenv-mode
+        smart-mode-line
+        smex
+        web-mode
+        whole-line-or-region
+        yaml-mode))
+
+(package-initialize)
+
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
 
 ;; ace-jump-mode
 (define-key global-map (kbd "M-j") 'ace-jump-mode)
@@ -116,6 +145,12 @@
 (setq-default indent-tabs-mode nil)
 (setq dired-listing-switches "-hal")
 
+;; org key-bindings
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(global-set-key (kbd "C-M-j") 'org-insert-todo-heading)
+(setq org-log-done t)
+
 ;; Redefine keys
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "<RET>") 'newline-and-indent)
@@ -129,14 +164,13 @@
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
-(setq
-   backup-by-copying t      ; don't clobber symlinks
-   backup-directory-alist
-    '(("." . "~/.saves"))    ; don't litter my fs tree
-   delete-old-versions t
-   kept-new-versions 6
-   kept-old-versions 2
-   version-control t)       ; use versioned backups
+(setq backup-by-copying t      ; don't clobber symlinks
+      backup-directory-alist
+      '(("." . "~/.saves"))    ; don't litter my fs tree
+      delete-old-versions t
+      kept-new-versions 6
+      kept-old-versions 2
+      version-control t)       ; use versioned backups
 ;; Make backups of files, even when they're in version control
 (setq vc-make-backup-files t)
 ;; Or turn off backup-system
@@ -194,9 +228,3 @@ might be bad."
 ;;      (point) (mark) "pbcopy")
 ;;     (kill-buffer "*Shell Command Output*")))
 ;; (global-set-key [?\C-x ?\M-w] 'pt-pbcopy)
-
-
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-(global-set-key (kbd "C-M-j") 'org-insert-todo-heading)
-(setq org-log-done t)
