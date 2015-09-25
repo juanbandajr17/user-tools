@@ -1,3 +1,5 @@
+;; export TERM=xterm-256color
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -24,14 +26,18 @@
         auto-complete
         autopair
         expand-region
+        flatland-black-theme
         flx-ido
         flycheck
+        helm-projectile
+        helm-ag
         ido-ubiquitous
         ido-vertical-mode
         imenu-anywhere
         multiple-cursors
         neotree
         perspective
+        persp-projectile
         projectile
         pyenv-mode
         smart-mode-line
@@ -163,7 +169,9 @@
     (progn
       (fringe-mode -1)
       (tool-bar-mode -1))
-  (progn (menu-bar-mode -1)))
+  (progn (menu-bar-mode -1)
+         ;; (load-theme 'flatland-black)
+         ))
 
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
