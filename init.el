@@ -42,6 +42,7 @@
         pyenv-mode
         smart-mode-line
         smex
+        symon
         web-mode
         whole-line-or-region
         yaml-mode))
@@ -121,6 +122,9 @@
 ;; smex
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+
+;; symon
+(symon-mode)
 
 ;; web-mode
 (add-to-list 'auto-mode-alist '("\\.jinja$" . web-mode))
