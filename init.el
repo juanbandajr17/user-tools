@@ -25,6 +25,7 @@
         ag
         auto-complete
         autopair
+        csv-mode
         expand-region
         flatland-black-theme
         flx-ido
