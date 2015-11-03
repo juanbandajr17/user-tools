@@ -159,6 +159,7 @@
 (column-number-mode t)
 (setq-default indent-tabs-mode nil)
 (setq dired-listing-switches "-hal")
+(toggle-truncate-lines 1)
 
 ;; org key-bindings
 (define-key global-map "\C-cl" 'org-store-link)
