@@ -1,4 +1,5 @@
-;; export TERM=xterm-256color
+;; TERM=xterm-256color
+;; TERM=xterm
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -25,7 +26,11 @@
         ag
         auto-complete
         autopair
+        clojure-mode
         csv-mode
+        diminish
+        enh-ruby-mode
+        exec-path-from-shell
         expand-region
         flatland-black-theme
         flx-ido
@@ -35,18 +40,24 @@
         ido-ubiquitous
         ido-vertical-mode
         imenu-anywhere
+        jedi
+        magit
         multiple-cursors
         neotree
         perspective
         persp-projectile
+        powerline
         projectile
         pyenv-mode
+        restclient
         smart-mode-line
         smex
+        solarized-theme
         symon
         web-mode
-        whole-line-or-region
-        yaml-mode))
+        yaml-mode
+        zenburn-theme
+        zencoding-mode))
 
 (package-initialize)
 
@@ -67,18 +78,29 @@
 (ac-config-default)
 
 ;; autopair
-(autopair-global-mode t)
+;; (autopair-global-mode t)
+
+;; diminish
+(diminish 'auto-complete-mode)
+
+;; enh-ruby-mode
+(add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
+(add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
 
 ;; expand-region
-(global-set-key (kbd "C-o") 'er/expand-region)
+(global-set-key (kbd "M-o") 'er/expand-region)
+
+;; exec-path-from-shell
+(when (memq window-system '(mac ns))
+    (exec-path-from-shell-initialize))
 
 ;; flx-ido
 (flx-ido-mode 1)
 
 ;; flycheck
-(setq flycheck-check-syntax-automatically '(mode-enabled save))
+;; (setq flycheck-check-syntax-automatically '(mode-enabled save))
 ;; (add-hook 'python-mode-hook (lambda () (flycheck-mode 1)))
-(setq flycheck-flake8-maximum-line-length 100)
+;; (setq flycheck-flake8-maximum-line-length 100)
 
 ;; helm-projectile
 ;; (helm-projectile-on)
@@ -96,6 +118,9 @@
 ;; imenu-anywhere
 (global-set-key (kbd "M-i") 'imenu-anywhere)
 
+;; jedi
+(add-hook 'python-mode-hook 'jedi:ac-setup)
+
 ;; multiple-cursors
 (global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
 (global-set-key (kbd "M-n") 'mc/mark-next-like-this)
@@ -105,20 +130,21 @@
 ;; (setq projectile-switch-project-action 'neotree-projectile-action)
 
 ;; perspective
-;; (persp-mode)
+(persp-mode)
+
+;; powerline
+;; (powerline-default-theme)
 
 ;; projectile
 (projectile-global-mode)
-;; (setq projectile-require-project-root nil)
 (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name))))
 
 ;; pyenv-mode
-(unless (display-graphic-p)
-  (pyenv-mode))
+;; (pyenv-mode)
 
 ;; smart-mode-line
-(sml/setup)
-(sml/apply-theme 'respectful)
+;; (sml/setup)
+;; (sml/apply-theme 'respectful)
 
 ;; smex
 (global-set-key (kbd "M-x") 'smex)
@@ -137,13 +163,13 @@
 (setq web-mode-enable-auto-closing t)
 (setq web-mode-enable-auto-indentation t)
 
-;; whole-line-or-region
-(whole-line-or-region-mode 1)
-
 ;; yaml-mode
 (add-to-list 'auto-mode-alist '("\\.ya?ml$" . yaml-mode))
 
-;;;;; Other Settings
+;; zencoding-mode
+(add-hook 'sgml-mode-hook 'zencoding-mode)
+
+;;;;; Emacs Settings
 (ido-mode 1)
 (setq ido-enable-flex-matching t)
 (setq ido-use-virtual-buffers t)
@@ -160,8 +186,6 @@
 (setq-default indent-tabs-mode nil)
 (setq dired-listing-switches "-hal")
 (toggle-truncate-lines 1)
-(setq split-width-threshold nil)
-(setq split-height-threshold nil)
 
 ;; org key-bindings
 (define-key global-map "\C-cl" 'org-store-link)
@@ -179,7 +203,6 @@
       (tool-bar-mode -1)
       (scroll-bar-mode -1))
   (progn (menu-bar-mode -1)
-         ;; (load-theme 'flatland-black)
          ))
 
 (when (fboundp 'windmove-default-keybindings)
@@ -192,10 +215,9 @@
       kept-new-versions 6
       kept-old-versions 2
       version-control t)       ; use versioned backups
+
 ;; Make backups of files, even when they're in version control
 (setq vc-make-backup-files t)
-;; Or turn off backup-system
-;;(setq make-backup-files nil)
 
 (defun cleanup-buffer-safe ()
   "Perform a bunch of safe operations on the whitespace content of a buffer.
@@ -215,37 +237,71 @@ might be bad."
     (fundamental-mode)))
 (add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
 
-;; Requirement: Install xsel program
-;; https://hugoheden.wordpress.com/2009/03/08/copypaste-with-emacs-in-terminal/
-(setq x-select-enable-clipboard t)
-(unless (display-graphic-p)
-  (when (getenv "DISPLAY")
-    (defun xsel-cut-function (text &optional push)
-      (with-temp-buffer
-        (insert text)
-        (call-process-region (point-min) (point-max) "xsel" nil 0 nil "--clipboard" "--input")))
-    (defun xsel-paste-function()
-      (let ((xsel-output (shell-command-to-string "xsel --clipboard --output")))
-        (unless (string= (car kill-ring) xsel-output)
-          xsel-output )))
-    (setq interprogram-cut-function 'xsel-cut-function)
-    (setq interprogram-paste-function 'xsel-paste-function)))
+(unless (memq window-system '(mac ns))
+  ;; Requirement: Install xsel program
+  ;; https://hugoheden.wordpress.com/2009/03/08/copypaste-with-emacs-in-terminal/
+  (setq x-select-enable-clipboard t)
+  (unless (display-graphic-p)
+    (when (getenv "DISPLAY")
+      (defun xsel-cut-function (text &optional push)
+        (with-temp-buffer
+          (insert text)
+          (call-process-region (point-min) (point-max) "xsel" nil 0 nil "--clipboard" "--input")))
+      (defun xsel-paste-function()
+        (let ((xsel-output (shell-command-to-string "xsel --clipboard --output")))
+          (unless (string= (car kill-ring) xsel-output)
+            xsel-output )))
+      (setq interprogram-cut-function 'xsel-cut-function)
+      (setq interprogram-paste-function 'xsel-paste-function))))
 
-;; Mac copy and paste
-;; (defun pt-pbpaste ()
-;;   "Paste data from pasteboard."
-;;   (interactive)
-;;   (shell-command-on-region
-;;    (point)
-;;    (if mark-active (mark) (point))
-;;    "pbpaste" nil t))
-;; (global-set-key [?\C-x ?\C-y] 'pt-pbpaste)
-;; (defun pt-pbcopy ()
-;;   "Copy region to pasteboard."
-;;   (interactive)
-;;   (print (mark))
-;;   (when mark-active
-;;     (shell-command-on-region
-;;      (point) (mark) "pbcopy")
-;;     (kill-buffer "*Shell Command Output*")))
-;; (global-set-key [?\C-x ?\M-w] 'pt-pbcopy)
+(defun delete-current-buffer-file ()
+  "Removes file connected to current buffer and kills buffer."
+  (interactive)
+  (let ((filename (buffer-file-name))
+        (buffer (current-buffer))
+        (name (buffer-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (ido-kill-buffer)
+      (when (yes-or-no-p "Are you sure you want to remove this file? ")
+        (delete-file filename)
+        (kill-buffer buffer)
+        (message "File '%s' successfully removed" filename)))))
+
+(global-set-key (kbd "C-x C-k") 'delete-current-buffer-file)
+(defun rename-current-buffer-file ()
+  "Renames current buffer and file it is visiting."
+  (interactive)
+  (let ((name (buffer-name))
+        (filename (buffer-file-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (error "Buffer '%s' is not visiting a file!" name)
+      (let ((new-name (read-file-name "New name: " filename)))
+        (if (get-buffer new-name)
+            (error "A buffer named '%s' already exists!" new-name)
+          (rename-file filename new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil)
+          (message "File '%s' successfully renamed to '%s'"
+                   name (file-name-nondirectory new-name)))))))
+(global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
+
+(when (memq window-system '(mac ns))
+  ;; Mac copy and paste
+  (defun pt-pbpaste ()
+    "Paste data from pasteboard."
+    (interactive)
+    (shell-command-on-region
+     (point)
+     (if mark-active (mark) (point))
+     "pbpaste" nil t))
+  (global-set-key [?\C-x ?\C-y] 'pt-pbpaste)
+  (defun pt-pbcopy ()
+    "Copy region to pasteboard."
+    (interactive)
+    (print (mark))
+    (when mark-active
+      (shell-command-on-region
+       (point) (mark) "pbcopy")
+      (kill-buffer "*Shell Command Output*")))
+  (global-set-key [?\C-x ?\M-w] 'pt-pbcopy))
