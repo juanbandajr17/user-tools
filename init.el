@@ -1,3 +1,15 @@
+;; Install emacs
+;; http://lars.ingebrigtsen.no/2014/11/13/welcome-new-emacs-developers/
+
+;; Install emacs on Mac OSX
+;; git clone git://git.savannah.gnu.org/emacs.git
+;; cd emacs
+;; ./autogen.sh
+;; ./configure --with-ns
+;; make install
+;; cd nextstep
+;; open Emacs.app
+
 ;; TERM=xterm-256color
 ;; TERM=xterm
 
@@ -138,6 +150,7 @@
 ;; projectile
 (projectile-global-mode)
 (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name))))
+(define-key projectile-mode-map (kbd "C-c p p") 'projectile-persp-switch-project)
 
 ;; pyenv-mode
 ;; (pyenv-mode)
