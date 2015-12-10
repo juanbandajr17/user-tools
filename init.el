@@ -44,6 +44,7 @@
         enh-ruby-mode
         exec-path-from-shell
         expand-region
+        flatland-theme
         flatland-black-theme
         flx-ido
         flycheck
