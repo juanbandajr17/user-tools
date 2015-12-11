@@ -38,6 +38,7 @@
         ag
         auto-complete
         autopair
+        cider
         clojure-mode
         csv-mode
         diminish
