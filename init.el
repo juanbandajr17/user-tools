@@ -100,8 +100,8 @@
 (diminish 'auto-complete-mode)
 
 ;; enh-ruby-mode
-(add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
-(add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
+;; (add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
+;; (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
 
 ;; expand-region
 (global-set-key (kbd "M-o") 'er/expand-region)
@@ -146,8 +146,7 @@
 ;; (setq projectile-switch-project-action 'neotree-projectile-action)
 
 ;; perspective
-(persp-mode)
-(define-key projectile-mode-map (kbd "C-c p p") 'projectile-persp-switch-project)
+;; (persp-mode)
 
 ;; powerline
 ;; (powerline-default-theme)
@@ -155,7 +154,7 @@
 ;; projectile
 (projectile-global-mode)
 (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name))))
-(define-key projectile-mode-map (kbd "C-c p p") 'projectile-persp-switch-project)
+;; (define-key projectile-mode-map (kbd "C-c p p") 'projectile-persp-switch-project)
 
 ;; pyenv-mode
 ;; (pyenv-mode)
