@@ -53,6 +53,7 @@
         ido-ubiquitous
         ido-vertical-mode
         imenu-anywhere
+        inf-ruby
         jedi
         magit
         multiple-cursors
@@ -63,6 +64,7 @@
         projectile
         pyenv-mode
         restclient
+        rvm
         smart-mode-line
         smex
         solarized-theme
@@ -144,6 +146,7 @@
 
 ;; perspective
 (persp-mode)
+(define-key projectile-mode-map (kbd "C-c p p") 'projectile-persp-switch-project)
 
 ;; powerline
 ;; (powerline-default-theme)
@@ -155,6 +158,10 @@
 
 ;; pyenv-mode
 ;; (pyenv-mode)
+
+;; rvm
+;; (rvm-use-default)
+;; (add-hook 'ruby-mode-hook (lambda () (rvm-activate-corresponding-ruby)))
 
 ;; smart-mode-line
 ;; (sml/setup)
