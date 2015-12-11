@@ -56,6 +56,7 @@
         inf-ruby
         jedi
         magit
+        multi-eshell
         multiple-cursors
         neotree
         perspective
