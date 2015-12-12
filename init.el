@@ -136,7 +136,7 @@
 (global-set-key (kbd "M-i") 'imenu-anywhere)
 
 ;; jedi
-(add-hook 'python-mode-hook 'jedi:ac-setup)
+;; (add-hook 'python-mode-hook 'jedi:ac-setup)
 
 ;; multiple-cursors
 (global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
