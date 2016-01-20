@@ -56,6 +56,7 @@
         imenu-anywhere
         inf-ruby
         jedi
+        json-mode
         magit
         multi-eshell
         multiple-cursors
