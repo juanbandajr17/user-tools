@@ -100,7 +100,7 @@
 ;; (autopair-global-mode t)
 
 ;; column-marker
-(add-hook 'ruby-mode-hook (lambda () (interactive) (column-marker-3 100)))
+(add-hook 'ruby-mode-hook (lambda () (interactive) (column-marker-1 100)))
 
 ;; diminish
 (diminish 'auto-complete-mode)
