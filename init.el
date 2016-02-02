@@ -213,6 +213,9 @@
 (setq-default indent-tabs-mode nil)
 (setq dired-listing-switches "-hal")
 (toggle-truncate-lines 1)
+(electric-indent-mode 1)
+(electric-pair-mode nil)
+
 
 ;; org key-bindings
 (define-key global-map "\C-cl" 'org-store-link)
