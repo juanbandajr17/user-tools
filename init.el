@@ -40,6 +40,7 @@
         autopair
         cider
         clojure-mode
+        column-marker
         csv-mode
         diminish
         enh-ruby-mode
@@ -97,6 +98,9 @@
 
 ;; autopair
 ;; (autopair-global-mode t)
+
+;; column-marker
+(add-hook 'ruby-mode-hook (lambda () (interactive) (column-marker-3 100)))
 
 ;; diminish
 (diminish 'auto-complete-mode)
