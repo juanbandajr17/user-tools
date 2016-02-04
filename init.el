@@ -215,7 +215,7 @@
 (setq dired-listing-switches "-hal")
 (toggle-truncate-lines 1)
 (electric-indent-mode 1)
-(electric-pair-mode nil)
+(electric-pair-mode -1)
 
 
 ;; org key-bindings
