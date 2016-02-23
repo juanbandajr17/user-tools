@@ -68,6 +68,7 @@
         projectile
         pyenv-mode
         restclient
+        rspec-mode
         rvm
         smart-mode-line
         smex
