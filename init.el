@@ -167,6 +167,9 @@
 ;; pyenv-mode
 ;; (pyenv-mode)
 
+;; rspec-mode
+;; (add-hook 'after-init-hook 'inf-ruby-switch-setup)
+
 ;; rvm
 ;; (rvm-use-default)
 ;; (add-hook 'ruby-mode-hook (lambda () (rvm-activate-corresponding-ruby)))
