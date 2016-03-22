@@ -203,25 +203,25 @@
 (add-hook 'sgml-mode-hook 'zencoding-mode)
 
 ;;;;; Emacs Settings
-(ido-mode 1)
-(setq ido-enable-flex-matching t)
-(setq ido-use-virtual-buffers t)
-(setq ido-max-directory-size 300000)
-(show-paren-mode 1)
-(setq inhibit-splash-screen t)
-(setq initial-scratch-message nil)
-(global-auto-revert-mode 1) ;; Auto refresh buffers
-(setq auto-revert-verbose nil)
-(setq global-auto-revert-non-file-buffers t) ;; Also auto refresh dired, but be quiet about it
-(delete-selection-mode t)
-(transient-mark-mode t)
 (column-number-mode t)
-(setq-default indent-tabs-mode nil)
-(setq dired-listing-switches "-hal")
-(toggle-truncate-lines 1)
+(delete-selection-mode t)
 (electric-indent-mode 1)
 (electric-pair-mode -1)
-
+(global-auto-revert-mode 1) ;; Auto refresh buffers
+(ido-mode 1)
+(setq auto-revert-verbose nil)
+(setq dired-listing-switches "-hal")
+(setq global-auto-revert-non-file-buffers t) ;; Also auto refresh dired, but be quiet about it
+(setq ido-enable-flex-matching t)
+(setq ido-max-directory-size 300000)
+(setq ido-use-virtual-buffers t)
+(setq inhibit-splash-screen t)
+(setq initial-scratch-message nil)
+(setq-default indent-tabs-mode nil)
+(show-paren-mode 1)
+(size-indication-mode 1)
+(toggle-truncate-lines 1)
+(transient-mark-mode t)
 
 ;; org key-bindings
 (define-key global-map "\C-cl" 'org-store-link)
