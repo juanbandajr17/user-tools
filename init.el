@@ -74,6 +74,7 @@
         smex
         solarized-theme
         symon
+        visual-regexp
         web-mode
         yaml-mode
         zenburn-theme
