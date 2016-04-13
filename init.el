@@ -351,3 +351,24 @@ might be bad."
        (point) (mark) "pbcopy")
       (kill-buffer "*Shell Command Output*")))
   (global-set-key [?\C-x ?\M-w] 'pt-pbcopy))
+
+;; Clojure Reload namespace on save
+(add-hook 'cider-mode-hook
+          '(lambda ()
+             (add-hook 'after-save-hook
+                       '(lambda ()
+                          (if (and (boundp 'cider-mode) cider-mode)
+                              (cider-namespace-refresh))))))
+(defun cider-namespace-refresh ()
+  (interactive)
+  (cider-interactive-eval
+      "(require 'clojure.tools.namespace.repl)
+  (clojure.tools.namespace.repl/refresh)"))
+
+;; Set Speclj indentaion
+(put 'describe 'clojure-backtracking-indent '(4 2))
+(put 'it 'clojure-backtracking-indent '(4 2))
+(put 'before 'clojure-backtracking-indent '(2))
+(put 'before-all 'clojure-backtracking-indent '(2))
+(put 'after-all 'clojure-backtracking-indent '(2))
+(put 'after 'clojure-backtracking-indent '(2))
