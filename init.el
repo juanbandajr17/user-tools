@@ -366,9 +366,9 @@ might be bad."
   (clojure.tools.namespace.repl/refresh)"))
 
 ;; Set Speclj indentaion
-(put-clojure-indent 'describe 1)
-(put-clojure-indent 'it 1)
-(put-clojure-indent 'before 1)
-(put-clojure-indent 'before-all 1)
-(put-clojure-indent 'after-all 1)
-(put-clojure-indent 'after 1)
+(put 'describe 'clojure-backtracking-indent 1)
+(put 'it 'clojure-backtracking-indent 1)
+(put 'before 'clojure-backtracking-indent 1)
+(put 'before-all 'clojure-backtracking-indent 1)
+(put 'after-all 'clojure-backtracking-indent 1)
+(put 'after 'clojure-backtracking-indent 1)
