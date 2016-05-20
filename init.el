@@ -50,6 +50,7 @@
         jedi
         json-mode
         magit
+        markdown-mode
         multi-eshell
         multiple-cursors
         neotree
@@ -108,7 +109,7 @@
 
 ;; exec-path-from-shell
 (when (memq window-system '(mac ns))
-    (exec-path-from-shell-initialize))
+  (exec-path-from-shell-initialize))
 
 ;; flx-ido
 (flx-ido-mode 1)
@@ -136,6 +137,11 @@
 
 ;; jedi
 ;; (add-hook 'python-mode-hook 'jedi:ac-setup)
+
+;; markdown-mode
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;; multiple-cursors
 (global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
@@ -343,6 +349,7 @@ might be bad."
       (kill-buffer "*Shell Command Output*")))
   (global-set-key [?\C-x ?\M-w] 'pt-pbcopy))
 
+
 ;; Clojure Reload namespace on save
 (add-hook 'cider-mode-hook
           '(lambda ()
@@ -353,7 +360,7 @@ might be bad."
 (defun cider-namespace-refresh ()
   (interactive)
   (cider-interactive-eval
-      "(require 'clojure.tools.namespace.repl)
+   "(require 'clojure.tools.namespace.repl)
   (clojure.tools.namespace.repl/refresh)"))
 
 ;; Set Speclj indentaion
@@ -363,3 +370,9 @@ might be bad."
 (put 'before-all 'clojure-backtracking-indent 1)
 (put 'after-all 'clojure-backtracking-indent 1)
 (put 'after 'clojure-backtracking-indent 1)
+
+;; Set transparency of emacs
+(defun transparency (value)
+  "Sets the transparency of the frame window. 0=transparent/100=opaque"
+  (interactive "nTransparency Value 0 - 100 opaque:")
+  (set-frame-parameter (selected-frame) 'alpha value))
