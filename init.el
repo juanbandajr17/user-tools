@@ -138,6 +138,9 @@
 ;; jedi
 ;; (add-hook 'python-mode-hook 'jedi:ac-setup)
 
+;; magit
+(global-set-key (kbd "C-x g") 'magit-status)
+
 ;; markdown-mode
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
