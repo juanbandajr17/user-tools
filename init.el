@@ -25,10 +25,10 @@
                            ("melpa" . "http://melpa.milkbox.net/packages/"))))
 
 (setq package-list
-      '(ace-jump-mode
+      '(
+        ace-jump-mode
         ag
         auto-complete
-        autopair
         cider
         clojure-mode
         column-marker
@@ -70,7 +70,8 @@
         web-mode
         yaml-mode
         zenburn-theme
-        zencoding-mode))
+        zencoding-mode
+        ))
 
 (package-initialize)
 
@@ -89,9 +90,6 @@
 
 ;; auto-complete
 (ac-config-default)
-
-;; autopair
-;; (autopair-global-mode t)
 
 ;; column-marker
 (column-marker-1 nil) ;; Load more markers
@@ -142,9 +140,9 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 
 ;; markdown-mode
-(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+;; (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+;; (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+;; (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;; multiple-cursors
 (global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
@@ -184,25 +182,30 @@
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 
 ;; symon
-(symon-mode)
+;; (symon-mode)
 
 ;; web-mode
-(add-to-list 'auto-mode-alist '("\\.jinja$" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb$". web-mode))
-(setq web-mode-markup-indent-offset 2)
-(setq web-mode-css-indent-offset 2)
-(setq web-mode-code-indent-offset 2)
-(setq web-mode-attr-indent-offset 2)
-(setq web-mode-enable-auto-closing t)
-(setq web-mode-enable-auto-indentation t)
+;; (add-to-list 'auto-mode-alist '("\\.jinja$" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.erb$". web-mode))
+;; (setq web-mode-markup-indent-offset 2)
+;; (setq web-mode-css-indent-offset 2)
+;; (setq web-mode-code-indent-offset 2)
+;; (setq web-mode-attr-indent-offset 2)
+;; (setq web-mode-enable-auto-closing t)
+;; (setq web-mode-enable-auto-indentation t)
 
 ;; yaml-mode
 (add-to-list 'auto-mode-alist '("\\.ya?ml$" . yaml-mode))
 
 ;; zencoding-mode
-(add-hook 'sgml-mode-hook 'zencoding-mode)
+;; (add-hook 'sgml-mode-hook 'zencoding-mode)
 
-;;;;; Emacs Settings
+
+;
+;;
+;;;
+;;;;
+;;;;; BASIC EMACS SETTINGS ;;;;;
 (column-number-mode t)
 (delete-selection-mode t)
 (electric-indent-mode 1)
@@ -223,15 +226,18 @@
 (toggle-truncate-lines 1)
 (transient-mark-mode t)
 
-;; org key-bindings
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-(global-set-key (kbd "C-M-j") 'org-insert-todo-heading)
-(setq org-log-done t)
+(defun goto-line-with-feedback ()
+  "Show line numbers temporarily, while prompting for the line number input"
+  (interactive)
+  (unwind-protect
+      (progn
+        (linum-mode 1)
+        (goto-line (read-number "Goto line: ")))
+    (linum-mode -1)))
+(global-set-key [remap goto-line] 'goto-line-with-feedback)
 
-;; Redefine keys
-(global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "<RET>") 'newline-and-indent)
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
 
 (if (display-graphic-p)
     (progn
@@ -241,8 +247,7 @@
   (progn (menu-bar-mode -1)
          ))
 
-(when (fboundp 'windmove-default-keybindings)
-  (windmove-default-keybindings))
+(global-set-key (kbd "M-o") 'other-window)
 
 (setq backup-by-copying t      ; don't clobber symlinks
       backup-directory-alist
@@ -255,15 +260,22 @@
 ;; Make backups of files, even when they're in version control
 (setq vc-make-backup-files t)
 
-(defun cleanup-buffer-safe ()
-  "Perform a bunch of safe operations on the whitespace content of a buffer.
-Does not indent buffer, because it is used for a before-save-hook, and that
-might be bad."
-  (interactive)
-  (untabify (point-min) (point-max))
-  (delete-trailing-whitespace)
-  (set-buffer-file-coding-system 'utf-8))
-(add-hook 'before-save-hook 'cleanup-buffer-safe)
+;;;;; END BASIC EMACS SETTINGS ;;;;;
+;;;;
+;;;
+;;
+;
+
+
+;; (defun cleanup-buffer-safe ()
+;;   "Perform a bunch of safe operations on the whitespace content of a buffer.
+;; Does not indent buffer, because it is used for a before-save-hook, and that
+;; might be bad."
+;;   (interactive)
+;;   (untabify (point-min) (point-max))
+;;   (delete-trailing-whitespace)
+;;   (set-buffer-file-coding-system 'utf-8))
+;; (add-hook 'before-save-hook 'cleanup-buffer-safe)
 
 (defun my-find-file-check-make-large-file-read-only-hook ()
   "If a file is over a given size, make the buffer read only."
@@ -272,23 +284,6 @@ might be bad."
     (buffer-disable-undo)
     (fundamental-mode)))
 (add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
-
-(unless (memq window-system '(mac ns))
-  ;; Requirement: Install xsel program
-  ;; https://hugoheden.wordpress.com/2009/03/08/copypaste-with-emacs-in-terminal/
-  (setq x-select-enable-clipboard t)
-  (unless (display-graphic-p)
-    (when (getenv "DISPLAY")
-      (defun xsel-cut-function (text &optional push)
-        (with-temp-buffer
-          (insert text)
-          (call-process-region (point-min) (point-max) "xsel" nil 0 nil "--clipboard" "--input")))
-      (defun xsel-paste-function()
-        (let ((xsel-output (shell-command-to-string "xsel --clipboard --output")))
-          (unless (string= (car kill-ring) xsel-output)
-            xsel-output )))
-      (setq interprogram-cut-function 'xsel-cut-function)
-      (setq interprogram-paste-function 'xsel-paste-function))))
 
 (defun delete-current-buffer-file ()
   "Removes file connected to current buffer and kills buffer."
@@ -322,60 +317,72 @@ might be bad."
                    name (file-name-nondirectory new-name)))))))
 (global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
 
-(defun goto-line-with-feedback ()
-  "Show line numbers temporarily, while prompting for the line number input"
-  (interactive)
-  (unwind-protect
-      (progn
-        (linum-mode 1)
-        (goto-line (read-number "Goto line: ")))
-    (linum-mode -1)))
-(global-set-key [remap goto-line] 'goto-line-with-feedback)
+;; (unless (memq window-system '(mac ns))
+;;   ;; Requirement: Install xsel program
+;;   ;; https://hugoheden.wordpress.com/2009/03/08/copypaste-with-emacs-in-terminal/
+;;   (setq x-select-enable-clipboard t)
+;;   (unless (display-graphic-p)
+;;     (when (getenv "DISPLAY")
+;;       (defun xsel-cut-function (text &optional push)
+;;         (with-temp-buffer
+;;           (insert text)
+;;           (call-process-region (point-min) (point-max) "xsel" nil 0 nil "--clipboard" "--input")))
+;;       (defun xsel-paste-function()
+;;         (let ((xsel-output (shell-command-to-string "xsel --clipboard --output")))
+;;           (unless (string= (car kill-ring) xsel-output)
+;;             xsel-output )))
+;;       (setq interprogram-cut-function 'xsel-cut-function)
+;;       (setq interprogram-paste-function 'xsel-paste-function))))
 
-(when (memq window-system '(mac ns))
-  ;; Mac copy and paste
-  (defun pt-pbpaste ()
-    "Paste data from pasteboard."
-    (interactive)
-    (shell-command-on-region
-     (point)
-     (if mark-active (mark) (point))
-     "pbpaste" nil t))
-  (global-set-key [?\C-x ?\C-y] 'pt-pbpaste)
-  (defun pt-pbcopy ()
-    "Copy region to pasteboard."
-    (interactive)
-    (print (mark))
-    (when mark-active
-      (shell-command-on-region
-       (point) (mark) "pbcopy")
-      (kill-buffer "*Shell Command Output*")))
-  (global-set-key [?\C-x ?\M-w] 'pt-pbcopy))
-
+;; (when (memq window-system '(mac ns))
+;;   ;; Mac copy and paste
+;;   (defun pt-pbpaste ()
+;;     "Paste data from pasteboard."
+;;     (interactive)
+;;     (shell-command-on-region
+;;      (point)
+;;      (if mark-active (mark) (point))
+;;      "pbpaste" nil t))
+;;   (global-set-key [?\C-x ?\C-y] 'pt-pbpaste)
+;;   (defun pt-pbcopy ()
+;;     "Copy region to pasteboard."
+;;     (interactive)
+;;     (print (mark))
+;;     (when mark-active
+;;       (shell-command-on-region
+;;        (point) (mark) "pbcopy")
+;;       (kill-buffer "*Shell Command Output*")))
+;;   (global-set-key [?\C-x ?\M-w] 'pt-pbcopy))
 
 ;; Clojure Reload namespace on save
-(add-hook 'cider-mode-hook
-          '(lambda ()
-             (add-hook 'after-save-hook
-                       '(lambda ()
-                          (if (and (boundp 'cider-mode) cider-mode)
-                              (cider-namespace-refresh))))))
-(defun cider-namespace-refresh ()
-  (interactive)
-  (cider-interactive-eval
-   "(require 'clojure.tools.namespace.repl)
-  (clojure.tools.namespace.repl/refresh)"))
+;; (add-hook 'cider-mode-hook
+;;           '(lambda ()
+;;              (add-hook 'after-save-hook
+;;                        '(lambda ()
+;;                           (if (and (boundp 'cider-mode) cider-mode)
+;;                               (cider-namespace-refresh))))))
+;; (defun cider-namespace-refresh ()
+;;   (interactive)
+;;   (cider-interactive-eval
+;;    "(require 'clojure.tools.namespace.repl)
+;;   (clojure.tools.namespace.repl/refresh)"))
 
 ;; Set Speclj indentaion
-(put 'describe 'clojure-backtracking-indent 1)
-(put 'it 'clojure-backtracking-indent 1)
-(put 'before 'clojure-backtracking-indent 1)
-(put 'before-all 'clojure-backtracking-indent 1)
-(put 'after-all 'clojure-backtracking-indent 1)
-(put 'after 'clojure-backtracking-indent 1)
+;; (put 'describe 'clojure-backtracking-indent 1)
+;; (put 'it 'clojure-backtracking-indent 1)
+;; (put 'before 'clojure-backtracking-indent 1)
+;; (put 'before-all 'clojure-backtracking-indent 1)
+;; (put 'after-all 'clojure-backtracking-indent 1)
+;; (put 'after 'clojure-backtracking-indent 1)
 
 ;; Set transparency of emacs
-(defun transparency (value)
-  "Sets the transparency of the frame window. 0=transparent/100=opaque"
-  (interactive "nTransparency Value 0 - 100 opaque:")
-  (set-frame-parameter (selected-frame) 'alpha value))
+;; (defun transparency (value)
+;;   "Sets the transparency of the frame window. 0=transparent/100=opaque"
+;;   (interactive "nTransparency Value 0 - 100 opaque:")
+;;   (set-frame-parameter (selected-frame) 'alpha value))
+
+;; org key-bindings
+;; (define-key global-map "\C-cl" 'org-store-link)
+;; (define-key global-map "\C-ca" 'org-agenda)
+;; (global-set-key (kbd "C-M-j") 'org-insert-todo-heading)
+;; (setq org-log-done t)
