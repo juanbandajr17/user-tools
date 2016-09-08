@@ -124,6 +124,7 @@
 ;; (add-to-list 'grep-find-ignored-directories "logs")
 
 ;; ido-ubiquitous
+(ido-ubiquitous-mode 1)
 (ido-everywhere 1)
 
 ;; ido-vertical-mode
