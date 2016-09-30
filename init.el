@@ -1,15 +1,6 @@
 ;; Install emacs
 ;; http://lars.ingebrigtsen.no/2014/11/13/welcome-new-emacs-developers/
 
-;; Install emacs on Mac OSX
-;; git clone git://git.savannah.gnu.org/emacs.git
-;; cd emacs
-;; ./autogen.sh
-;; ./configure --with-ns
-;; make install
-;; cd nextstep
-;; open Emacs.app
-
 ;; TERM=xterm-256color
 ;; TERM=xterm
 
@@ -25,8 +16,8 @@
                            ("melpa" . "http://melpa.milkbox.net/packages/"))))
 
 (setq package-list
-      '(
-        ace-jump-mode
+      '(ace-jump-mode
+        ace-window
         ag
         auto-complete
         cider
@@ -70,9 +61,7 @@
         web-mode
         yaml-mode
         zenburn-theme
-        zencoding-mode
-        ))
-
+        zencoding-mode))
 (package-initialize)
 
 (unless package-archive-contents
@@ -84,6 +73,9 @@
 
 ;; ace-jump-mode
 (define-key global-map (kbd "M-j") 'ace-jump-mode)
+
+;; ace-window
+(define-key global-map (kbd "M-o") 'ace-window)
 
 ;; ag
 (setq ag-reuse-buffers 't)
@@ -148,6 +140,7 @@
 ;; multiple-cursors
 (global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
 (global-set-key (kbd "M-n") 'mc/mark-next-like-this)
+(global-set-key (kbd "M-m") 'mc/mark-all-like-this)
 
 ;; neotree
 (global-set-key [f8] 'neotree-toggle)
