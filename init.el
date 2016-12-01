@@ -17,8 +17,6 @@
         ace-window
         ag
         auto-complete
-        csv-mode
-        exec-path-from-shell
         expand-region
         flx-ido
         ido-ubiquitous
@@ -28,7 +26,6 @@
         neotree
         projectile
         smex
-        visual-regexp
         ))
 
 (package-initialize)
@@ -47,7 +44,7 @@
 (define-key global-map (kbd "M-o") 'ace-window)
 
 ;; ag
-(setq ag-reuse-buffers 't)
+(setq ag-reuse-buffers t)
 
 ;; auto-complete
 (ac-config-default)
@@ -55,31 +52,22 @@
 ;; expand-region
 (global-set-key (kbd "C-o") 'er/expand-region)
 
-;; exec-path-from-shell
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
-
 ;; flx-ido
-(flx-ido-mode 1)
-
-;; flycheck
-;; (setq flycheck-check-syntax-automatically '(mode-enabled save))
-;; (add-hook 'python-mode-hook (lambda () (flycheck-mode 1)))
-;; (setq flycheck-flake8-maximum-line-length 100)
+(flx-ido-mode t)
 
 ;; ido-ubiquitous
-(ido-ubiquitous-mode 1)
-(ido-everywhere 1)
+(ido-ubiquitous-mode t)
+(ido-everywhere t)
 
 ;; ido-vertical-mode
-(ido-vertical-mode 1)
+(ido-vertical-mode t)
 (setq ido-vertical-define-keys 'C-n-and-C-p-only)
 
 ;; imenu-anywhere
 (global-set-key (kbd "M-i") 'imenu-anywhere)
 
 ;; magit
-;; (global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x g") 'magit-status)
 
 ;; multiple-cursors
 (global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
@@ -87,7 +75,7 @@
 (global-set-key (kbd "M-m") 'mc/mark-all-like-this)
 
 ;; projectile
-(projectile-global-mode)
+(projectile-global-mode t)
 (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name))))
 
 ;; smex
@@ -99,29 +87,30 @@
 ;;;
 ;;;;
 ;;;;; BASIC EMACS SETTINGS ;;;;;
-(setq column-number-mode t)
-(setq delete-selection-mode t)
+(column-number-mode t)
+(delete-selection-mode t)
 (setq dired-listing-switches "-hal")
-(setq electric-indent-mode 1)
-(setq electric-pair-mode 1)
-(setq global-auto-revert-mode 1) ;; Auto refresh buffers
+(electric-indent-mode t)
+(electric-pair-mode t)
+(global-auto-revert-mode t) ;; Auto refresh buffers
 (setq global-auto-revert-non-file-buffers t) ;; Also auto refresh dired, but be quiet about it
-(setq global-whitespace-mode t)
+(global-whitespace-mode t)
 (setq ido-enable-flex-matching t)
 (setq ido-max-directory-size 300000)
-(setq ido-mode t)
+(ido-mode t)
 (setq ido-use-virtual-buffers t)
 (setq inhibit-splash-screen t)
-(setq initial-scratch-message nil)
-(setq show-paren-mode 1)
-(setq size-indication-mode 1)
-(setq transient-mark-mode t)
+(setq initial-scratch-message -1)
+(show-paren-mode t)
+(size-indication-mode t)
+(transient-mark-mode t)
 (setq whitespace-line-column 100)
 (setq whitespace-style '(face lines-tail))
-(setq-default indent-tabs-mode nil)
-
-(unless (display-graphic-p)
-  (menu-bar-mode -1))
+(setq-default indent-tabs-mode -1)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(fringe-mode -1)
 
 (setq backup-by-copying t      ; don't clobber symlinks
       backup-directory-alist
@@ -139,6 +128,7 @@
 ;;;
 ;;
 ;
+
 
 (defun my-find-file-check-make-large-file-read-only-hook ()
   "If a file is over a given size, make the buffer read only."
@@ -165,6 +155,7 @@
             xsel-output )))
       (setq interprogram-cut-function 'xsel-cut-function)
       (setq interprogram-paste-function 'xsel-paste-function))))
+
 
 (when (memq window-system '(mac ns))
   ;; Mac copy and paste
