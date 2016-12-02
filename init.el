@@ -106,7 +106,7 @@
 (size-indication-mode t)
 (transient-mark-mode t)
 (setq whitespace-line-column 100)
-(setq whitespace-style '(face lines-tail))
+(setq whitespace-style '(face lines-tail trailing empty))
 (setq-default indent-tabs-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
