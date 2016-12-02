@@ -13,7 +13,8 @@
                            ("melpa" . "http://melpa.milkbox.net/packages/"))))
 
 (setq package-list
-      '(ace-jump-mode
+      '(
+	ace-jump-mode
         ace-window
         ag
         auto-complete
@@ -110,7 +111,10 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-(fringe-mode -1)
+(fringe-mode nil)
+(set-face-attribute 'fringe nil
+                      :foreground (face-foreground 'default)
+                      :background (face-background 'default))
 
 (setq backup-by-copying t      ; don't clobber symlinks
       backup-directory-alist
