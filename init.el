@@ -101,7 +101,7 @@
 (ido-mode t)
 (setq ido-use-virtual-buffers t)
 (setq inhibit-splash-screen t)
-(setq initial-scratch-message -1)
+(setq initial-scratch-message nil)
 (show-paren-mode t)
 (size-indication-mode t)
 (transient-mark-mode t)
