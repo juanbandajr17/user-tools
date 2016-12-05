@@ -105,6 +105,7 @@
 (show-paren-mode t)
 (size-indication-mode t)
 (transient-mark-mode t)
+(setq imenu-max-item-length 100)
 (setq whitespace-line-column 100)
 (setq whitespace-style '(face lines-tail trailing empty))
 (setq-default indent-tabs-mode -1)
