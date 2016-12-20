@@ -147,7 +147,7 @@
 (add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
 
 
-(unless (memq window-system '(mac ns))
+(unless (memq system-type '(darwin))
   ;; Requirement: Install xsel program
   ;; https://hugoheden.wordpress.com/2009/03/08/copypaste-with-emacs-in-terminal/
   (setq x-select-enable-clipboard t)
@@ -165,7 +165,7 @@
       (setq interprogram-paste-function 'xsel-paste-function))))
 
 
-(when (memq window-system '(mac ns))
+(when (memq system-type '(darwin))
   ;; Mac copy and paste
   (defun pt-pbpaste ()
     "Paste data from pasteboard."
