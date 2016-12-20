@@ -92,7 +92,7 @@
 (delete-selection-mode t)
 (setq dired-listing-switches "-hal")
 (electric-indent-mode t)
-(electric-pair-mode t)
+(electric-pair-mode -1)
 (global-auto-revert-mode t) ;; Auto refresh buffers
 (setq global-auto-revert-non-file-buffers t) ;; Also auto refresh dired, but be quiet about it
 (global-whitespace-mode t)
