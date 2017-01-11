@@ -95,7 +95,6 @@
 (electric-pair-mode -1)
 (global-auto-revert-mode t) ;; Auto refresh buffers
 (setq global-auto-revert-non-file-buffers t) ;; Also auto refresh dired, but be quiet about it
-(global-whitespace-mode t)
 (setq ido-enable-flex-matching t)
 (setq ido-max-directory-size 300000)
 (ido-mode t)
@@ -106,13 +105,8 @@
 (size-indication-mode t)
 (transient-mark-mode t)
 (setq imenu-max-item-length 100)
-(setq whitespace-line-column 100)
-(setq whitespace-style '(face lines-tail trailing empty))
 (setq-default indent-tabs-mode -1)
 (menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(fringe-mode nil)
 (set-face-attribute 'fringe nil
                       :foreground (face-foreground 'default)
                       :background (face-background 'default))
@@ -124,9 +118,16 @@
       kept-new-versions 6
       kept-old-versions 2
       version-control t)       ; use versioned backups
-
 ;; Make backups of files, even when they're in version control
 (setq vc-make-backup-files t)
+
+(global-whitespace-mode t)
+(setq whitespace-line-column 100)
+(setq whitespace-style '(face lines-tail trailing empty))
+
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(fringe-mode nil)
 
 ;;;;; END BASIC EMACS SETTINGS ;;;;;
 ;;;;
