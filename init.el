@@ -121,7 +121,7 @@
 ;; Make backups of files, even when they're in version control
 (setq vc-make-backup-files t)
 
-(global-whitespace-mode t)
+;; (global-whitespace-mode t)
 (setq whitespace-line-column 100)
 (setq whitespace-style '(face lines-tail trailing empty))
 
