@@ -50,8 +50,7 @@
 
 ;; anzu
 (global-anzu-mode +1)
-(global-set-key [remap query-replace] 'anzu-query-replace)
-(global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
+(global-set-key [remap query-replace] 'anzu-query-replace-regexp)
 
 ;; auto-complete
 (ac-config-default)
