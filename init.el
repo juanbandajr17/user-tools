@@ -130,9 +130,9 @@
 (setq whitespace-line-column 100)
 (setq whitespace-style '(face lines-tail trailing empty))
 
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(fringe-mode nil)
+;; (tool-bar-mode -1)
+;; (scroll-bar-mode -1)
+;; (fringe-mode nil)
 
 ;;;;; END BASIC EMACS SETTINGS ;;;;;
 ;;;;
