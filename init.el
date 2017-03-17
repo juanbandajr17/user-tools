@@ -93,6 +93,22 @@
 ;;;
 ;;;;
 ;;;;; BASIC EMACS SETTINGS ;;;;;
+
+;; org-settings
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
+(setq org-completion-use-ido t)
+(setq org-default-notes-file "~/.org/notes.org")
+(setq org-agenda-files '("~/.org"))
+(setq org-log-done 'time)
+(setq org-refile-targets '((nil :maxlevel . 1) (org-agenda-files :maxlevel . 1)))
+(setq org-todo-keywords
+      '((sequence "BACKLOG" "TODO" "ACTIVE" "|" "DONE")))
+(setq org-todo-keyword-faces
+      '(("BACKLOG" . "brightblack") ("ACTIVE" . "brightyellow")))
+
 (column-number-mode t)
 (delete-selection-mode t)
 (setq dired-listing-switches "-hal")
