@@ -24,6 +24,7 @@
         ido-ubiquitous
         ido-vertical-mode
         imenu-anywhere
+	magit
         multiple-cursors
         neotree
         projectile
