@@ -105,6 +105,7 @@
 (setq org-agenda-files '("~/.org"))
 (setq org-log-done 'time)
 (setq org-refile-targets '((nil :maxlevel . 1) (org-agenda-files :maxlevel . 1)))
+(setq org-link-file-path-type 'absolute)
 (setq org-todo-keywords
       '((sequence "BACKLOG" "TODO" "ACTIVE" "|" "DONE")))
 (setq org-todo-keyword-faces
