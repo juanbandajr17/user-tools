@@ -2,6 +2,11 @@
 ;; http://lars.ingebrigtsen.no/2014/11/13/welcome-new-emacs-developers/
 
 ;; Moved the custom.el stuff into its own file called ~/.emacs.d/customize.el
+(require 'package)
+(package-initialize)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+			 ("melpa" . "http://melpa.milkbox.net/packages/")))
+
 (setq custom-file "~/.emacs.d/customize.el")
 (when (file-exists-p custom-file)
   (load custom-file))
@@ -66,7 +71,7 @@
 ;; 	(unless (string= (car kill-ring) xsel-output)
 ;; 	  xsel-output )))
 ;;     (setq interprogram-cut-function 'xsel-cut-function)
-;;     (setq interprogram-paste-function 'xsel-paste-function))))
+;;     (setq interprogram-paste-function 'xsel-paste-function)))
 
 
 ;; ;; Mac copy and paste
@@ -86,13 +91,9 @@
 ;;     (shell-command-on-region
 ;;      (point) (mark) "pbcopy")
 ;;     (kill-buffer "*Shell Command Output*")))
-;; (global-set-key [?\C-x ?\M-w] 'pt-pbcopy))
+;; (global-set-key [?\C-x ?\M-w] 'pt-pbcopy)
 
 ;; ;;  thirt party packages  and package settings
-;; (require 'package)
-;; (package-initialize)
-;; (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-;; 			 ("melpa" . "http://melpa.milkbox.net/packages/")))
 ;; (setq package-list
 ;;       '(ace-jump-mode
 ;;         ace-window
@@ -106,7 +107,14 @@
 ;;         multiple-cursors
 ;;         neotree
 ;;         projectile
-;;         smex))
+;;         smex
+;; 	;; Themes
+;; 	white-theme
+;; 	monochrome-theme
+;; 	ample-theme
+;; 	tao-theme
+;; 	twilight-theme
+;; 	))
 
 ;; (unless package-archive-contents
 ;;   (package-refresh-contents))
