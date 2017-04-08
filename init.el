@@ -1,6 +1,3 @@
-;; Install emacs
-;; http://lars.ingebrigtsen.no/2014/11/13/welcome-new-emacs-developers/
-
 ;; Moved the custom.el stuff into its own file called ~/.emacs.d/customize.el
 (require 'package)
 (package-initialize)
