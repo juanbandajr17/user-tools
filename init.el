@@ -14,7 +14,7 @@
 (electric-pair-mode t)
 (fringe-mode nil)
 (global-auto-revert-mode t) ;; Auto refresh buffers
-(global-whitespace-mode t)
+;; (global-whitespace-mode t)
 (ido-mode t)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
