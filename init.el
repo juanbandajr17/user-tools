@@ -90,9 +90,16 @@
 ;;     (kill-buffer "*Shell Command Output*")))
 ;; (global-set-key [?\C-x ?\M-w] 'pt-pbcopy)
 
-;; ;;  thirt party packages  and package settings
+;;  thirt party packages  and package settings
 ;; (setq package-list
-;;       '(ace-jump-mode
+;;       '(
+;; 	ace-jump-mode
+;; 	ample-theme
+;; 	monochrome-theme
+;; 	restclient
+;; 	tao-theme
+;; 	twilight-theme
+;; 	white-theme
 ;;         ace-window
 ;;         ag
 ;;         auto-complete
@@ -105,12 +112,6 @@
 ;;         neotree
 ;;         projectile
 ;;         smex
-;; 	;; Themes
-;; 	white-theme
-;; 	monochrome-theme
-;; 	ample-theme
-;; 	tao-theme
-;; 	twilight-theme
 ;; 	))
 
 ;; (unless package-archive-contents
@@ -156,6 +157,9 @@
 ;; (global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
 ;; (global-set-key (kbd "M-n") 'mc/mark-next-like-this)
 ;; (global-set-key (kbd "M-m") 'mc/mark-all-like-this)
+
+;; ;; neotree
+;; (global-set-key [f8] 'neotree-toggle)
 
 ;; ;; projectile
 ;; (projectile-global-mode t)
