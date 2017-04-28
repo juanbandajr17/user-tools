@@ -38,7 +38,22 @@
 (setq vc-make-backup-files t)
 
 ;; org-mode
-(setq org-agenda-log-mode-items '(closed))
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
+(setq org-link-file-path-type 'absolute)
+(setq org-completion-use-ido t)
+(setq org-agenda-log-mode-items '(scheduled deadline started closed))
+;; (setq org-agenda-files '("~/Dropbox/Documents/spokeo.org"))
+(setq org-log-done 'time)
+(setq org-refile-targets '((nil :maxlevel . 1) (org-agenda-files :maxlevel . 1)))
+(setq org-todo-keywords
+      '((sequence "BACKLOG" "TODO" "ACTIVE" "|" "DONE")))
+(setq org-todo-keyword-faces
+      '(("BACKLOG" . "#404040")
+	("ACTIVE" . "#00d279")))
+
 
 (show-paren-mode t)
 (size-indication-mode t)
