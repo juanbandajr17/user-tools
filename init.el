@@ -37,6 +37,9 @@
 (setq version-control t)
 (setq vc-make-backup-files t)
 
+;; org-mode
+(setq org-agenda-log-mode-items '(closed))
+
 (show-paren-mode t)
 (size-indication-mode t)
 (tool-bar-mode -1)
