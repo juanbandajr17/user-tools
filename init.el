@@ -12,12 +12,10 @@
 (delete-selection-mode t)
 (electric-indent-mode t)
 (electric-pair-mode t)
-(fringe-mode nil)
 (global-auto-revert-mode t) ;; Auto refresh buffers
 ;; (global-whitespace-mode t)
 (ido-mode t)
 (menu-bar-mode -1)
-(scroll-bar-mode -1)
 (setq dired-listing-switches "-hal")
 (setq global-auto-revert-non-file-buffers t) ;; Also auto refresh dired, but be quiet about it
 (setq ido-enable-flex-matching t)
@@ -36,6 +34,10 @@
 (setq kept-old-versions 2)
 (setq version-control t)
 (setq vc-make-backup-files t)
+
+;; (fringe-mode nil)
+;; (scroll-bar-mode -1)
+;; (tool-bar-mode -1)
 
 ;; org-mode
 (global-set-key "\C-cl" 'org-store-link)
@@ -57,7 +59,6 @@
 
 (show-paren-mode t)
 (size-indication-mode t)
-(tool-bar-mode -1)
 (transient-mark-mode t)
 (set-face-attribute 'fringe nil
 		    :foreground (face-foreground 'default)
