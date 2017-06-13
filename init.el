@@ -29,7 +29,7 @@
 (setq-default indent-tabs-mode -1)
 (setq backup-by-copying t)
 (setq backup-directory-alist '(("." . "~/.emacs.d/.saves")))
-(setq delete-old-versions nil) ;; Prompt for deletion
+(setq delete-old-versions t)
 (setq kept-new-versions 6)
 (setq kept-old-versions 2)
 (setq version-control t)
