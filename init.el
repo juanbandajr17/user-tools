@@ -153,7 +153,7 @@
 ;; (ac-config-default)
 
 ;; ;; expand-region
-;; (global-set-key (kbd "C-o") 'er/expand-region)
+;; (global-set-key (kbd "C-=") 'er/expand-region)
 
 ;; ;; flx-ido
 ;; (flx-ido-mode t)
