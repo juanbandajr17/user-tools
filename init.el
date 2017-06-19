@@ -34,10 +34,28 @@
 (setq kept-old-versions 2)
 (setq version-control t)
 (setq vc-make-backup-files t)
+(show-paren-mode t)
+(size-indication-mode t)
+(transient-mark-mode t)
+(set-face-attribute 'fringe nil
+		    :foreground (face-foreground 'default)
+		    :background (face-background 'default))
+(add-hook 'before-save-hook 'whitespace-cleanup)
 
 ;; (fringe-mode nil)
 ;; (scroll-bar-mode -1)
 ;; (tool-bar-mode -1)
+
+(setq apropos-do-all t)
+
+;; Key-Bindings
+(global-set-key (kbd "M-/") 'hippie-expand)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "M-z") 'zap-up-to-char)
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+(global-set-key (kbd "C-M-s") 'isearch-forward)
+(global-set-key (kbd "C-M-r") 'isearch-backward)
 
 ;; org-mode
 (global-set-key "\C-cl" 'org-store-link)
@@ -55,15 +73,6 @@
 (setq org-todo-keyword-faces
       '(("BACKLOG" . "#404040")
 	("ACTIVE" . "#00d279")))
-
-
-(show-paren-mode t)
-(size-indication-mode t)
-(transient-mark-mode t)
-(set-face-attribute 'fringe nil
-		    :foreground (face-foreground 'default)
-		    :background (face-background 'default))
-(add-hook 'before-save-hook 'whitespace-cleanup)
 
 (defun my-find-file-check-make-large-file-read-only-hook ()
   "If a file is over a given size, make the buffer read only."
