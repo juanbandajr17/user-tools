@@ -40,20 +40,14 @@
       inhibit-splash-screen t  ;; No message
       whitespace-line-column 100  ;; whitespace-mode highlight text after exceeding 100 chars
       whitespace-style '(face lines-tail trailing empty)  ;;  whitespace-mode highlights
-      indent-tabs-mode -1
       backup-by-copying t  ;; Copy all files, don't rename them.
       backup-directory-alist '(("." . "~/.emacs.d/backup/per-save"))
-      delete-old-versions  ;; Don't ask to delete excess backup versions.
+      delete-old-versions t  ;; Don't ask to delete excess backup versions.
       kept-new-versions 10  ;; Number of newest versions to keep.
       kept-old-versions 0  ;; Number of oldest versions to keep.
       version-control t  ;; Use version numbers for backups
       vc-make-backup-files t)
-;; (setq-default indent-tabs-mode -1)
-
-;; Faces
-(set-face-attribute 'fringe nil
-		    :foreground (face-foreground 'default)
-		    :background (face-background 'default))
+(setq-default indent-tabs-mode nil)
 
 ;; Hooks
 (add-hook 'before-save-hook 'whitespace-cleanup) ;; cleanup whitespace on save
