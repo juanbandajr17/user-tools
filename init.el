@@ -1,52 +1,64 @@
-;; Moved the custom.el stuff into its own file called ~/.emacs.d/customize.el
-(require 'package)
-(package-initialize)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-			 ("melpa" . "http://melpa.milkbox.net/packages/")))
+;; Notes
 
+;; To search for string/phrase for files in a directory:
+;; M-x regrep
+
+;; To search for file in a directory by name:
+;; M-x find-name-dired
+
+;; End Notes
+
+;; Moved the custom.el stuff into its own file called ~/.emacs.d/customize.el
 (setq custom-file "~/.emacs.d/customize.el")
 (when (file-exists-p custom-file)
   (load custom-file))
 
-(column-number-mode t)
-(delete-selection-mode t)
-(electric-indent-mode t)
-(electric-pair-mode t)
-(global-auto-revert-mode t) ;; Auto refresh buffers
-;; (global-whitespace-mode t)
-(ido-mode t)
+;; Modes
+(column-number-mode t)  ;; Show col position in mode-line
+(delete-selection-mode t)  ;; Delete entire highlighted/selected region
+(electric-indent-mode t)  ;; Auto-indent on newline.
+(electric-pair-mode t)  ;; Auto-create ending pair.
+(global-auto-revert-mode t)  ;; Auto refresh buffers
+(ido-mode t)  ;; Display list of selection.
+(show-paren-mode t)  ;; Highlight matching paren.
+(size-indication-mode t)  ;; Display size of buffer in mode-line.
+(transient-mark-mode t)  ;; Highlight selected region
 (menu-bar-mode -1)
-(setq dired-listing-switches "-hal")
-(setq global-auto-revert-non-file-buffers t) ;; Also auto refresh dired, but be quiet about it
-(setq ido-enable-flex-matching t)
-(setq ido-max-directory-size 300000)
-(setq ido-use-virtual-buffers t)
-(setq imenu-max-item-length 100)
-(setq inhibit-splash-screen t)
-(setq initial-scratch-message ";; Scratch Paper")
-(setq whitespace-line-column 100)
-(setq whitespace-style '(face lines-tail trailing empty))
-(setq-default indent-tabs-mode -1)
-(setq backup-by-copying t)
-(setq backup-directory-alist '(("." . "~/.emacs.d/.saves")))
-(setq delete-old-versions t)
-(setq kept-new-versions 6)
-(setq kept-old-versions 2)
-(setq version-control t)
-(setq vc-make-backup-files t)
-(show-paren-mode t)
-(size-indication-mode t)
-(transient-mark-mode t)
-(set-face-attribute 'fringe nil
-		    :foreground (face-foreground 'default)
-		    :background (face-background 'default))
-(add-hook 'before-save-hook 'whitespace-cleanup)
-
 ;; (fringe-mode nil)
 ;; (scroll-bar-mode -1)
 ;; (tool-bar-mode -1)
+;; (global-whitespace-mode t)
 
-(setq apropos-do-all t)
+;; Flags
+(setq apropos-do-all t  ;; Apropos - searching emacs functions / symbols / etc.
+      dired-listing-switches "-hal"
+      global-auto-revert-non-file-buffers t  ;; Also auto refresh dired, but be quiet about it
+      ido-enable-flex-matching t
+      ido-max-directory-size 100000  ;; Able to show dir listing containing up to n files.
+      ido-use-virtual-buffers t  ;; List recently opened files in buffer-list.
+      imenu-max-item-length 100  ;; Useful when matching against long module/method names.
+      inhibit-splash-screen t  ;; No message
+      whitespace-line-column 100  ;; whitespace-mode highlight text after exceeding 100 chars
+      whitespace-style '(face lines-tail trailing empty)  ;;  whitespace-mode highlights
+      indent-tabs-mode -1
+      backup-by-copying t  ;; Copy all files, don't rename them.
+      backup-directory-alist '(("." . "~/.emacs.d/backup/per-save"))
+      delete-old-versions  ;; Don't ask to delete excess backup versions.
+      kept-new-versions 10  ;; Number of newest versions to keep.
+      kept-old-versions 0  ;; Number of oldest versions to keep.
+      version-control t  ;; Use version numbers for backups
+      vc-make-backup-files t)
+;; (setq-default indent-tabs-mode -1)
+
+;; Faces
+(set-face-attribute 'fringe nil
+		    :foreground (face-foreground 'default)
+		    :background (face-background 'default))
+
+;; Hooks
+(add-hook 'before-save-hook 'whitespace-cleanup) ;; cleanup whitespace on save
+(add-hook 'before-save-hook  'force-backup-of-buffer)
+(add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
 
 ;; Key-Bindings
 (global-set-key (kbd "M-/") 'hippie-expand)
@@ -57,22 +69,35 @@
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 
-;; org-mode
+;; Org
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
-(setq org-link-file-path-type 'absolute)
-(setq org-completion-use-ido t)
-(setq org-agenda-log-mode-items '(scheduled deadline started closed))
-;; (setq org-agenda-files '("~/Dropbox/Documents/spokeo.org"))
-(setq org-log-done 'time)
-(setq org-refile-targets '((nil :maxlevel . 1) (org-agenda-files :maxlevel . 1)))
-(setq org-todo-keywords
-      '((sequence "BACKLOG" "TODO" "ACTIVE" "|" "DONE")))
-(setq org-todo-keyword-faces
-      '(("BACKLOG" . "#404040")
-	("ACTIVE" . "#00d279")))
+(setq org-link-file-path-type 'absolute
+      org-completion-use-ido t
+      org-agenda-log-mode-items '(scheduled deadline started closed)
+      ;; org-agenda-files '("~/Dropbox/Documents/spokeo.org")
+      org-log-done 'time
+      ;; Only top level top level tasks
+      org-refile-targets '((nil :maxlevel . 1) (org-agenda-files :maxlevel . 1))
+      org-todo-keywords '((sequence "BACKLOG" "TODO" "ACTIVE" "|" "DONE"))
+      org-todo-keyword-faces '(("BACKLOG" . "#404040") ("ACTIVE" . "#00d279")))
+
+;; Functions
+(defun force-backup-of-buffer ()
+    ;; Make a special "per session" backup at the first save of each
+    ;; emacs session.
+    (when (not buffer-backed-up)
+      ;; Override the default parameters for per-session backups.
+      (let ((backup-directory-alist '(("" . "~/.emacs.d/backup/per-session")))
+            (kept-new-versions 3))
+        (backup-buffer)))
+    ;; Make a "per save" backup on each save.  The first save results in
+    ;; both a per-session and a per-save backup, to keep the numbering
+    ;; of per-save backups consistent.
+    (let ((buffer-backed-up nil))
+      (backup-buffer)))
 
 (defun my-find-file-check-make-large-file-read-only-hook ()
   "If a file is over a given size, make the buffer read only."
@@ -80,67 +105,11 @@
     (setq buffer-read-only t)
     (buffer-disable-undo)
     (fundamental-mode)))
-(add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
 
-;; ;; Requirement: Install xsel program
-;; ;; https://hugoheden.wordpress.com/2009/03/08/copypaste-with-emacs-in-terminal/
-;; (setq x-select-enable-clipboard t)
-;; (unless (display-graphic-p)
-;;   (when (getenv "DISPLAY")
-;;     (defun xsel-cut-function (text &optional push)
-;;       (with-temp-buffer
-;; 	(insert text)
-;; 	(call-process-region (point-min) (point-max) "xsel" nil 0 nil "--clipboard" "--input")))
-;;     (defun xsel-paste-function()
-;;       (let ((xsel-output (shell-command-to-string "xsel --clipboard --output")))
-;; 	(unless (string= (car kill-ring) xsel-output)
-;; 	  xsel-output )))
-;;     (setq interprogram-cut-function 'xsel-cut-function)
-;;     (setq interprogram-paste-function 'xsel-paste-function)))
-
-
-;; ;; Mac copy and paste
-;; (defun pt-pbpaste ()
-;;   "Paste data from pasteboard."
-;;   (interactive)
-;;   (shell-command-on-region
-;;    (point)
-;;    (if mark-active (mark) (point))
-;;    "pbpaste" nil t))
-;; (global-set-key [?\C-x ?\C-y] 'pt-pbpaste)
-;; (defun pt-pbcopy ()
-;;   "Copy region to pasteboard."
-;;   (interactive)
-;;   (print (mark))
-;;   (when mark-active
-;;     (shell-command-on-region
-;;      (point) (mark) "pbcopy")
-;;     (kill-buffer "*Shell Command Output*")))
-;; (global-set-key [?\C-x ?\M-w] 'pt-pbcopy)
-
-;;  thirt party packages  and package settings
-;; (setq package-list
-;;       '(
-;; 	ace-jump-mode
-;; 	ample-theme
-;; 	monochrome-theme
-;; 	restclient
-;; 	tao-theme
-;; 	twilight-theme
-;; 	white-theme
-;;         ace-window
-;;         ag
-;;         auto-complete
-;;         expand-region
-;;         flx-ido
-;;         ido-ubiquitous
-;;         ido-vertical-mode
-;;         imenu-anywhere
-;;         multiple-cursors
-;;         neotree
-;;         projectile
-;;         smex
-;; 	))
+;; (require 'package)
+;; (package-initialize)
+;; (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+;; 			 ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 ;; (unless package-archive-contents
 ;;   (package-refresh-contents))
