@@ -20,6 +20,7 @@
 (electric-pair-mode t)  ;; Auto-create ending pair.
 (global-auto-revert-mode t)  ;; Auto refresh buffers
 (ido-mode t)  ;; Display list of selection.
+(ido-everywhere t)
 (show-paren-mode t)  ;; Highlight matching paren.
 (size-indication-mode t)  ;; Display size of buffer in mode-line.
 (transient-mark-mode t)  ;; Highlight selected region
@@ -132,7 +133,6 @@
 
 ;; ;; ido-ubiquitous
 ;; (ido-ubiquitous-mode t)
-;; (ido-everywhere t)
 
 ;; ;; ido-vertical-mode
 ;; (ido-vertical-mode t)
