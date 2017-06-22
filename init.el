@@ -13,28 +13,12 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-;; Modes
-(column-number-mode t)  ;; Show col position in mode-line
-(delete-selection-mode t)  ;; Delete entire highlighted/selected region
-(electric-indent-mode t)  ;; Auto-indent on newline.
-(electric-pair-mode t)  ;; Auto-create ending pair.
-(global-auto-revert-mode t)  ;; Auto refresh buffers
-(ido-mode t)  ;; Display list of selection.
-(ido-everywhere t)
-(show-paren-mode t)  ;; Highlight matching paren.
-(size-indication-mode t)  ;; Display size of buffer in mode-line.
-(transient-mark-mode t)  ;; Highlight selected region
-(menu-bar-mode -1)
-;; (fringe-mode nil)
-;; (scroll-bar-mode -1)
-;; (tool-bar-mode -1)
-;; (global-whitespace-mode t)
-
 ;; Flags
 (setq apropos-do-all t  ;; Apropos - searching emacs functions / symbols / etc.
       dired-listing-switches "-hal"
       global-auto-revert-non-file-buffers t  ;; Also auto refresh dired, but be quiet about it
       ido-enable-flex-matching t
+      ido-everywhere t
       ido-max-directory-size 100000  ;; Able to show dir listing containing up to n files.
       ido-use-virtual-buffers t  ;; List recently opened files in buffer-list.
       imenu-max-item-length 100  ;; Useful when matching against long module/method names.
@@ -49,6 +33,22 @@
       version-control t  ;; Use version numbers for backups
       vc-make-backup-files t)
 (setq-default indent-tabs-mode nil)
+
+;; Modes
+(column-number-mode t)  ;; Show col position in mode-line
+(delete-selection-mode t)  ;; Delete entire highlighted/selected region
+(electric-indent-mode t)  ;; Auto-indent on newline.
+(electric-pair-mode -1)  ;; Auto-create ending pair.
+(global-auto-revert-mode t)  ;; Auto refresh buffers
+(ido-mode t)  ;; Display list of selection.
+(show-paren-mode t)  ;; Highlight matching paren.
+(size-indication-mode t)  ;; Display size of buffer in mode-line.
+(transient-mark-mode t)  ;; Highlight selected region
+(menu-bar-mode -1)
+;; (fringe-mode nil)
+;; (scroll-bar-mode -1)
+;; (tool-bar-mode -1)
+;; (global-whitespace-mode t)
 
 ;; Hooks
 (add-hook 'before-save-hook 'whitespace-cleanup) ;; cleanup whitespace on save
