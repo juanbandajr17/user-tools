@@ -110,25 +110,28 @@
 ;;   (package-refresh-contents))
 
 ;; (setq package-list
-;;       '(ace-jump-mode
-;;         ample-theme
-;;         monochrome-theme
-;;         restclient
-;;         tao-theme
-;;         twilight-theme
-;;         white-theme
-;;         ace-window
-;;         ag
-;;         auto-complete
-;;         expand-region
-;;         flx-ido
-;;         ido-ubiquitous
-;;         ido-vertical-mode
-;;         imenu-anywhere
-;;         multiple-cursors
-;;         neotree
-;;         projectile
-;;         smex))
+;;       '(
+;;         ;; ace-jump-mode
+;;         ;; ample-theme
+;;         ;; monochrome-theme
+;;         ;; restclient
+;;         ;; tao-theme
+;;         ;; twilight-theme
+;;         ;; white-theme
+;;         ;; ace-window
+;;         ;; ag
+;;         ;; auto-complete
+;;         ;; expand-region
+;;         ;; flx-ido
+;;         ;; ido-ubiquitous
+;;         ;; ido-vertical-mode
+;;         ;; imenu-anywhere
+;;         ;; multiple-cursors
+;;         ;; neotree
+;;         ;; projectile
+;;         ;; magit
+;;         ;; smex
+;;         ))
 
 ;; (dolist (package package-list)
 ;;   (unless (package-installed-p package)
