@@ -75,6 +75,7 @@
       ;; org-default-notes-file "~/Dropbox/Documents/org/notes.org"
       ;; org-agenda-files '("~/Dropbox/Documents/spokeo.org")
       org-log-done 'time
+      org-agenda-start-with-log-mode t
       ;; Only top level top level tasks
       org-refile-targets '((nil :maxlevel . 1) (org-agenda-files :maxlevel . 1))
       org-todo-keywords '((sequence "BACKLOG" "TODO" "ACTIVE" "|" "DONE"))
