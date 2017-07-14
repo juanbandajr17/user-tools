@@ -72,6 +72,7 @@
 (setq org-link-file-path-type 'absolute
       org-completion-use-ido t
       org-agenda-log-mode-items '(scheduled deadline started closed)
+      ;; org-default-notes-file "~/Dropbox/Documents/org/notes.org"
       ;; org-agenda-files '("~/Dropbox/Documents/spokeo.org")
       org-log-done 'time
       ;; Only top level top level tasks
@@ -121,6 +122,7 @@
 ;;         ;; ace-window
 ;;         ;; ag
 ;;         ;; auto-complete
+;;         ;; exec-path-from-shell
 ;;         ;; expand-region
 ;;         ;; flx-ido
 ;;         ;; ido-ubiquitous
@@ -148,6 +150,10 @@
 
 ;; ;; auto-complete
 ;; (ac-config-default)
+
+;; ;; exec-path-from-shell
+;; (when (memq window-system '(mac ns x))
+;;   (exec-path-from-shell-initialize))
 
 ;; ;; expand-region
 ;; (global-set-key (kbd "C-=") 'er/expand-region)
