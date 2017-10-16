@@ -64,6 +64,7 @@
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 (global-set-key (kbd "M-%") 'query-replace-regexp)
+(global-set-key (kbd "M-i") 'imenu)
 
 ;; Org
 (global-set-key "\C-cl" 'org-store-link)
@@ -117,6 +118,7 @@
 ;;         ;; ace-jump-mode
 ;;         ;; ample-theme
 ;;         ;; color-theme-sanityinc-tomorrow
+;;         ;; basic-theme
 ;;         ;; monochrome-theme
 ;;         ;; restclient
 ;;         ;; tao-theme
