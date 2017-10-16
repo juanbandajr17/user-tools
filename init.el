@@ -116,6 +116,7 @@
 ;;       '(
 ;;         ;; ace-jump-mode
 ;;         ;; ample-theme
+;;         ;; color-theme-sanityinc-tomorrow
 ;;         ;; monochrome-theme
 ;;         ;; restclient
 ;;         ;; tao-theme
