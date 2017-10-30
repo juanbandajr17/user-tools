@@ -79,7 +79,7 @@ if __name__ == '__main__':
     smtp_server = args.server
     smtp_port = args.port
     email_address = args.email
-    password = 'xugmokxaqzskywcw' # getpass.getpass(prompt='Password: ')
+    password = getpass.getpass(prompt='Password: ')
     folder = folder = os.path.join(args.folder, args.mailbox)
 
     mail = create_mail_connection(smtp_server, email_address, password)
