@@ -1,3 +1,5 @@
+TERM=xterm-256color
+
 # Setting Prompt
 # If id command returns zero, you’ve root access.
 if [ $(id -u) -eq 0 ];
