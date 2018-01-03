@@ -31,7 +31,9 @@
       kept-new-versions 10  ;; Number of newest versions to keep.
       kept-old-versions 0  ;; Number of oldest versions to keep.
       version-control t  ;; Use version numbers for backups
-      vc-make-backup-files t)
+      vc-make-backup-files t
+      ring-bell-function 'ignore)
+
 (setq-default indent-tabs-mode nil)
 
 ;; Modes
