@@ -1,7 +1,7 @@
 ;; Notes
 
 ;; To search for string/phrase for files in a directory:
-;; M-x regrep
+;; M-x rgrep
 
 ;; To search for file in a directory by name:
 ;; M-x find-name-dired
