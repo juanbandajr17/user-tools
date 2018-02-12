@@ -4,3 +4,8 @@ set hive.cli.print.current.db=true;
 set hive.auto.convert.join=true;
 set hive.mapjoin.smalltable.filesize=30000000;
 set hive.execution.engine=tez;
+set hive.input.format=org.apache.hadoop.hive.ql.io.BucketizedHiveInputFormat;
+set hive.optimize.bucketmapjoin=true;
+set hive.optimize.bucketmapjoin.sortedmerge=true;
+
+set hive.exec.parallel=true;
