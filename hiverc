@@ -1,4 +1,4 @@
-set hive.exec.mode.loca.auto=true;
+set hive.exec.mode.local.auto=true;
 set hive.cli.print.header=true;
 set hive.cli.print.current.db=true;
 set hive.auto.convert.join=true;
