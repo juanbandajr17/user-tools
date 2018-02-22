@@ -7,5 +7,9 @@ set hive.execution.engine=tez;
 set hive.input.format=org.apache.hadoop.hive.ql.io.BucketizedHiveInputFormat;
 set hive.optimize.bucketmapjoin=true;
 set hive.optimize.bucketmapjoin.sortedmerge=true;
-
 set hive.exec.parallel=true;
+set hive.exec.compress.output=true;
+set hive.exec.compress.intermediate=true;
+set mapreduce.map.output.compress.codec=org.apache.hadoop.io.compress.BZip2Codec;
+set mapred.output.compression.type=BLOCK;
+set mapreduce.output.fileoutputformat.compress.codec=org.apache.hadoop.io.compress.BZip2Codec;
