@@ -47,6 +47,7 @@
 (size-indication-mode t)  ;; Display size of buffer in mode-line.
 (transient-mark-mode t)  ;; Highlight selected region
 (menu-bar-mode -1)
+;; (global-linum-mode t)
 ;; (fringe-mode nil)
 ;; (scroll-bar-mode -1)
 ;; (tool-bar-mode -1)
@@ -106,6 +107,19 @@
     (setq buffer-read-only t)
     (buffer-disable-undo)
     (fundamental-mode)))
+
+(defun copy-from-osx ()
+  (shell-command-to-string "pbpaste"))
+
+(defun paste-to-osx (text &optional push)
+  (let ((process-connection-type nil))
+    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+      (process-send-string proc text)
+      (process-send-eof proc))))
+
+;; Mac
+;; (setq interprogram-cut-function 'paste-to-osx)
+;; (setq interprogram-paste-function 'copy-from-osx)
 
 ;; (require 'package)
 ;; (package-initialize)
