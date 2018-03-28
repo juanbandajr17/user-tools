@@ -84,7 +84,8 @@
       ;; Only top level top level tasks
       org-refile-targets '((nil :maxlevel . 1) (org-agenda-files :maxlevel . 1))
       org-todo-keywords '((sequence "BACKLOG" "TODO" "ACTIVE" "|" "DONE"))
-      org-todo-keyword-faces '(("BACKLOG" . "#404040") ("ACTIVE" . "#00d279")))
+      org-todo-keyword-faces '(("BACKLOG" . "#404040") ("ACTIVE" . "#00d279"))
+      x-select-enable-clipboard t)
 
 ;; Functions
 (defun force-backup-of-buffer ()
@@ -117,9 +118,32 @@
       (process-send-string proc text)
       (process-send-eof proc))))
 
-;; Mac
-;; (setq interprogram-cut-function 'paste-to-osx)
-;; (setq interprogram-paste-function 'copy-from-osx)
+;; Requirement: Install xsel program
+;; https://hugoheden.wordpress.com/2009/03/08/copypaste-with-emacs-in-terminal/
+(defun xsel-cut-function (text &optional push)
+  (with-temp-buffer
+    (insert text)
+    (call-process-region (point-min) (point-max) "xsel" nil 0 nil "--clipboard" "--input")))
+
+(defun xsel-paste-function()
+  (let ((xsel-output (shell-command-to-string "xsel --clipboard --output")))
+    (unless (string= (car kill-ring) xsel-output)
+      xsel-output )))
+
+
+(unless (display-graphic-p)
+  (when (getenv "DISPLAY")
+    ;; Unix
+    ;; (setq interprogram-cut-function 'xsel-cut-function)
+    ;; (setq interprogram-paste-function 'xsel-paste-function)))
+
+    ;; Mac
+    ;; (setq interprogram-cut-function 'paste-to-osx)
+    ;; (setq interprogram-paste-function 'copy-from-osx)
+    ))
+
+
+
 
 ;; (require 'package)
 ;; (package-initialize)
