@@ -177,7 +177,6 @@
 ;;         ;; neotree
 ;;         ;; projectile
 ;;         ;; magit
-;;         ;; magit-gh-pulls
 ;;         ;; smex
 ;;         ))
 
@@ -219,9 +218,6 @@
 
 ;; ;; magit
 ;; (global-set-key (kbd "C-x g") 'magit-status)
-
-;; ;; magit-gh-pulls
-;; (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
 
 ;; ;; multiple-cursors
 ;; (global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
