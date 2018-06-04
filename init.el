@@ -158,28 +158,29 @@
 ;; (setq package-list
 ;;       '(
 ;;         ;; ace-jump-mode
-;;         ;; ample-theme
-;;         ;; color-theme-sanityinc-tomorrow
-;;         ;; basic-theme
-;;         ;; monochrome-theme
-;;         ;; restclient
-;;         ;; tao-theme
-;;         ;; twilight-theme
-;;         ;; white-theme
 ;;         ;; ace-window
 ;;         ;; ag
+;;         ;; ample-theme
 ;;         ;; auto-complete
+;;         ;; basic-theme
+;;         ;; color-theme-sanityinc-tomorrow
 ;;         ;; exec-path-from-shell
 ;;         ;; expand-region
 ;;         ;; flx-ido
+;;         ;; go-mode
 ;;         ;; ido-ubiquitous
 ;;         ;; ido-vertical-mode
 ;;         ;; imenu-anywhere
+;;         ;; magit
+;;         ;; monochrome-theme
 ;;         ;; multiple-cursors
 ;;         ;; neotree
 ;;         ;; projectile
-;;         ;; magit
+;;         ;; restclient
 ;;         ;; smex
+;;         ;; tao-theme
+;;         ;; twilight-theme
+;;         ;; white-theme
 ;;         ))
 
 ;; (dolist (package package-list)
@@ -207,6 +208,12 @@
 
 ;; ;; flx-ido
 ;; (flx-ido-mode t)
+
+;; ;; go-mode
+;; (add-hook 'go-mode-hook
+;;           (lambda ()
+;;             (add-hook 'before-save-hook 'gofmt-before-save)
+;;             (setq tab-width 4)))
 
 ;; ;; ido-ubiquitous
 ;; (ido-ubiquitous-mode t)
