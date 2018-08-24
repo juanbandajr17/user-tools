@@ -175,7 +175,7 @@
 ;;         ;; expand-region
 ;;         ;; flx-ido
 ;;         ;; go-mode
-;;         ;; ido-ubiquitous
+;;         ;; ido-completing-read+
 ;;         ;; ido-vertical-mode
 ;;         ;; imenu-anywhere
 ;;         ;; magit
@@ -223,8 +223,8 @@
 ;;             (add-hook 'before-save-hook 'gofmt-before-save)
 ;;             (setq tab-width 4)))
 
-;; ;; ido-ubiquitous
-;; (ido-ubiquitous-mode t)
+;; ;; ido-completing-read+
+;; (ido-ubiquitous-mode 1)
 
 ;; ;; ido-vertical-mode
 ;; (ido-vertical-mode t)
