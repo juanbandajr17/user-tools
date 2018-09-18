@@ -258,7 +258,7 @@
 ;; (add-hook 'sql-mode-hook 'sqlind-minor-mode)
 
 ;; ;; sqlup-mode
-;; (add-hook 'sql-mode-hook 'sql-upcase-mode)
+;; (add-hook 'sql-mode-hook 'sqlup-mode)
 
 
 (load-theme 'wheatgrass)
