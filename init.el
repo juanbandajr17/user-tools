@@ -185,6 +185,8 @@
 ;;         ;; projectile
 ;;         ;; restclient
 ;;         ;; smex
+;;         ;; sql-indent
+;;         ;; sqlup-mode
 ;;         ;; tao-theme
 ;;         ;; twilight-theme
 ;;         ;; white-theme
@@ -251,5 +253,12 @@
 ;; ;; smex
 ;; (global-set-key (kbd "M-x") 'smex)
 ;; (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+
+;; ;; sql-indent
+;; (add-hook 'sql-mode-hook 'sqlind-minor-mode)
+
+;; ;; sqlup-mode
+;; (add-hook 'sql-mode-hook 'sql-upcase-mode)
+
 
 (load-theme 'wheatgrass)
