@@ -219,6 +219,7 @@
 ;; (flx-ido-mode t)
 
 ;; ;; go-mode
+;; ;; http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
 ;; (setq gofmt-command "goimports")
 ;; (add-hook 'go-mode-hook
 ;;           (lambda ()
