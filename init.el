@@ -175,6 +175,7 @@
 ;;         ;; expand-region
 ;;         ;; flx-ido
 ;;         ;; go-mode
+;;         ;; go-autocomplete
 ;;         ;; ido-completing-read+
 ;;         ;; ido-vertical-mode
 ;;         ;; imenu-anywhere
@@ -220,6 +221,9 @@
 
 ;; ;; go-mode
 ;; ;; http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
+;; ;; go get golang.org/x/tools/cmd/...
+;; ;; go get github.com/rogpeppe/godef
+;; ;; go get -u github.com/nsf/gocode
 ;; (setq gofmt-command "goimports")
 ;; (add-hook 'go-mode-hook
 ;;           (lambda ()
