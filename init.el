@@ -49,10 +49,10 @@
 (size-indication-mode t)  ;; Display size of buffer in mode-line.
 (transient-mark-mode t)  ;; Highlight selected region
 (menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
 ;; (global-linum-mode t)
 ;; (fringe-mode nil)
-;; (scroll-bar-mode -1)
-;; (tool-bar-mode -1)
 ;; (global-whitespace-mode t)
 
 ;; Hooks
