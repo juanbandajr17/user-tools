@@ -142,7 +142,7 @@
     ;; Mac
     ;; (setq interprogram-cut-function 'paste-to-osx)
     ;; (setq interprogram-paste-function 'copy-from-osx)
-    ))
+    ;; ))
 
 
 
