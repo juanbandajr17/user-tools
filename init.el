@@ -49,8 +49,8 @@
 (size-indication-mode t)  ;; Display size of buffer in mode-line.
 (transient-mark-mode t)  ;; Highlight selected region
 (menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
+;; (tool-bar-mode -1)
+;; (scroll-bar-mode -1)
 ;; (global-linum-mode t)
 ;; (fringe-mode nil)
 ;; (global-whitespace-mode t)
@@ -133,18 +133,16 @@
       xsel-output )))
 
 
-(unless (display-graphic-p)
-  (when (getenv "DISPLAY")
-    ;; Unix
-    ;; (setq interprogram-cut-function 'xsel-cut-function)
-    ;; (setq interprogram-paste-function 'xsel-paste-function)))
+;; (unless (display-graphic-p)
+;;   (when (getenv "DISPLAY")
+;;     ;; Unix
+;;     ;; (setq interprogram-cut-function 'xsel-cut-function)
+;;     ;; (setq interprogram-paste-function 'xsel-paste-function)))
 
-    ;; Mac
-    ;; (setq interprogram-cut-function 'paste-to-osx)
-    ;; (setq interprogram-paste-function 'copy-from-osx)
-    ;; ))
-
-
+;;     ;; Mac
+;;     ;; (setq interprogram-cut-function 'paste-to-osx)
+;;     ;; (setq interprogram-paste-function 'copy-from-osx)
+;;     ))
 
 
 ;; (require 'package)
