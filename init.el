@@ -174,6 +174,7 @@
 ;;         ;; flx-ido
 ;;         ;; go-mode
 ;;         ;; go-autocomplete
+;;         ;; gotest
 ;;         ;; ido-completing-read+
 ;;         ;; ido-vertical-mode
 ;;         ;; imenu-anywhere
@@ -188,6 +189,7 @@
 ;;         ;; sqlup-mode
 ;;         ;; tao-theme
 ;;         ;; twilight-theme
+;;         ;; web-mode
 ;;         ;; white-theme
 ;;         ))
 
@@ -217,6 +219,9 @@
 ;; ;; flx-ido
 ;; (flx-ido-mode t)
 
+;; ;; flycheck
+;; (add-hook 'after-init-hook #'global-flycheck-mode)
+
 ;; ;; go-mode
 ;; ;; http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
 ;; ;; go get golang.org/x/tools/cmd/...
@@ -228,7 +233,9 @@
 ;;             (add-hook 'before-save-hook 'gofmt-before-save)
 ;;             (local-set-key (kbd "M-.") 'godef-jump)
 ;;             (local-set-key (kbd "M-*") 'pop-tag-mark)
-;;             (setq tab-width 4)))
+;;             (setq tab-width 2)))
+
+;; gotest
 
 ;; ;; ido-completing-read+
 ;; (ido-ubiquitous-mode 1)
@@ -265,5 +272,13 @@
 ;; ;; sqlup-mode
 ;; (add-hook 'sql-mode-hook 'sqlup-mode)
 
+;; ;; web-mode
+;; (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+;; (defun my-web-mode-hook ()
+;;   (setq web-mode-markup-indent-offset 2)
+;;   (setq web-mode-css-indent-offset 2)
+;;   (setq web-mode-code-indent-offset 2))
+;; (add-hook 'web-mode-hook  'my-web-mode-hook)
 
 (load-theme 'wheatgrass)
