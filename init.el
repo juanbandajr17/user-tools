@@ -76,18 +76,30 @@
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
-(setq org-link-file-path-type 'absolute
-      org-completion-use-ido t
-      org-agenda-log-mode-items '(scheduled deadline started closed)
-      ;; org-default-notes-file "~/Dropbox/Documents/org/notes.org"
-      ;; org-agenda-files '("~/Dropbox/Documents/spokeo.org")
-      org-log-done 'time
-      org-agenda-start-with-log-mode t
-      ;; Only top level top level tasks
-      org-refile-targets '((nil :maxlevel . 1) (org-agenda-files :maxlevel . 1))
-      org-todo-keywords '((sequence "BACKLOG" "TODO" "ACTIVE" "|" "DONE"))
-      org-todo-keyword-faces '(("BACKLOG" . "#404040") ("ACTIVE" . "#00d279"))
-      x-select-enable-clipboard t)
+;; https://orgmode.org/worg/org-configs/org-customization-guide.html
+(setq
+ org-directory "~/org"
+ org-default-notes-file "~/org/todo.org"
+ org-agenda-files '("~/org/todo.org")
+ org-startup-folded "content"
+ org-archive-location "~/org/.archive.org::* From %s"
+ org-hide-leading-stars nil
+ org-completion-use-ido t
+ org-link-file-path-type 'absolute
+ org-log-done 'time
+ org-todo-keywords '((sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)"))
+ org-todo-keyword-faces '(("TODO" . "#7f7f7f")
+                          ("STARTED" . "#00d279")
+                          ("WAITING". "#cdcd00")
+                          ("DONE" . "#00cd00")
+                          ("CANCELED" . "#cd0000"))
+ org-agenda-start-with-log-mode t
+ org-agenda-log-mode-items '(scheduled deadline started closed)
+ x-select-enable-clipboard t
+ org-reverse-note-order t
+ org-agenda-skip-scheduled-if-done t
+ org-agenda-skip-deadline-if-done t
+ )
 
 ;; Functions
 (defun force-backup-of-buffer ()
