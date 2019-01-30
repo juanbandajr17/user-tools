@@ -76,6 +76,7 @@
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
+
 ;; https://orgmode.org/worg/org-configs/org-customization-guide.html
 (setq
  org-directory "~/org"
@@ -118,7 +119,7 @@
 
 (defun my-find-file-check-make-large-file-read-only-hook ()
   "If a file is over a given size, make the buffer read only."
-  (when (> (buffer-size) (* (* 1024 1024) 10)) ;; 10 MB
+  (when (> (buffer-size) (* (* 1024 1024) 100)) ;; 100 MB
     (setq buffer-read-only t)
     (buffer-disable-undo)
     (fundamental-mode)))
@@ -145,16 +146,21 @@
       xsel-output )))
 
 
-;; (unless (display-graphic-p)
-;;   (when (getenv "DISPLAY")
+;; (if (display-graphic-p)
+;;     (progn
+;;       ;; (set-face-attribute 'default nil :font "Courier New-11")
+;;       ;; (set-frame-font "Courier New-11" nil t)
+;;       )
+;;   (progn
+
 ;;     ;; Unix
 ;;     ;; (setq interprogram-cut-function 'xsel-cut-function)
 ;;     ;; (setq interprogram-paste-function 'xsel-paste-function)))
 
 ;;     ;; Mac
 ;;     ;; (setq interprogram-cut-function 'paste-to-osx)
-;;     ;; (setq interprogram-paste-function 'copy-from-osx)
-;;     ))
+;;     ;; (setq interprogram-paste-function 'copy-from-osx))
+;;   )
 
 
 ;; (require 'package)
@@ -292,5 +298,3 @@
 ;;   (setq web-mode-css-indent-offset 2)
 ;;   (setq web-mode-code-indent-offset 2))
 ;; (add-hook 'web-mode-hook  'my-web-mode-hook)
-
-(load-theme 'wheatgrass)
