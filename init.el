@@ -150,6 +150,7 @@
 ;;     (progn
 ;;       ;; (set-face-attribute 'default nil :font "Courier New-11")
 ;;       ;; (set-frame-font "Courier New-11" nil t)
+;;       ;; (set-face-foreground 'vertical-border (face-background 'default))
 ;;       )
 ;;   (progn
 
