@@ -190,7 +190,9 @@
 ;;         ;; exec-path-from-shell
 ;;         ;; expand-region
 ;;         ;; flx-ido
+;;         ;; flycheck
 ;;         ;; go-mode
+;;         ;; go-eldoc
 ;;         ;; go-autocomplete
 ;;         ;; gotest
 ;;         ;; ido-completing-read+
@@ -238,14 +240,18 @@
 ;; (flx-ido-mode t)
 
 ;; ;; flycheck
-;; (add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; ;; go-eldoc
+;; (add-hook 'go-mode-hook 'go-eldoc-setup)
 
 ;; ;; go-mode
 ;; ;; http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
-;; ;; go get golang.org/x/tools/cmd/...
+;; ;; go get -u golang.org/x/tools/cmd/goimports
 ;; ;; go get github.com/rogpeppe/godef
 ;; ;; go get -u github.com/nsf/gocode
+;; ;; go get -u github.com/jstemmer/gotags
 ;; (setq gofmt-command "goimports")
+;; (add-hook 'go-mode-hook 'flycheck-mode)
 ;; (add-hook 'go-mode-hook
 ;;           (lambda ()
 ;;             (add-hook 'before-save-hook 'gofmt-before-save)
