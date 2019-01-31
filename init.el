@@ -241,6 +241,9 @@
 
 ;; ;; flycheck
 
+;; ;; go-autocomplete
+;; (require 'go-autocomplete)
+
 ;; ;; go-eldoc
 ;; (add-hook 'go-mode-hook 'go-eldoc-setup)
 
