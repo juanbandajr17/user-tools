@@ -36,7 +36,7 @@
       version-control t  ;; Use version numbers for backups
       vc-make-backup-files t
       ring-bell-function 'ignore
-      initial-frame-alist '((top . 10) (left . 50) (width . 185) (height . 55)))
+      initial-frame-alist '((top . 10) (left . 50) (width . 185) (height . 55))
       linum-format "%4d")
 
 (setq-default line-spacing 1)
@@ -55,12 +55,10 @@
 (size-indication-mode t)  ;; Display size of buffer in mode-line.
 (transient-mark-mode t)  ;; Highlight selected region
 (menu-bar-mode -1)
-;; (tool-bar-mode -1)
-;; (scroll-bar-mode -1)
 (global-linum-mode t)
-;; (fringe-mode nil)
 (set-fringe-mode '(10 . 0))
 ;; (global-whitespace-mode t)
+
 
 ;; Remove the fringe indicators
 (when (boundp 'fringe-indicator-alist)
@@ -76,10 +74,12 @@
 		  (empty-line . nil)
 		  (unknown . nil))))
 
+
 ;; Hooks
 (add-hook 'before-save-hook 'whitespace-cleanup) ;; cleanup whitespace on save
 (add-hook 'before-save-hook  'force-backup-of-buffer)
 (add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
+
 
 ;; Key-Bindings
 (global-set-key (kbd "M-/") 'hippie-expand)
@@ -92,11 +92,13 @@
 (global-set-key (kbd "M-%") 'query-replace-regexp)
 (global-set-key (kbd "M-i") 'imenu)
 
+
 ;; Org
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
+
 
 ;; https://orgmode.org/worg/org-configs/org-customization-guide.html
 (setq
@@ -120,8 +122,8 @@
  x-select-enable-clipboard t
  org-reverse-note-order t
  org-agenda-skip-scheduled-if-done t
- org-agenda-skip-deadline-if-done t
- )
+ org-agenda-skip-deadline-if-done t)
+
 
 ;; Functions
 (defun force-backup-of-buffer ()
@@ -138,6 +140,7 @@
     (let ((buffer-backed-up nil))
       (backup-buffer)))
 
+
 (defun my-find-file-check-make-large-file-read-only-hook ()
   "If a file is over a given size, make the buffer read only."
   (when (> (buffer-size) (* (* 1024 1024) 100)) ;; 100 MB
@@ -145,14 +148,17 @@
     (buffer-disable-undo)
     (fundamental-mode)))
 
+
 (defun copy-from-osx ()
   (shell-command-to-string "pbpaste"))
+
 
 (defun paste-to-osx (text &optional push)
   (let ((process-connection-type nil))
     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
       (process-send-string proc text)
       (process-send-eof proc))))
+
 
 ;; Requirement: Install xsel program
 ;; https://hugoheden.wordpress.com/2009/03/08/copypaste-with-emacs-in-terminal/
@@ -161,28 +167,11 @@
     (insert text)
     (call-process-region (point-min) (point-max) "xsel" nil 0 nil "--clipboard" "--input")))
 
+
 (defun xsel-paste-function()
   (let ((xsel-output (shell-command-to-string "xsel --clipboard --output")))
     (unless (string= (car kill-ring) xsel-output)
       xsel-output )))
-
-
-;; (if (display-graphic-p)
-;;     (progn
-;;       ;; (set-face-attribute 'default nil :font "Courier New-11")
-;;       ;; (set-frame-font "Courier New-11" nil t)
-;;       ;; (set-face-foreground 'vertical-border (face-background 'default))
-;;       )
-;;   (progn
-
-;;     ;; Unix
-;;     ;; (setq interprogram-cut-function 'xsel-cut-function)
-;;     ;; (setq interprogram-paste-function 'xsel-paste-function)))
-
-;;     ;; Mac
-;;     ;; (setq interprogram-cut-function 'paste-to-osx)
-;;     ;; (setq interprogram-paste-function 'copy-from-osx))
-;;   )
 
 
 ;; (require 'package)
@@ -334,3 +323,21 @@
 ;;   (setq web-mode-css-indent-offset 2)
 ;;   (setq web-mode-code-indent-offset 2))
 ;; (add-hook 'web-mode-hook  'my-web-mode-hook)
+
+(if (display-graphic-p)
+    (progn
+      ;; (set-face-attribute 'default nil :font "Courier New-11")
+      ;; (set-frame-font "Courier New-11" nil t)
+      (set-face-foreground 'vertical-border (face-background 'default))
+      (tool-bar-mode -1)
+      (scroll-bar-mode -1))
+  (progn
+
+    ;; Unix
+    ;; (setq interprogram-cut-function 'xsel-cut-function)
+    ;; (setq interprogram-paste-function 'xsel-paste-function)))
+
+    ;; Mac
+    ;; (setq interprogram-cut-function 'paste-to-osx)
+    ;; (setq interprogram-paste-function 'copy-from-osx))
+    ))
