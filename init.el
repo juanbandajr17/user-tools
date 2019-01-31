@@ -291,7 +291,7 @@
 ;;             (add-hook 'before-save-hook 'gofmt-before-save)
 ;;             (local-set-key (kbd "M-.") 'godef-jump)
 ;;             (local-set-key (kbd "M-*") 'pop-tag-mark)
-;;             (setq tab-width 2)))
+;;             (setq tab-width 4)))
 
 
 ;; gotest
