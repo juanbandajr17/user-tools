@@ -186,8 +186,10 @@
 ;;     (add-to-list 'package-archives '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
 ;; (package-initialize)
 
+
 ;; (unless package-archive-contents
 ;;   (package-refresh-contents))
+
 
 ;; (setq package-list
 ;;       '(
@@ -224,44 +226,57 @@
 ;;         ;; white-theme
 ;;         ))
 
+
 ;; (dolist (package package-list)
 ;;   (unless (package-installed-p package)
 ;;     (package-install package)))
 
+
 ;; ;; ace-jump-mode
 ;; (define-key global-map (kbd "M-j") 'ace-jump-mode)
+
 
 ;; ;; ace-window
 ;; (define-key global-map (kbd "M-o") 'ace-window)
 
+
 ;; ;; ag
 ;; (setq ag-reuse-buffers t)
+
 
 ;; ;; anzu
 ;; (global-anzu-mode t)
 ;; (global-set-key (kbd "M-%") 'anzu-query-replace)
 ;; (global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)
 
+
 ;; ;; auto-complete
 ;; (ac-config-default)
+
 
 ;; ;; exec-path-from-shell
 ;; (when (memq window-system '(mac ns x))
 ;;   (exec-path-from-shell-initialize))
 
+
 ;; ;; expand-region
 ;; (global-set-key (kbd "C-=") 'er/expand-region)
+
 
 ;; ;; flx-ido
 ;; (flx-ido-mode t)
 
+
 ;; ;; flycheck
+
 
 ;; ;; go-autocomplete
 ;; (require 'go-autocomplete)
 
+
 ;; ;; go-eldoc
 ;; (add-hook 'go-mode-hook 'go-eldoc-setup)
+
 
 ;; ;; go-mode
 ;; ;; http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
@@ -278,42 +293,54 @@
 ;;             (local-set-key (kbd "M-*") 'pop-tag-mark)
 ;;             (setq tab-width 2)))
 
+
 ;; gotest
+
 
 ;; ;; ido-completing-read+
 ;; (ido-ubiquitous-mode 1)
+
 
 ;; ;; ido-vertical-mode
 ;; (ido-vertical-mode t)
 ;; (setq ido-vertical-define-keys 'C-n-and-C-p-only)
 
+
 ;; ;; imenu-anywhere
 ;; (global-set-key (kbd "M-i") 'imenu-anywhere)
 
+
 ;; ;; magit
 ;; (global-set-key (kbd "C-x g") 'magit-status)
+
 
 ;; ;; multiple-cursors
 ;; (global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
 ;; (global-set-key (kbd "M-n") 'mc/mark-next-like-this)
 ;; (global-set-key (kbd "M-m") 'mc/mark-all-like-this)
 
+
 ;; ;; neotree
 ;; (global-set-key [f8] 'neotree-toggle)
+
 
 ;; ;; projectile
 ;; (projectile-global-mode t)
 ;; (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name))))
 
+
 ;; ;; smex
 ;; (global-set-key (kbd "M-x") 'smex)
 ;; (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 
+
 ;; ;; sql-indent
 ;; (add-hook 'sql-mode-hook 'sqlind-minor-mode)
 
+
 ;; ;; sqlup-mode
 ;; (add-hook 'sql-mode-hook 'sqlup-mode)
+
 
 ;; ;; web-mode
 ;; (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
@@ -323,6 +350,7 @@
 ;;   (setq web-mode-css-indent-offset 2)
 ;;   (setq web-mode-code-indent-offset 2))
 ;; (add-hook 'web-mode-hook  'my-web-mode-hook)
+
 
 (if (display-graphic-p)
     (progn
