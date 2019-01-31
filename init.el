@@ -6,6 +6,8 @@
 ;; To search for file in a directory by name:
 ;; M-x find-name-dired
 
+;; https://mixandgo.com/learn/how-ive-convinced-emacs-to-dance-with-ruby
+
 ;; End Notes
 
 ;; Moved the custom.el stuff into its own file called ~/.emacs.d/customize.el
@@ -17,6 +19,7 @@
 (setq apropos-do-all t  ;; Apropos - searching emacs functions / symbols / etc.
       dired-listing-switches "-hal"
       global-auto-revert-non-file-buffers t  ;; Also auto refresh dired, but be quiet about it
+      confirm-kill-emacs 'y-or-n-p
       ido-enable-flex-matching t
       ido-everywhere t
       ido-max-directory-size 100000  ;; Able to show dir listing containing up to n files.
@@ -32,8 +35,11 @@
       kept-old-versions 0  ;; Number of oldest versions to keep.
       version-control t  ;; Use version numbers for backups
       vc-make-backup-files t
-      ring-bell-function 'ignore)
+      ring-bell-function 'ignore
+      initial-frame-alist '((top . 10) (left . 50) (width . 185) (height . 55)))
+      linum-format "%4d")
 
+(setq-default line-spacing 1)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
@@ -51,9 +57,24 @@
 (menu-bar-mode -1)
 ;; (tool-bar-mode -1)
 ;; (scroll-bar-mode -1)
-;; (global-linum-mode t)
+(global-linum-mode t)
 ;; (fringe-mode nil)
+(set-fringe-mode '(10 . 0))
 ;; (global-whitespace-mode t)
+
+;; Remove the fringe indicators
+(when (boundp 'fringe-indicator-alist)
+  (setq-default fringe-indicator-alist
+		'(
+		  (continuation . nil)
+		  (overlay-arrow . nil)
+		  (up . nil)
+		  (down . nil)
+		  (top . nil)
+		  (bottom . nil)
+		  (top-bottom . nil)
+		  (empty-line . nil)
+		  (unknown . nil))))
 
 ;; Hooks
 (add-hook 'before-save-hook 'whitespace-cleanup) ;; cleanup whitespace on save
@@ -184,7 +205,7 @@
 ;;         ;; ace-jump-mode
 ;;         ;; ace-window
 ;;         ;; ag
-;;         ;; ample-theme
+;;         ;; anzu
 ;;         ;; auto-complete
 ;;         ;; basic-theme
 ;;         ;; color-theme-sanityinc-tomorrow
@@ -226,6 +247,11 @@
 
 ;; ;; ag
 ;; (setq ag-reuse-buffers t)
+
+;; ;; anzu
+;; (global-anzu-mode t)
+;; (global-set-key (kbd "M-%") 'anzu-query-replace)
+;; (global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)
 
 ;; ;; auto-complete
 ;; (ac-config-default)
