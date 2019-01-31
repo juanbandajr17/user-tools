@@ -191,9 +191,9 @@
 ;;         ;; expand-region
 ;;         ;; flx-ido
 ;;         ;; flycheck
-;;         ;; go-mode
-;;         ;; go-eldoc
 ;;         ;; go-autocomplete
+;;         ;; go-eldoc
+;;         ;; go-mode
 ;;         ;; gotest
 ;;         ;; ido-completing-read+
 ;;         ;; ido-vertical-mode
