@@ -36,7 +36,7 @@
       version-control t  ;; Use version numbers for backups
       vc-make-backup-files t
       ring-bell-function 'ignore
-      initial-frame-alist '((top . 10) (left . 50) (width . 185) (height . 55))
+      initial-frame-alist '((top . 10) (left . 50) (width . 100) (height . 120))
       linum-format "%4d")
 
 (setq-default line-spacing 1)
@@ -57,7 +57,6 @@
 (menu-bar-mode -1)
 (global-linum-mode t)
 (set-fringe-mode '(10 . 0))
-;; (global-whitespace-mode t)
 
 
 ;; Remove the fringe indicators
@@ -79,6 +78,8 @@
 (add-hook 'before-save-hook 'whitespace-cleanup) ;; cleanup whitespace on save
 (add-hook 'before-save-hook  'force-backup-of-buffer)
 (add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
+(add-hook 'ruby-mode-hook 'whitespace-mode)
+(add-hook 'python-mode-hook 'whitespace-mode)
 
 
 ;; Key-Bindings
