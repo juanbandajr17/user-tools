@@ -248,7 +248,7 @@
 ;; ;; http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
 ;; ;; go get -u golang.org/x/tools/cmd/...
 ;; ;; go get -u github.com/rogpeppe/godef
-;; ;; go get -u github.com/nsf/gocode
+;; ;; go get -u github.com/mdempsky/gocode
 ;; ;; go get -u github.com/jstemmer/gotags
 ;; (setq gofmt-command "goimports")
 ;; (add-hook 'go-mode-hook 'flycheck-mode)
