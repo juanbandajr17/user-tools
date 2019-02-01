@@ -15,6 +15,7 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
+
 ;; Flags
 (setq apropos-do-all t  ;; Apropos - searching emacs functions / symbols / etc.
       dired-listing-switches "-hal"
@@ -39,10 +40,12 @@
       initial-frame-alist '((top . 10) (left . 50) (width . 100) (height . 120))
       linum-format "%4d")
 
+
 (setq-default line-spacing 1)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
+
 
 ;; Modes
 (column-number-mode t)  ;; Show col position in mode-line
