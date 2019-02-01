@@ -37,7 +37,6 @@
       version-control t  ;; Use version numbers for backups
       vc-make-backup-files t
       ring-bell-function 'ignore
-      initial-frame-alist '((top . 10) (left . 50) (width . 100) (height . 120))
       linum-format "%4d")
 
 
@@ -298,7 +297,7 @@
 ;;             (setq tab-width 4)))
 
 
-;; gotest
+;; ;; gotest
 
 
 ;; ;; ido-completing-read+
@@ -367,9 +366,9 @@
 
     ;; Unix
     ;; (setq interprogram-cut-function 'xsel-cut-function)
-    ;; (setq interprogram-paste-function 'xsel-paste-function)))
+    ;; (setq interprogram-paste-function 'xsel-paste-function))
 
     ;; Mac
     ;; (setq interprogram-cut-function 'paste-to-osx)
-    ;; (setq interprogram-paste-function 'copy-from-osx))
+    ;; (setq interprogram-paste-function 'copy-from-osx)
     ))
