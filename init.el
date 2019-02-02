@@ -81,6 +81,7 @@
 (add-hook 'before-save-hook  'force-backup-of-buffer)
 (add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
 (add-hook 'ruby-mode-hook 'whitespace-mode)
+(add-hook 'ruby-mode-hook 'flycheck-mode)
 (add-hook 'python-mode-hook 'whitespace-mode)
 
 
