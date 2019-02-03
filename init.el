@@ -220,6 +220,7 @@
 ;;         ;; neotree
 ;;         ;; projectile
 ;;         ;; restclient
+;;         ;; smart-mode-line
 ;;         ;; smex
 ;;         ;; sql-indent
 ;;         ;; sqlup-mode
@@ -330,6 +331,12 @@
 ;; ;; projectile
 ;; (projectile-global-mode t)
 ;; (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name))))
+
+
+;; ;; smart-mode-line
+;; (sml/setup)
+;; (setq sml/shorten-directory t)
+;; (setq sml/shorten-modes t)
 
 
 ;; ;; smex
