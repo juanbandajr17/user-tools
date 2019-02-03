@@ -27,7 +27,7 @@
       ido-use-virtual-buffers t  ;; List recently opened files in buffer-list.
       imenu-max-item-length 100  ;; Useful when matching against long module/method names.
       inhibit-splash-screen t  ;; No message
-      whitespace-line-column 100  ;; whitespace-mode highlight text after exceeding 100 chars
+      whitespace-line-column 99  ;; whitespace-mode highlight text after exceeding 100 chars
       whitespace-style '(face lines-tail trailing empty)  ;;  whitespace-mode highlights
       backup-by-copying t  ;; Copy all files, don't rename them.
       backup-directory-alist '(("." . "~/.emacs.d/backup/per-save"))
@@ -81,6 +81,7 @@
 (add-hook 'before-save-hook  'force-backup-of-buffer)
 (add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
 (add-hook 'ruby-mode-hook 'whitespace-mode)
+(add-hook 'ruby-mode-hook 'flycheck-mode)
 (add-hook 'python-mode-hook 'whitespace-mode)
 
 
@@ -326,6 +327,7 @@
 
 ;; ;; neotree
 ;; (global-set-key [f8] 'neotree-toggle)
+;; (global-set-key [f9] 'neotree-find)
 
 
 ;; ;; projectile
