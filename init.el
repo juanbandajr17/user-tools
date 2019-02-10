@@ -204,6 +204,7 @@
 ;;         ;; auto-complete
 ;;         ;; basic-theme
 ;;         ;; color-theme-sanityinc-tomorrow
+;;         ;; dumb-jump
 ;;         ;; exec-path-from-shell
 ;;         ;; expand-region
 ;;         ;; flx-ido
@@ -257,6 +258,9 @@
 
 ;; ;; auto-complete
 ;; (ac-config-default)
+
+
+;; ;; dumb-jump
 
 
 ;; ;; exec-path-from-shell
