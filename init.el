@@ -331,7 +331,7 @@
 
 ;; ;; neotree
 ;; (global-set-key [f8] 'neotree-toggle)
-;; (global-set-key [f9] 'neotree-find)
+;; (global-set-key [f10] 'neotree-find)
 
 
 ;; ;; projectile
