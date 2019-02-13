@@ -76,6 +76,10 @@
 		  (unknown . nil))))
 
 
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
+
+
 ;; Hooks
 (add-hook 'before-save-hook 'whitespace-cleanup) ;; cleanup whitespace on save
 (add-hook 'before-save-hook  'force-backup-of-buffer)
@@ -200,9 +204,11 @@
 ;;         ;; ace-jump-mode
 ;;         ;; ace-window
 ;;         ;; ag
+;;         ;; ample-theme
 ;;         ;; anzu
 ;;         ;; auto-complete
 ;;         ;; basic-theme
+;;         ;; beacon
 ;;         ;; color-theme-sanityinc-tomorrow
 ;;         ;; dumb-jump
 ;;         ;; exec-path-from-shell
@@ -252,12 +258,16 @@
 
 ;; ;; anzu
 ;; (global-anzu-mode t)
-;; (global-set-key (kbd "M-%") 'anzu-query-replace)
+;; (global-set-key (kbd "M-%") 'anzu-query-replace-at-cursor)
 ;; (global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)
 
 
 ;; ;; auto-complete
 ;; (ac-config-default)
+
+
+;; ;; beacon
+;; (beacon-mode t)
 
 
 ;; ;; dumb-jump
@@ -366,6 +376,9 @@
 ;;   (setq web-mode-css-indent-offset 2)
 ;;   (setq web-mode-code-indent-offset 2))
 ;; (add-hook 'web-mode-hook  'my-web-mode-hook)
+
+;; ;; zone
+;; (zone-when-idle 300)
 
 
 (if (display-graphic-p)
