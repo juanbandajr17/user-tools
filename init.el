@@ -99,6 +99,13 @@
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 (global-set-key (kbd "M-%") 'query-replace-regexp)
 (global-set-key (kbd "M-i") 'imenu)
+(global-set-key (kbd "C-M-l") 'goto-line)
+(global-set-key (kbd "C-M-3") 'split-window-horizontally)
+(global-set-key (kbd "C-M-2") 'split-window-vertically)
+(global-set-key (kbd "C-M-1") 'delete-other-windows)
+(global-set-key (kbd "M-O") 'er/expand-region)
+(global-set-key (kbd "C-o") 'other-window)
+(global-set-key (kbd "M-l") 'ido-switch-buffer)
 
 
 ;; Org
@@ -279,7 +286,7 @@
 
 
 ;; ;; expand-region
-;; (global-set-key (kbd "C-=") 'er/expand-region)
+;; (global-set-key (kbd "M-O") 'er/expand-region)
 
 
 ;; ;; flx-ido
