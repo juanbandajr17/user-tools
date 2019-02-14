@@ -213,12 +213,15 @@
 ;;         ;; auto-complete
 ;;         ;; basic-theme
 ;;         ;; beacon
+;;         ;; browse-at-remote
 ;;         ;; color-theme-sanityinc-tomorrow
 ;;         ;; dumb-jump
 ;;         ;; exec-path-from-shell
 ;;         ;; expand-region
 ;;         ;; flx-ido
 ;;         ;; flycheck
+;;         ;; git-link
+;;         ;; git-timemachine
 ;;         ;; go-autocomplete
 ;;         ;; go-eldoc
 ;;         ;; go-mode
