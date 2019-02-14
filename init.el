@@ -271,6 +271,7 @@
 
 
 ;; ;; dumb-jump
+;; (dumb-jump-mode)
 
 
 ;; ;; exec-path-from-shell
