@@ -99,20 +99,12 @@
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 (global-set-key (kbd "M-%") 'query-replace-regexp)
 (global-set-key (kbd "M-i") 'imenu)
+(global-set-key (kbd "C-o") 'other-window)
 (global-set-key (kbd "C-M-l") 'goto-line)
 (global-set-key (kbd "C-M-3") 'split-window-horizontally)
 (global-set-key (kbd "C-M-2") 'split-window-vertically)
 (global-set-key (kbd "C-M-1") 'delete-other-windows)
-(global-set-key (kbd "C-o") 'other-window)
 (global-set-key (kbd "M-l") 'ido-switch-buffer)
-
-
-
-;; Org
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cb" 'org-iswitchb)
 
 
 ;; https://orgmode.org/worg/org-configs/org-customization-guide.html
