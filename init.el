@@ -103,9 +103,9 @@
 (global-set-key (kbd "C-M-3") 'split-window-horizontally)
 (global-set-key (kbd "C-M-2") 'split-window-vertically)
 (global-set-key (kbd "C-M-1") 'delete-other-windows)
-(global-set-key (kbd "M-O") 'er/expand-region)
 (global-set-key (kbd "C-o") 'other-window)
 (global-set-key (kbd "M-l") 'ido-switch-buffer)
+
 
 
 ;; Org
@@ -338,7 +338,6 @@
 
 ;; ;; magit
 ;; (global-set-key (kbd "C-x g") 'magit-status)
-
 
 ;; ;; multiple-cursors
 ;; (global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
