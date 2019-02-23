@@ -1,169 +1,324 @@
-;; Notes
+(require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+(package-initialize)
 
-;; To search for string/phrase for files in a directory:
-;; M-x rgrep
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
-;; To search for file in a directory by name:
-;; M-x find-name-dired
+(eval-when-compile
+  (require 'use-package))
 
-;; https://mixandgo.com/learn/how-ive-convinced-emacs-to-dance-with-ruby
-
-;; End Notes
-
-;; Moved the custom.el stuff into its own file called ~/.emacs.d/customize.el
 (setq custom-file "~/.emacs.d/customize.el")
 (when (file-exists-p custom-file)
   (load custom-file))
 
-
-;; Flags
-(setq apropos-do-all t  ;; Apropos - searching emacs functions / symbols / etc.
-      dired-listing-switches "-hal"
-      global-auto-revert-non-file-buffers t  ;; Also auto refresh dired, but be quiet about it
-      confirm-kill-emacs 'y-or-n-p
-      ido-enable-flex-matching t
-      ido-everywhere t
-      ido-max-directory-size 100000  ;; Able to show dir listing containing up to n files.
-      ido-use-virtual-buffers t  ;; List recently opened files in buffer-list.
-      imenu-max-item-length 100  ;; Useful when matching against long module/method names.
-      inhibit-splash-screen t  ;; No message
-      whitespace-line-column 99  ;; whitespace-mode highlight text after exceeding 100 chars
-      whitespace-style '(face lines-tail trailing empty)  ;;  whitespace-mode highlights
-      backup-by-copying t  ;; Copy all files, don't rename them.
-      backup-directory-alist '(("." . "~/.emacs.d/backup/per-save"))
-      delete-old-versions t  ;; Don't ask to delete excess backup versions.
-      kept-new-versions 10  ;; Number of newest versions to keep.
-      kept-old-versions 0  ;; Number of oldest versions to keep.
-      version-control t  ;; Use version numbers for backups
-      vc-make-backup-files t
-      ring-bell-function 'ignore
-      linum-format "%4d")
-
-
 (setq-default line-spacing 1)
-(setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
-(setq indent-line-function 'insert-tab)
+(setq-default indent-line-function 'insert-tab)
+(setq-default indent-tabs-mode nil)
+(setq inhibit-splash-screen t)
+(setq ring-bell-function 'ignore)
+(setq initial-scratch-message nil)
 
+(use-package use-package-ensure-system-package
+  :ensure t)
 
-;; Modes
-(column-number-mode t)  ;; Show col position in mode-line
-(delete-selection-mode t)  ;; Delete entire highlighted/selected region
-(electric-indent-mode t)  ;; Auto-indent on newline.
-(electric-pair-mode -1)  ;; Auto-create ending pair.
-(global-auto-revert-mode t)  ;; Auto refresh buffers
-(ido-mode t)  ;; Display list of selection.
-(show-paren-mode t)  ;; Highlight matching paren.
-(size-indication-mode t)  ;; Display size of buffer in mode-line.
-(transient-mark-mode t)  ;; Highlight selected region
-(menu-bar-mode -1)
-(global-linum-mode t)
-(set-fringe-mode '(10 . 0))
+(use-package auto-package-update
+  :ensure t
+  :config
+  (setq auto-package-update-delete-old-versions t)
+  (setq auto-package-update-hide-results t)
+  (auto-package-update-maybe))
 
+(use-package apropos
+  :custom (apropos-do-all t))
 
-;; Remove the fringe indicators
-(when (boundp 'fringe-indicator-alist)
-  (setq-default fringe-indicator-alist
-		'(
-		  (continuation . nil)
-		  (overlay-arrow . nil)
-		  (up . nil)
-		  (down . nil)
-		  (top . nil)
-		  (bottom . nil)
-		  (top-bottom . nil)
-		  (empty-line . nil)
-		  (unknown . nil))))
-
-
-(when (fboundp 'windmove-default-keybindings)
-  (windmove-default-keybindings))
-
-
-;; Hooks
-(add-hook 'before-save-hook 'whitespace-cleanup) ;; cleanup whitespace on save
-(add-hook 'before-save-hook  'force-backup-of-buffer)
-(add-hook 'find-file-hook 'my-find-file-check-make-large-file-read-only-hook)
-(add-hook 'ruby-mode-hook 'whitespace-mode)
-(add-hook 'ruby-mode-hook 'flycheck-mode)
-(add-hook 'python-mode-hook 'whitespace-mode)
-
-
-;; Key-Bindings
-(global-set-key (kbd "M-/") 'hippie-expand)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "M-z") 'zap-up-to-char)
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "C-M-s") 'isearch-forward)
-(global-set-key (kbd "C-M-r") 'isearch-backward)
-(global-set-key (kbd "M-%") 'query-replace-regexp)
-(global-set-key (kbd "M-i") 'imenu)
-(global-set-key (kbd "C-o") 'other-window)
-(global-set-key (kbd "C-M-l") 'goto-line)
-(global-set-key (kbd "C-M-3") 'split-window-horizontally)
-(global-set-key (kbd "C-M-2") 'split-window-vertically)
-(global-set-key (kbd "C-M-1") 'delete-other-windows)
-(global-set-key (kbd "M-l") 'ido-switch-buffer)
-
-
-;; https://orgmode.org/worg/org-configs/org-customization-guide.html
-(setq
- org-directory "~/org"
- org-default-notes-file "~/org/todo.org"
- org-agenda-files '("~/org/todo.org")
- org-startup-folded "content"
- org-archive-location "~/org/.archive.org::* From %s"
- org-hide-leading-stars nil
- org-completion-use-ido t
- org-link-file-path-type 'absolute
- org-log-done 'time
- org-todo-keywords '((sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)"))
- org-todo-keyword-faces '(("TODO" . "#7f7f7f")
-                          ("STARTED" . "#00d279")
-                          ("WAITING". "#cdcd00")
-                          ("DONE" . "#00cd00")
-                          ("CANCELED" . "#cd0000"))
- org-agenda-start-with-log-mode t
- org-agenda-log-mode-items '(scheduled deadline started closed)
- x-select-enable-clipboard t
- org-reverse-note-order t
- org-agenda-skip-scheduled-if-done t
- org-agenda-skip-deadline-if-done t)
-
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cb" 'org-iswitchb)
-
-
-;; Functions
-(defun force-backup-of-buffer ()
-    ;; Make a special "per session" backup at the first save of each
-    ;; emacs session.
-    (when (not buffer-backed-up)
-      ;; Override the default parameters for per-session backups.
-      (let ((backup-directory-alist '(("" . "~/.emacs.d/backup/per-session")))
-            (kept-new-versions 3))
-        (backup-buffer)))
-    ;; Make a "per save" backup on each save.  The first save results in
-    ;; both a per-session and a per-save backup, to keep the numbering
-    ;; of per-save backups consistent.
-    (let ((buffer-backed-up nil))
-      (backup-buffer)))
-
-
-(defun my-find-file-check-make-large-file-read-only-hook ()
-  "If a file is over a given size, make the buffer read only."
-  (when (> (buffer-size) (* (* 1024 1024) 100)) ;; 100 MB
+(defun find-large-file-hook ()
+  (when (> (buffer-size) (* (* 1024 1024) 128)) ;; 128 MB
     (setq buffer-read-only t)
     (buffer-disable-undo)
     (fundamental-mode)))
 
+(use-package files
+  :hook (find-file . find-large-file-hook)
+  :custom
+  ((backup-by-copying t)
+   (backup-directory-alist '(("." . "~/.emacs.d/backup/per-save")))
+   (confirm-kill-emacs 'y-or-n-p)
+   (delete-old-versions t)
+   (kept-old-versions 0)
+   (version-control t)))
+
+(use-package dired
+  :custom (dired-listing-switches "-hal"))
+
+(use-package autorevert
+  :custom (global-auto-revert-non-file-buffers t))
+
+(use-package ido
+  :bind ("M-l" . ido-switch-buffer)
+  :custom ((ido-enable-flex-matching t)
+           (ido-everywhere t)
+           (ido-max-directory-size 100000)
+           (ido-use-virtual-buffers t))
+  :config (ido-mode t))
+
+(use-package imenu
+  :bind ("M-i" . imenu)
+  :custom (imenu-max-item-length 100))
+
+(use-package linum
+  :custom (linum-format "%4d")
+  :config (global-linum-mode t))
+
+(use-package vc-hooks
+  :custom (vc-make-backup-files t))
+
+(use-package select
+  :custom (select-enable-clipboard t))
+
+(use-package simple
+  :bind ("C-M-l" . goto-line)
+  :config
+  (column-number-mode t)
+  (transient-mark-mode t)
+  (size-indication-mode t))
+
+(use-package delsel
+  :config (delete-selection-mode t))
+
+(use-package electric
+  :config (electric-indent-mode t))
+
+
+(use-package elec-pair
+  :config (electric-pair-mode -1))
+
+(use-package autorevert
+  :config (global-auto-revert-mode t))
+
+(use-package paren
+  :config (show-paren-mode t))
+
+(use-package menu-bar
+  :config (menu-bar-mode -1))
+
+(use-package fringe
+  :config
+  (set-fringe-mode '(10 . 0))
+  (when (boundp 'fringe-indicator-alist)
+    (setq-default fringe-indicator-alist
+                  '((continuation . nil)
+                    (overlay-arrow . nil)
+                    (up . nil)
+                    (down . nil)
+                    (top . nil)
+                    (bottom . nil)
+                    (top-bottom . nil)
+                    (empty-line . nil)
+                    (unknown . nil)))))
+
+(use-package windmove
+  :config
+  (when (fboundp 'windmove-default-keybindings)
+    (windmove-default-keybindings)))
+
+(use-package hippie-exp
+  :bind ("M-/" . hippie-expand))
+
+(use-package ibuffer
+  :bind ("C-x C-b" . ibuffer))
+
+(use-package isearch
+  :bind (("C-s" . isearch-forward)
+         ("C-r" . 'isearch-backward)))
+
+(use-package replace
+  :bind ("M-%" . query-replace-regexp))
+
+(use-package window
+  :bind (("C-M-3" . split-window-horizontally)
+         ("C-M-2" . split-window-vertically)
+         ("C-M-1" . delete-other-windows)
+         ("C-o" . other-window)))
+
+(use-package org
+  :bind (("C-c l" . org-store-link)
+         ("C-c c" . org-capture)
+         ("C-c a" . org-agenda)
+         ("C-c b" . org-iswitchb))
+  :custom
+  ((org-directory "~/org")
+   (org-default-notes-file "~/org/todo.org")
+   (org-agenda-files '("~/org/todo.org"))
+   (org-startup-folded "content")
+   (org-archive-location "~/org/.archive.org::* From %s")
+   (org-hide-leading-stars t)
+   (org-completion-use-ido t)
+   (org-link-file-path-type 'absolute)
+   (org-log-done 'time)
+   (org-todo-keywords '((sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)")))
+   (org-todo-keyword-faces '(("TODO" . "#7f7f7f")
+                             ("STARTED" . "#00d279")
+                             ("WAITING". "#cdcd00")
+                             ("DONE" . "#00cd00")
+                             ("CANCELED" . "#cd0000")))
+   (org-agenda-start-with-log-mode t)
+   (org-agenda-log-mode-items '(scheduled deadline started closed))
+   (org-reverse-note-order t)
+   (org-agenda-skip-scheduled-if-done t)
+   (org-agenda-skip-deadline-if-done t)))
+
+(use-package ace-jump-mode
+  :bind ("M-j" . ace-jump-mode))
+
+(use-package ace-window
+  :bind ("M-o" . ace-window))
+
+(when (memq window-system '(mac ns x))
+  (use-package ag
+    :config
+    (setq ag-reuse-buffers t
+          ag-highlight-search t)))
+
+(use-package anzu
+  :bind (("M-%" . anzu-query-replace-at-cursor)
+         ("C-M-%" . anzu-query-replace-regexp))
+  :config
+  (global-anzu-mode t))
+
+(use-package auto-complete
+  :ensure t
+  :config (ac-config-default))
+
+(use-package beacon
+  :disabled
+  :config (beacon-mode t))
+
+(use-package dumb-jump
+  :ensure t
+  :bind (("C-M-g" . dumb-jump-go)
+         ("C-M-p" . dumb-jump-back))
+  :config (dumb-jump-mode t))
+
+(when (memq window-system '(mac ns x))
+  (use-package exec-path-from-shell
+    :config (exec-path-from-shell-initialize)))
+
+(use-package expand-region
+  :bind ("M-O" . er/expand-region))
+
+(use-package flx-ido
+  :ensure t
+  :config (flx-ido-mode t))
+
+(use-package flycheck
+  :hook (go-mode . flycheck-mode))
+
+(use-package go-autocomplete
+  :ensure t
+  :config (ac-config-default))
+
+
+(use-package go-eldoc
+  :hook ((go-mode-hook . go-eldoc-setup)))
+
+;; go get -u golang.org/x/tools/cmd/...
+;; go get -u github.com/rogpeppe/godef
+;; go get -u github.com/nsf/gocode
+;; go get -u github.com/jstemmer/gotags
+(use-package go-mode
+  :ensure t
+  :hook (go-mode . (lambda ()
+                     (add-hook 'before-save-hook 'gofmt-before-save)
+                     (local-set-key (kbd ""))
+                     (local-set-key (kbd "M-.") 'godef-jump)
+                     (local-set-key (kbd "M-*") 'pop-tag-mark)
+                     (setq tab-width 4)))
+  :config
+  (setq gofmt-command "goimports"))
+
+
+(use-package gotest
+  :ensure t)
+
+(use-package ido-completing-read+
+  :ensure t
+  :config (ido-ubiquitous-mode t))
+
+(use-package ido-vertical-mode
+  :ensure t
+  :custom
+  (ido-vertical-define-keys 'C-n-and-C-p-only)
+  :config
+  (ido-vertical-mode t))
+
+(use-package imenu-anywhere
+  :bind ("M-i" . imenu-anywhere))
+
+(use-package magit
+  :ensure t
+  :bind ("C-x g" . magit-status))
+
+(use-package multiple-cursors
+  :bind (("M-p" . mc/mark-previous-like-this)
+         ("M-n" . mc/mark-next-like-this)
+         ("M-m" . mc/mark-all-like-this)))
+
+(use-package neotree
+  :bind (("<f9>" . neotree-toggle)
+         ("<f10>" . neotree-find)))
+
+(use-package projectile
+  :demand
+  :custom
+  (projectile-mode-line-function
+   (lambda () (format " Proj[%s]" (projectile-project-name))))
+  :ensure t
+  :config
+  (projectile-mode t)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+
+(use-package smart-mode-line
+  :ensure t
+  :custom
+  (sml/shorten-directory t)
+  (sml/shorten-modes t)
+  :config
+  (sml/setup))
+
+(use-package smex
+  :ensure t
+  :bind
+  (("M-x" . smex) ("M-X" . smex-major-mode-commands)))
+
+(use-package sql-indent
+  :hook (sql-mode-hook . sqlind-minor-mode))
+
+(use-package sqlup-mode
+  :hook (sql-mode-hook . sqlup-mode))
+
+(use-package whitespace
+  :hook (before-save . whitespace-cleanup)
+  :custom ((whitespace-line-column 99)
+           (whitespace-style '(face lines-tail trailing empty))))
+
+(use-package web-mode
+  :custom
+  (web-mode-markup-indent-offset 2)
+  (web-mode-css-indent-offset 2)
+  (web-mode-code-indent-offset 2)
+  :hook (web-mode . my-web-mode-hook))
+
+(use-package zone
+  :config (zone-when-idle 300))
 
 (defun copy-from-osx ()
   (shell-command-to-string "pbpaste"))
-
 
 (defun paste-to-osx (text &optional push)
   (let ((process-connection-type nil))
@@ -171,238 +326,31 @@
       (process-send-string proc text)
       (process-send-eof proc))))
 
-
 ;; Requirement: Install xsel program
-;; https://hugoheden.wordpress.com/2009/03/08/copypaste-with-emacs-in-terminal/
 (defun xsel-cut-function (text &optional push)
   (with-temp-buffer
     (insert text)
     (call-process-region (point-min) (point-max) "xsel" nil 0 nil "--clipboard" "--input")))
-
 
 (defun xsel-paste-function()
   (let ((xsel-output (shell-command-to-string "xsel --clipboard --output")))
     (unless (string= (car kill-ring) xsel-output)
       xsel-output )))
 
-
-;; (require 'package)
-;; (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-;;                     (not (gnutls-available-p))))
-;;        (proto (if no-ssl "http" "https")))
-;;   ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
-;;   ;; (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
-;;   (add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
-;;   (when (< emacs-major-version 24)
-;;     ;; For important compatibility libraries like cl-lib
-;;     (add-to-list 'package-archives '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
-;; (package-initialize)
-
-
-;; (unless package-archive-contents
-;;   (package-refresh-contents))
-
-
-;; (setq package-list
-;;       '(
-;;         ;; ace-jump-mode
-;;         ;; ace-window
-;;         ;; ag
-;;         ;; ample-theme
-;;         ;; anzu
-;;         ;; auto-complete
-;;         ;; basic-theme
-;;         ;; beacon
-;;         ;; browse-at-remote
-;;         ;; color-theme-sanityinc-tomorrow
-;;         ;; dumb-jump
-;;         ;; exec-path-from-shell
-;;         ;; expand-region
-;;         ;; flx-ido
-;;         ;; flycheck
-;;         ;; git-link
-;;         ;; git-timemachine
-;;         ;; go-autocomplete
-;;         ;; go-eldoc
-;;         ;; go-mode
-;;         ;; gotest
-;;         ;; ido-completing-read+
-;;         ;; ido-vertical-mode
-;;         ;; imenu-anywhere
-;;         ;; magit
-;;         ;; monochrome-theme
-;;         ;; multiple-cursors
-;;         ;; neotree
-;;         ;; projectile
-;;         ;; restclient
-;;         ;; smart-mode-line
-;;         ;; smex
-;;         ;; sql-indent
-;;         ;; sqlup-mode
-;;         ;; tao-theme
-;;         ;; twilight-theme
-;;         ;; web-mode
-;;         ;; white-theme
-;;         ))
-
-
-;; (dolist (package package-list)
-;;   (unless (package-installed-p package)
-;;     (package-install package)))
-
-
-;; ;; ace-jump-mode
-;; (define-key global-map (kbd "M-j") 'ace-jump-mode)
-
-
-;; ;; ace-window
-;; (define-key global-map (kbd "M-o") 'ace-window)
-
-
-;; ;; ag
-;; (setq ag-reuse-buffers t)
-;; (setq ag-highlight-search t)
-
-
-;; ;; anzu
-;; (global-anzu-mode t)
-;; (global-set-key (kbd "M-%") 'anzu-query-replace-at-cursor)
-;; (global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)
-
-
-;; ;; auto-complete
-;; (ac-config-default)
-
-
-;; ;; beacon
-;; (beacon-mode t)
-
-
-;; ;; dumb-jump
-;; (dumb-jump-mode)
-
-
-;; ;; exec-path-from-shell
-;; (when (memq window-system '(mac ns x))
-;;   (exec-path-from-shell-initialize))
-
-
-;; ;; expand-region
-;; (global-set-key (kbd "M-O") 'er/expand-region)
-
-
-;; ;; flx-ido
-;; (flx-ido-mode t)
-
-
-;; ;; flycheck
-
-
-;; ;; go-autocomplete
-;; (require 'go-autocomplete)
-
-
-;; ;; go-eldoc
-;; (add-hook 'go-mode-hook 'go-eldoc-setup)
-
-
-;; ;; go-mode
-;; ;; http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
-;; ;; go get -u golang.org/x/tools/cmd/...
-;; ;; go get -u github.com/rogpeppe/godef
-;; ;; go get -u github.com/nsf/gocode
-;; ;; go get -u github.com/jstemmer/gotags
-;; (setq gofmt-command "goimports")
-;; (add-hook 'go-mode-hook 'flycheck-mode)
-;; (add-hook 'go-mode-hook
-;;           (lambda ()
-;;             (add-hook 'before-save-hook 'gofmt-before-save)
-;;             (local-set-key (kbd "M-.") 'godef-jump)
-;;             (local-set-key (kbd "M-*") 'pop-tag-mark)
-;;             (setq tab-width 4)))
-
-
-;; ;; gotest
-
-
-;; ;; ido-completing-read+
-;; (ido-ubiquitous-mode 1)
-
-
-;; ;; ido-vertical-mode
-;; (ido-vertical-mode t)
-;; (setq ido-vertical-define-keys 'C-n-and-C-p-only)
-
-
-;; ;; imenu-anywhere
-;; (global-set-key (kbd "M-i") 'imenu-anywhere)
-
-
-;; ;; magit
-;; (global-set-key (kbd "C-x g") 'magit-status)
-
-;; ;; multiple-cursors
-;; (global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
-;; (global-set-key (kbd "M-n") 'mc/mark-next-like-this)
-;; (global-set-key (kbd "M-m") 'mc/mark-all-like-this)
-
-
-;; ;; neotree
-;; (global-set-key [f8] 'neotree-toggle)
-;; (global-set-key [f10] 'neotree-find)
-
-
-;; ;; projectile
-;; (projectile-global-mode t)
-;; (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name))))
-
-
-;; ;; smart-mode-line
-;; (sml/setup)
-;; (setq sml/shorten-directory t)
-;; (setq sml/shorten-modes t)
-
-
-;; ;; smex
-;; (global-set-key (kbd "M-x") 'smex)
-;; (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-
-
-;; ;; sql-indent
-;; (add-hook 'sql-mode-hook 'sqlind-minor-mode)
-
-
-;; ;; sqlup-mode
-;; (add-hook 'sql-mode-hook 'sqlup-mode)
-
-
-;; ;; web-mode
-;; (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-;; (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-;; (defun my-web-mode-hook ()
-;;   (setq web-mode-markup-indent-offset 2)
-;;   (setq web-mode-css-indent-offset 2)
-;;   (setq web-mode-code-indent-offset 2))
-;; (add-hook 'web-mode-hook  'my-web-mode-hook)
-
-;; ;; zone
-;; (zone-when-idle 300)
-
-
-(if (display-graphic-p)
-    (progn
-      ;; (set-face-attribute 'default nil :font "Courier New-11")
-      ;; (set-frame-font "Courier New-11" nil t)
-      (set-face-foreground 'vertical-border (face-background 'default))
-      (tool-bar-mode -1)
-      (scroll-bar-mode -1))
-  (progn
-
-    ;; Unix
-    ;; (setq interprogram-cut-function 'xsel-cut-function)
-    ;; (setq interprogram-paste-function 'xsel-paste-function))
-
-    ;; Mac
-    ;; (setq interprogram-cut-function 'paste-to-osx)
-    ;; (setq interprogram-paste-function 'copy-from-osx)
-    ))
+;; When using GUI
+(when (display-graphic-p)
+  (when (memq window-system '(mac))
+    (set-face-attribute 'default nil :font "Courier New-11")
+    (set-frame-font "Courier New-11" nil t))
+  (set-face-foreground 'vertical-border (face-background 'default))
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1))
+
+;; When using terminal
+(when (not (display-graphic-p))
+  (when (memq window-system '()) ;; When unix
+    (setq interprogram-cut-function 'xsel-cut-function)
+    (setq interprogram-paste-function 'xsel-paste-function))
+  (when (memq window-system '()) ;; When Mac
+    (setq interprogram-cut-function 'paste-to-osx)
+    (setq interprogram-paste-function 'copy-from-osx)))
