@@ -94,7 +94,6 @@
 (use-package electric
   :config (electric-indent-mode t))
 
-
 (use-package elec-pair
   :config (electric-pair-mode -1))
 
@@ -174,6 +173,7 @@
    (org-agenda-skip-deadline-if-done t)))
 
 (use-package ace-jump-mode
+  :ensure t
   :bind ("M-j" . ace-jump-mode))
 
 (use-package ace-window
@@ -181,6 +181,7 @@
 
 (when (memq window-system '(mac ns x))
   (use-package ag
+    :ensure t
     :config
     (setq ag-reuse-buffers t
           ag-highlight-search t)))
@@ -200,13 +201,13 @@
   :config (beacon-mode t))
 
 (use-package dumb-jump
-  :ensure t
   :bind (("C-M-g" . dumb-jump-go)
          ("C-M-p" . dumb-jump-back))
   :config (dumb-jump-mode t))
 
 (when (memq window-system '(mac ns x))
   (use-package exec-path-from-shell
+    :ensure t
     :config (exec-path-from-shell-initialize)))
 
 (use-package expand-region
@@ -217,14 +218,15 @@
   :config (flx-ido-mode t))
 
 (use-package flycheck
+  :ensure t
   :hook (go-mode . flycheck-mode))
 
 (use-package go-autocomplete
   :ensure t
   :config (ac-config-default))
 
-
 (use-package go-eldoc
+  :ensure t
   :hook ((go-mode-hook . go-eldoc-setup)))
 
 ;; go get -u golang.org/x/tools/cmd/...
@@ -241,7 +243,6 @@
                      (setq tab-width 4)))
   :config
   (setq gofmt-command "goimports"))
-
 
 (use-package gotest
   :ensure t)
@@ -261,24 +262,26 @@
   :bind ("M-i" . imenu-anywhere))
 
 (use-package magit
-  :ensure t
+  :ensure
   :bind ("C-x g" . magit-status))
 
 (use-package multiple-cursors
+  :ensure t
   :bind (("M-p" . mc/mark-previous-like-this)
          ("M-n" . mc/mark-next-like-this)
          ("M-m" . mc/mark-all-like-this)))
 
 (use-package neotree
+  :ensure t
   :bind (("<f9>" . neotree-toggle)
          ("<f10>" . neotree-find)))
 
 (use-package projectile
+  :ensure t
   :demand
   :custom
   (projectile-mode-line-function
    (lambda () (format " Proj[%s]" (projectile-project-name))))
-  :ensure t
   :config
   (projectile-mode t)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
@@ -297,9 +300,11 @@
   (("M-x" . smex) ("M-X" . smex-major-mode-commands)))
 
 (use-package sql-indent
+  :ensure t
   :hook (sql-mode-hook . sqlind-minor-mode))
 
 (use-package sqlup-mode
+  :ensure t
   :hook (sql-mode-hook . sqlup-mode))
 
 (use-package whitespace
@@ -308,6 +313,7 @@
            (whitespace-style '(face lines-tail trailing empty))))
 
 (use-package web-mode
+  :ensure t
   :custom
   (web-mode-markup-indent-offset 2)
   (web-mode-css-indent-offset 2)
