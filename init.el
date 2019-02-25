@@ -352,7 +352,7 @@
 
 ;; When using GUI
 (when (display-graphic-p)
-  (when (memq window-system '(mac))
+  (when (memq window-system '(mac ns))
     (set-face-attribute 'default nil :font "Courier New-11")
     (set-frame-font "Courier New-11" nil t))
   (set-face-foreground 'vertical-border (face-background 'default))
@@ -364,6 +364,6 @@
   (when (memq window-system '()) ;; When unix
     (setq interprogram-cut-function 'xsel-cut-function)
     (setq interprogram-paste-function 'xsel-paste-function))
-  (when (memq window-system '()) ;; When Mac
+  (when (memq window-system '(mac ns)) ;; When Mac
     (setq interprogram-cut-function 'paste-to-osx)
     (setq interprogram-paste-function 'copy-from-osx)))
