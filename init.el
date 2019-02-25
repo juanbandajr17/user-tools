@@ -177,6 +177,7 @@
   :bind ("M-j" . ace-jump-mode))
 
 (use-package ace-window
+  :ensure t
   :bind ("M-o" . ace-window))
 
 (when (memq window-system '(mac ns x))
@@ -187,6 +188,7 @@
           ag-highlight-search t)))
 
 (use-package anzu
+  :ensure t
   :bind (("M-%" . anzu-query-replace-at-cursor)
          ("C-M-%" . anzu-query-replace-regexp))
   :config
@@ -201,6 +203,7 @@
   :config (beacon-mode t))
 
 (use-package dumb-jump
+  :ensure t
   :bind (("C-M-g" . dumb-jump-go)
          ("C-M-p" . dumb-jump-back))
   :config (dumb-jump-mode t))
@@ -211,6 +214,7 @@
     :config (exec-path-from-shell-initialize)))
 
 (use-package expand-region
+  :ensure t
   :bind ("M-O" . er/expand-region))
 
 (use-package flx-ido
@@ -219,6 +223,7 @@
 
 (use-package flycheck
   :ensure t
+  :after go-mode
   :hook (go-mode . flycheck-mode))
 
 (use-package go-autocomplete
@@ -227,7 +232,7 @@
 
 (use-package go-eldoc
   :ensure t
-  :hook ((go-mode-hook . go-eldoc-setup)))
+  :hook ((go-mode . go-eldoc-setup)))
 
 ;; go get -u golang.org/x/tools/cmd/...
 ;; go get -u github.com/rogpeppe/godef
@@ -235,11 +240,11 @@
 ;; go get -u github.com/jstemmer/gotags
 (use-package go-mode
   :ensure t
+  :bind (:map go-mode-map
+              ("M-." . godef-jump)
+              ("M-*" . pop-tag-mark))
   :hook (go-mode . (lambda ()
                      (add-hook 'before-save-hook 'gofmt-before-save)
-                     (local-set-key (kbd ""))
-                     (local-set-key (kbd "M-.") 'godef-jump)
-                     (local-set-key (kbd "M-*") 'pop-tag-mark)
                      (setq tab-width 4)))
   :config
   (setq gofmt-command "goimports"))
@@ -259,10 +264,11 @@
   (ido-vertical-mode t))
 
 (use-package imenu-anywhere
+  :ensure t
   :bind ("M-i" . imenu-anywhere))
 
 (use-package magit
-  :ensure
+  :ensure t
   :bind ("C-x g" . magit-status))
 
 (use-package multiple-cursors
@@ -289,6 +295,8 @@
 (use-package smart-mode-line
   :ensure t
   :custom
+  (sml/name-width 25)
+  (sml/mode-width 'full)
   (sml/shorten-directory t)
   (sml/shorten-modes t)
   :config
@@ -301,11 +309,11 @@
 
 (use-package sql-indent
   :ensure t
-  :hook (sql-mode-hook . sqlind-minor-mode))
+  :hook (sql-mode . sqlind-minor-mode))
 
 (use-package sqlup-mode
   :ensure t
-  :hook (sql-mode-hook . sqlup-mode))
+  :hook (sql-mode . sqlup-mode))
 
 (use-package whitespace
   :hook (before-save . whitespace-cleanup)
@@ -313,12 +321,11 @@
            (whitespace-style '(face lines-tail trailing empty))))
 
 (use-package web-mode
-  :ensure t
+  :ensure
   :custom
   (web-mode-markup-indent-offset 2)
   (web-mode-css-indent-offset 2)
-  (web-mode-code-indent-offset 2)
-  :hook (web-mode . my-web-mode-hook))
+  (web-mode-code-indent-offset 2))
 
 (use-package zone
   :config (zone-when-idle 300))
