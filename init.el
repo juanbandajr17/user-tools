@@ -323,7 +323,8 @@
            (whitespace-style '(face lines-tail trailing empty))))
 
 (use-package web-mode
-  :ensure
+  :ensure t
+  :mode "\\.gohtml\\'"           
   :custom
   (web-mode-markup-indent-offset 2)
   (web-mode-css-indent-offset 2)
