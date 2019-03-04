@@ -91,6 +91,8 @@
   (transient-mark-mode t)
   (size-indication-mode t))
 
+(use-package darkburn)
+
 (use-package delsel
   :config (delete-selection-mode t))
 
