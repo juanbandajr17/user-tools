@@ -63,7 +63,8 @@
   :custom (global-auto-revert-non-file-buffers t))
 
 (use-package ido
-  :bind ("M-l" . ido-switch-buffer)
+  :bind (("M-l" . ido-switch-buffer)
+         ("C-x C-b" . ido-switch-buffer))
   :custom ((ido-enable-flex-matching t)
            (ido-everywhere t)
            (ido-max-directory-size 100000)
