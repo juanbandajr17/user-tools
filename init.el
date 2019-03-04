@@ -276,6 +276,8 @@
   :ensure t
   :bind ("C-x g" . magit-status))
 
+(use-package markdown-mode+)
+
 (use-package multiple-cursors
   :ensure t
   :bind (("M-p" . mc/mark-previous-like-this)
