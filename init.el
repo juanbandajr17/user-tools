@@ -337,7 +337,7 @@
   (web-mode-code-indent-offset 2))
 
 (use-package zone
-  :config (zone-when-idle 300))
+  :config (zone-when-idle 900))
 
 (defun copy-from-osx ()
   (shell-command-to-string "pbpaste"))
