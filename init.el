@@ -290,6 +290,16 @@
   :bind (("<f9>" . neotree-toggle)
          ("<f10>" . neotree-find)))
 
+(use-package perspective
+  :ensure t
+  :config (persp-mode))
+
+(use-package persp-projectile
+  :ensure t
+  :after (projectile perspective)
+  :config
+  (define-key projectile-mode-map (kbd "p") 'projectile-persp-switch-project))
+
 (use-package projectile
   :ensure t
   :demand
