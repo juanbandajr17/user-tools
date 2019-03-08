@@ -298,7 +298,7 @@
   :ensure t
   :after (projectile perspective)
   :config
-  (define-key projectile-mode-map (kbd "p") 'projectile-persp-switch-project))
+  (define-key projectile-mode-map (kbd "C-c p p") 'projectile-persp-switch-project))
 
 (use-package projectile
   :ensure t
