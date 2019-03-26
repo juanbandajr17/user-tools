@@ -63,7 +63,8 @@
   :custom (global-auto-revert-non-file-buffers t))
 
 (use-package ido
-  :bind ("M-l" . ido-switch-buffer)
+  :bind (("M-l" . ido-switch-buffer)
+         ("C-x C-b" . ido-switch-buffer))
   :custom ((ido-enable-flex-matching t)
            (ido-everywhere t)
            (ido-max-directory-size 100000)
@@ -90,6 +91,8 @@
   (column-number-mode t)
   (transient-mark-mode t)
   (size-indication-mode t))
+
+(use-package darkburn)
 
 (use-package delsel
   :config (delete-selection-mode t))
@@ -278,6 +281,8 @@
   :ensure t
   :bind ("C-x g" . magit-status))
 
+(use-package markdown-mode+)
+
 (use-package multiple-cursors
   :ensure t
   :bind (("M-p" . mc/mark-previous-like-this)
@@ -288,6 +293,16 @@
   :ensure t
   :bind (("<f9>" . neotree-toggle)
          ("<f10>" . neotree-find)))
+
+(use-package perspective
+  :ensure t
+  :config (persp-mode))
+
+(use-package persp-projectile
+  :ensure t
+  :after (projectile perspective)
+  :config
+  (define-key projectile-mode-map (kbd "C-c p p") 'projectile-persp-switch-project))
 
 (use-package projectile
   :ensure t
@@ -337,7 +352,7 @@
 
 (use-package zone
   :disabled
-  :config (zone-when-idle 300))
+  :config (zone-when-idle 1200))
 
 (defun copy-from-osx ()
   (shell-command-to-string "pbpaste"))
