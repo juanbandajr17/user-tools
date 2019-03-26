@@ -205,6 +205,10 @@
   :disabled
   :config (beacon-mode t))
 
+(use-package clojure-mode)
+
+(use-package cider)
+
 (use-package dumb-jump
   :ensure t
   :bind (("C-M-g" . dumb-jump-go)
@@ -325,13 +329,14 @@
 
 (use-package web-mode
   :ensure t
-  :mode "\\.gohtml\\'"           
+  :mode "\\.gohtml\\'"
   :custom
   (web-mode-markup-indent-offset 2)
   (web-mode-css-indent-offset 2)
   (web-mode-code-indent-offset 2))
 
 (use-package zone
+  :disabled
   :config (zone-when-idle 300))
 
 (defun copy-from-osx ()
