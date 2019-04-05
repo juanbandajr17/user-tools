@@ -135,12 +135,9 @@
 (use-package hippie-exp
   :bind ("M-/" . hippie-expand))
 
-(use-package ibuffer
-  :bind ("C-x C-b" . ibuffer))
-
 (use-package isearch
   :bind (("C-s" . isearch-forward)
-         ("C-r" . 'isearch-backward)))
+         ("C-r" . isearch-backward)))
 
 (use-package replace
   :bind ("M-%" . query-replace-regexp))
